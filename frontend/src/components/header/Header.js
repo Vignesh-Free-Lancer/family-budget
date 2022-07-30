@@ -88,7 +88,7 @@ const Header = () => {
             <NavLink to="/report" onClick={handleCloseMenu}>
               Reports
             </NavLink>
-            <NavLink to="/user" onClick={handleCloseMenu}>
+            <NavLink to="/user/list" onClick={handleCloseMenu}>
               User
             </NavLink>
           </Nav>

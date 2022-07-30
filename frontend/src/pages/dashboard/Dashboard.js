@@ -84,7 +84,7 @@ const Dashboard = () => {
 
           {/*Users Card */}
           <DashboardCard
-            linkAddr="/registration"
+            linkAddr="/user/list"
             dashboardCategory="users-card"
             dashboardTitle="User"
             dashboardLabel="Modify/Remove your data"

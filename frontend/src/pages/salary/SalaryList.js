@@ -11,36 +11,6 @@ const SalaryList = () => {
   // Navigate To Page
   const navigate = useNavigate();
 
-  // Edit Table Data
-  const onEditChanged = (data) => {
-    console.log("Table Edit", data);
-    navigate(`/salary/${data._id}`);
-  };
-
-  // Delete Table Data
-  const onDeleteChanged = (data) => {
-    console.log("Table Delete", data);
-  };
-
-  const tableRowAction = (cell, row, rowIndex, formatExtraData) => {
-    return (
-      <div className="budget-app-listview-section__action-group">
-        <Button
-          className="budget-app-listview-section__edit-btn"
-          onClick={() => {
-            onEditChanged(row);
-          }}
-        ></Button>
-        <Button
-          className="budget-app-listview-section__delete-btn"
-          onClick={() => {
-            onDeleteChanged(row);
-          }}
-        ></Button>
-      </div>
-    );
-  };
-
   const salaryListColumns = [
     {
       dataField: "month",
@@ -77,15 +47,16 @@ const SalaryList = () => {
       text: "Net Amount",
       formatter: (cell, row) => numberFormat(row.netPayAmount),
     },
-    {
-      dataField: "",
-      text: "",
-      formatter: tableRowAction,
-    },
   ];
 
-  const redirectToSalary = (salaryData) => {
-    console.log("Data", salaryData);
+  // Edit Salary Data
+  const editSalaryData = (salaryId) => {
+    navigate(`/salary/${salaryId}`);
+  };
+
+  // Delete Salary Data
+  const deleteSalaryData = (salaryId) => {
+    console.log("Salary Deleted", salaryId);
   };
 
   return (
@@ -97,7 +68,9 @@ const SalaryList = () => {
               tableBordered={false}
               headerColumns={salaryListColumns}
               tableData={salaryListTableData}
-              tableEditAction={redirectToSalary}
+              tableActionEnabled={true}
+              tableEditAction={editSalaryData}
+              tableDeleteAction={deleteSalaryData}
             />
           </div>
         </Col>

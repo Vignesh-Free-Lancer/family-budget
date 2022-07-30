@@ -1,17 +1,11 @@
 .budget-app {
   &-bootstrap-table {
+    overflow-x: auto;
+
     .react-bs-table-no-data {
       height: calc(100vh - 330px);
       text-align: center;
       vertical-align: middle;
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .budget-app {
-    &-bootstrap-table {
-      overflow-x: auto;
     }
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./bootstrap-table.scss";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { Button } from "react-bootstrap";
 
 const BootstrapTableComp = ({
   bootstrapCustomClasses = "",
@@ -9,8 +10,56 @@ const BootstrapTableComp = ({
   keyField = "_id",
   headerColumns = [],
   tableData = [],
+  tableActionEnabled = false,
   tableEditAction = () => {},
+  tableDeleteAction = () => {},
 }) => {
+  // Edit Table Data
+  const onEditChanged = (data) => {
+    console.log("Table Edit", data);
+    tableEditAction(data._id);
+  };
+
+  // Delete Table Data
+  const onDeleteChanged = (data) => {
+    console.log("Table Delete", data);
+    tableDeleteAction(data._id);
+  };
+
+  const tableRowAction = (cell, row, rowIndex, formatExtraData) => {
+    return (
+      <div className="budget-app-listview-section__action-group">
+        <Button
+          className="budget-app-listview-section__edit-btn"
+          onClick={() => {
+            onEditChanged(row);
+          }}
+        ></Button>
+        <Button
+          className="budget-app-listview-section__delete-btn"
+          onClick={() => {
+            onDeleteChanged(row);
+          }}
+        ></Button>
+      </div>
+    );
+  };
+
+  const addAction = (headerArray, actionField) => {
+    const found = headerArray.some(
+      (header) => header.dataField === actionField
+    );
+    if (!found)
+      headerArray.push({
+        dataField: "actions",
+        text: "",
+        formatter: tableRowAction,
+      });
+    return headerArray;
+  };
+
+  tableActionEnabled && addAction(headerColumns, "actions");
+
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
       Showing

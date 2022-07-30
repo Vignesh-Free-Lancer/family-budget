@@ -5,6 +5,7 @@ import AppLayout from "./layouts/appLayout/AppLayout";
 
 import Home from "./pages/home/Home";
 import Registration from "./pages/registration/Registration";
+import UserList from "./pages/user/UserList";
 import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -39,6 +40,8 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/user/:userId" element={<Registration />} />
+            <Route path="/user/list" element={<UserList />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/salary" element={<Salary />} />
