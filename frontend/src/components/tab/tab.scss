@@ -1,0 +1,134 @@
+.budget-app {
+  &-tab-component {
+    .nav {
+      &:before {
+        content: "";
+        display: table;
+      }
+
+      &-tabs {
+        display: block;
+        border: 0;
+        padding: 0;
+        background: rgb(169, 169, 169, 0.4);
+        border-radius: 5px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        list-style: none;
+        overflow: hidden;
+
+        li {
+          float: left;
+          margin-bottom: -1px;
+          position: relative;
+          display: block;
+
+          &:first-child {
+            button {
+              padding-left: 15px;
+            }
+          }
+
+          button {
+            border-color: #cd5c5c;
+            color: #fff;
+            background: #cd5c5c;
+            padding: 10px 0 10px 45px;
+            position: relative;
+            display: block;
+            border: 0;
+            border-radius: 0;
+            margin-right: 2px;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.42857143;
+
+            &:before {
+              content: " ";
+              display: block;
+              width: 0;
+              height: 0;
+              border-top: 50px solid transparent;
+              border-bottom: 50px solid transparent;
+              border-left: 30px solid #ddd;
+              position: absolute;
+              top: 50%;
+              margin-top: -50px;
+              margin-left: 1px;
+              left: 100%;
+              z-index: 1;
+            }
+
+            &:after {
+              content: " ";
+              display: block;
+              width: 0;
+              height: 0;
+              border-top: 50px solid transparent;
+              border-bottom: 50px solid transparent;
+              border-left: 30px solid #cd5c5c;
+              position: absolute;
+              top: 50%;
+              margin-top: -50px;
+              left: 100%;
+              z-index: 2;
+            }
+
+            &.active {
+              border-color: #5baf57;
+              color: #ffffff;
+              background: #5baf57;
+
+              &:after {
+                border-left: 30px solid #5baf57;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 20px 15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .budget-app {
+    &-tab-component {
+      .nav {
+        &-tabs {
+          li {
+            float: none;
+            margin-bottom: 0;
+
+            button {
+              padding: 10px 15px;
+              margin-right: 0;
+              margin-bottom: 1px;
+              width: 100%;
+              font-size: 16px;
+              text-align: left;
+
+              &:before,
+              &:after {
+                display: none;
+              }
+
+              &.active {
+                border-color: #5baf57;
+                color: #ffffff;
+                background: #5baf57;
+              }
+            }
+          }
+        }
+      }
+
+      .tab-content {
+        padding: 20px 15px;
+      }
+    }
+  }
+}

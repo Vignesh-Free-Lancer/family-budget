@@ -1,0 +1,36 @@
+.budget-app {
+  &__layout {
+    &-main {
+      margin: 6rem 0 0;
+
+      &__title {
+        h2 {
+          padding: 0 0 5px;
+          font-size: 24px;
+          font-weight: 600;
+          position: relative;
+
+          &:after {
+            content: "";
+            display: block;
+            height: 0.12rem;
+            width: 100%;
+            background: linear-gradient(to right, lightblue, lightgreen);
+            position: absolute;
+            bottom: 0;
+          }
+        }
+      }
+
+      &__body {
+        input,
+        button {
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+}

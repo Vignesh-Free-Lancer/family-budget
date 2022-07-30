@@ -1,0 +1,62 @@
+.budget-app {
+  &__accordion {
+    .accordion {
+      &-item {
+        background: none;
+        border: none;
+        border-radius: 25px 25px 0 0;
+      }
+
+      &-button {
+        font-size: 18px;
+        font-weight: 600;
+        background: #add8e6;
+        border: 1px solid #add8e6;
+        border-radius: 25px 25px 0 0;
+        position: relative;
+
+        &.collapsed {
+          border-radius: 25px;
+        }
+
+        &:after {
+          content: "\f107";
+          display: inline-block;
+          font-family: "FontAwesome";
+          font-size: 32px;
+          background: none;
+          transform: none;
+          position: absolute;
+          right: 1.25rem;
+          top: 7px;
+        }
+
+        &:hover,
+        &:active {
+          color: #ffffff;
+          background: #4682b4;
+          border: 1px solid #4682b4;
+        }
+
+        &:not(.collapsed) {
+          color: #ffffff;
+          background: #4682b4;
+          border: 1px solid #4682b4;
+          border-radius: 25px 25px 0 0;
+
+          &:after {
+            content: "\f106";
+          }
+        }
+      }
+
+      &-collapse {
+        background: #ffffff;
+
+        &.show {
+          border-radius: 0 0 10px 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,352 @@
+.budget-app {
+  &__header {
+    height: 50px;
+    background: #e3f2fd;
+
+    // App Name & Logo
+    .navbar-brand {
+      font-size: 26px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        margin-right: 10px;
+        width: 26px;
+      }
+
+      a {
+        color: #696969;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          color: #000000;
+          text-decoration: none;
+        }
+      }
+    }
+
+    // Header - Menu
+    .navbar-nav {
+      .nav-link {
+        font-size: 16px;
+        font-weight: 600;
+
+        &:after {
+          content: "|";
+          display: inline-block;
+          padding-left: 10px;
+        }
+
+        &:last-child {
+          &:after {
+            content: "";
+          }
+        }
+
+        &:hover {
+          color: #8b008b;
+        }
+      }
+
+      // Header - Dropdown
+      .dropdown {
+        .nav-link {
+          &:after {
+            content: "";
+            padding: initial;
+          }
+        }
+      }
+    }
+
+    // Header - User Profile
+    &__user-profile {
+      position: relative;
+
+      &:before {
+        content: "\f007";
+        font-family: FontAwesome;
+        display: inline-block;
+        padding-right: 5px;
+      }
+    }
+
+    // Header - User Logout
+    &__user-logout {
+      position: relative;
+
+      &:before {
+        content: "\f08b";
+        font-family: FontAwesome;
+        display: inline-block;
+        padding-right: 5px;
+      }
+    }
+
+    // Header - Global Language
+    &__language {
+      position: relative;
+
+      .nav-link {
+        &:before {
+          content: "\f0ac";
+          font-family: FontAwesome;
+          display: inline-block;
+          padding-right: 5px;
+        }
+      }
+
+      .dropdown-menu {
+        padding: 0;
+        left: auto;
+        right: 0;
+
+        .dropdown-item {
+          padding: 8px 16px;
+          color: rgba(0, 0, 0, 0.55);
+
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+          }
+
+          &:hover {
+            background: #e3f2fd;
+            color: #000000;
+          }
+        }
+      }
+    }
+
+    // Header - Humburger Menu
+    &__humburger-menu {
+      margin-left: 50px;
+      padding: 0;
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.55);
+      background: none;
+      border: none;
+      box-shadow: none;
+
+      &:hover,
+      &:focus {
+        color: #000000;
+        background: none;
+        border: none;
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+// Offcanvas HTML
+.offcanvas {
+  background: #f8f8f8;
+
+  &-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+    img {
+      width: 25%;
+    }
+
+    .btn-close {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &-title {
+    padding: 0 20px;
+  }
+
+  &-body {
+    position: relative;
+
+    &__app-category {
+      flex-direction: column;
+
+      a {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: rgba(0, 0, 0, 0.55);
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out;
+
+        &:hover {
+          // color: rgba(0, 0, 0, 0.8);
+          color: #8b008b;
+        }
+      }
+    }
+
+    &__user-category {
+      flex-direction: row;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid rgba(0, 0, 0, 0.15);
+      display: none;
+
+      a {
+        font-size: 20px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.55);
+
+        &:hover {
+          color: rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      // Header - User Profile
+      &__profile {
+        position: relative;
+
+        &:before {
+          content: "\f007";
+          font-family: FontAwesome;
+          display: inline-block;
+          padding-right: 5px;
+        }
+      }
+
+      // Header - User Logout
+      &__logout {
+        position: relative;
+
+        &:before {
+          content: "\f08b";
+          font-family: FontAwesome;
+          display: inline-block;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .budget-app {
+    &__header {
+      .navbar-brand {
+        & + .navbar-nav {
+          flex-direction: row;
+
+          .nav-link {
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+          }
+        }
+      }
+
+      // Header - Global Language
+      &__language {
+        .dropdown-menu {
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .budget-app {
+    &__header {
+      // App Name & Logo
+      .navbar-brand {
+        font-size: 22px;
+
+        img {
+          margin-right: 5px;
+          width: 24px;
+        }
+      }
+
+      // Header - User Profile
+      &__user-profile {
+        display: none;
+      }
+
+      // Header - User Logout
+      &__user-logout {
+        display: none;
+      }
+
+      // Header - Global Language
+      &__language {
+        .dropdown-menu {
+          position: absolute;
+
+          .dropdown-item {
+            &:hover,
+            &:focus,
+            &:active {
+              background: #e3f2fd;
+              color: #000000;
+            }
+          }
+        }
+      }
+
+      // Header - Humburger Menu
+      &__humburger-menu {
+        margin-left: 20px;
+        font-size: 26px;
+      }
+    }
+  }
+
+  // Offcanvas HTML
+  .offcanvas {
+    &-header {
+      img {
+        width: 20%;
+      }
+
+      .btn-close {
+        &:focus,
+        &:hover,
+        &:active {
+          outline: 0;
+        }
+      }
+    }
+
+    &-title {
+      padding: 0 15px;
+    }
+
+    &-body {
+      &__app-category {
+        a {
+          padding: 12px 14px;
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+
+      &__user-category {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

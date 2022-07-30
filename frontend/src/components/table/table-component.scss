@@ -1,0 +1,33 @@
+.custom-table {
+  position: relative;
+
+  &__no-records {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+  }
+
+  thead {
+    th {
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+
+      .fa {
+        position: relative;
+
+        &-sort-asc {
+          top: 3px;
+        }
+
+        &-sort-desc {
+          top: -3px;
+        }
+      }
+    }
+  }
+}

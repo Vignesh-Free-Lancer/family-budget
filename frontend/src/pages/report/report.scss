@@ -1,0 +1,26 @@
+.report-section {
+  margin: 30px 0 0;
+
+  &-tab-component {
+    .tab-content {
+      border: 1px solid rgb(128, 128, 128, 0.5);
+      border-top: none;
+    }
+  }
+
+  &__salary-tab {
+    margin: 0;
+    padding: 0;
+    background: none;
+
+    table {
+      tbody {
+        tr {
+          td {
+            background: rgb(175, 238, 238, 0.1);
+          }
+        }
+      }
+    }
+  }
+}

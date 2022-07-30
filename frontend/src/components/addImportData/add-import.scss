@@ -1,0 +1,69 @@
+.budget-app {
+  &-add-import {
+    button {
+      font-size: 16px;
+      font-weight: 700;
+      color: rgb(0, 0, 0, 0.6);
+      background: none;
+      border: none;
+
+      &:before {
+        margin-right: 7px;
+        padding: 5px 10px;
+        font-family: FontAwesome;
+        color: #ffffff;
+        display: inline-block;
+        border-radius: 100%;
+      }
+
+      &:hover,
+      &:focus {
+        color: #000000;
+        background: none;
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
+
+      &:active {
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .first-button {
+      margin-left: 15px;
+
+      &:before {
+        content: "\f0c5";
+        background: #6495ed;
+        border: 1px solid #6495ed;
+      }
+
+      &:hover {
+        &:before {
+          background: #4169e1;
+          border: 1px solid #4169e1;
+        }
+      }
+    }
+
+    .second-button {
+      margin-left: 15px;
+
+      &:before {
+        content: "\f067";
+        background: #20c997;
+        border: 1px solid #20c997;
+      }
+
+      &:hover {
+        &:before {
+          background: #198754;
+          border: 1px solid #198754;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.budget-app {
+  &__card-layout {
+    &-header {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    &-body {
+      background: rgba(247, 250, 255, 0.7);
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .budget-app {
+    &__card-layout {
+      margin: 0 0 24px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .budget-app {
+    &__card-layout {
+      margin: 0 0 24px;
+    }
+  }
+}

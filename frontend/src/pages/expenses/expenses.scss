@@ -1,0 +1,131 @@
+.expense-section {
+  margin: 30px 0 0;
+
+  &__tab-component {
+    margin: 30px 0 0;
+
+    .nav {
+      &-tabs {
+        border-bottom: 1px solid #a9a9a9 !important;
+      }
+    }
+
+    .tab-content {
+      border: 1px solid rgb(128, 128, 128, 0.5);
+      border-top: none;
+    }
+  }
+
+  &__input-hints {
+    p {
+      margin: 0 0 5px;
+    }
+  }
+
+  // Add-Import Comp
+  &__add-import-comp {
+    margin: 0 0 15px;
+  }
+
+  // Table Comp
+  &__boot-table {
+    margin: 0 0 30px;
+  }
+
+  // Modal Window
+  &-modal-window {
+    .modal {
+      &-header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      &-footer {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+    }
+  }
+
+  // Expense Form File
+  &-expense {
+    &-form {
+      margin: 0 auto;
+      width: 40%;
+
+      label {
+        margin: 0 0 4px;
+      }
+
+      textarea {
+        height: 80px;
+      }
+    }
+  }
+
+  // Grocery Form File
+  &-grocery {
+    &-form {
+      margin: 0 auto;
+      width: 40%;
+
+      label {
+        margin: 0 0 4px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .expense-section {
+    // Expense Form File
+    &-expense {
+      &-form {
+        width: 80%;
+      }
+    }
+
+    // Grocery Form File
+    &-grocery {
+      &-form {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  .expense-section {
+    // Expense Form File
+    &-expense {
+      &-form {
+        width: 80%;
+      }
+    }
+
+    // Grocery Form File
+    &-grocery {
+      &-form {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .expense-section {
+    // Expense Form File
+    &-expense {
+      &-form {
+        width: 100%;
+      }
+    }
+
+    // Grocery Form File
+    &-grocery {
+      &-form {
+        width: 100%;
+      }
+    }
+  }
+}

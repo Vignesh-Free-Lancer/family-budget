@@ -1,0 +1,21 @@
+.budget-app {
+  &-modal-window {
+    .modal {
+      //   &-header {
+      //     padding-top: 10px;
+      //     padding-bottom: 10px;
+      //   }
+
+      &-title {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26px;
+      }
+
+      //   &-footer {
+      //     padding-top: 7px;
+      //     padding-bottom: 7px;
+      //   }
+    }
+  }
+}

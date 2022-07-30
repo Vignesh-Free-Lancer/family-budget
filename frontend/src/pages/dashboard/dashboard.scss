@@ -1,0 +1,221 @@
+.dashboard-section {
+  margin: 30px 0 0;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__border-left-primary {
+    height: 115px;
+    border-left: 0.25rem solid #a9a9a9;
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: scale(1.095);
+    }
+
+    &.salary-card {
+      border-left: 0.25rem solid #0ea619;
+
+      .card-icon {
+        background: url("../../assets/images/salary-icon.png") no-repeat right
+          center;
+        background-size: contain;
+      }
+    }
+
+    &.income-card {
+      border-left: 0.25rem solid #bc8f8f;
+
+      .card-icon {
+        background: url("../../assets/images/extra-income-icon.png") no-repeat
+          right center;
+        background-size: contain;
+      }
+    }
+
+    &.expense-card {
+      border-left: 0.25rem solid #eb0a1f;
+
+      .card-icon {
+        background: url("../../assets/images/expenses-icon.png") no-repeat right
+          center;
+        background-size: contain;
+      }
+    }
+
+    &.reports-card {
+      border-left: 0.25rem solid #778899;
+
+      .card-icon {
+        background: url("../../assets/images/reports-icon.png") no-repeat right
+          center;
+        background-size: contain;
+      }
+    }
+
+    &.users-card {
+      border-left: 0.25rem solid #800080;
+
+      .card-icon {
+        background: url("../../assets/images/user-icon.png") no-repeat right
+          center;
+        background-size: contain;
+      }
+    }
+  }
+
+  .no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+
+    .col {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: initial;
+    color: #4682b4 !important;
+  }
+
+  &__card-content {
+    line-height: 11px;
+    color: #5a5c69 !important;
+
+    span {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: initial;
+    }
+  }
+
+  &__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  &__summary-reports {
+    &__prevs {
+      .card-body {
+        min-height: 400px;
+        overflow-y: auto;
+
+        table,
+        thead,
+        th,
+        tbody,
+        tr,
+        td {
+          border: none;
+        }
+      }
+
+      &__summary-table {
+        thead {
+          tr {
+            border-top-left-radius: 20px;
+            border: 1px solid #add8e6 !important;
+
+            th {
+              padding: 10px 15px;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              padding: 10px 15px;
+            }
+
+            &:first-child {
+              td {
+                padding: 20px 15px 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__current {
+      .budget-app__card-layout {
+        &-body {
+          .card-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          .card-text {
+            font-size: 20px;
+            font-weight: 700;
+          }
+        }
+
+        &.salary-card {
+          .card-header {
+            background: #6dd4b1;
+          }
+
+          .card-text {
+            color: #3ac47d;
+          }
+        }
+
+        &.extra-income-card {
+          .card-header {
+            background: #63c7ff;
+          }
+
+          .card-text {
+            color: #3b76ef;
+          }
+        }
+
+        &.total-income-card {
+          .card-header {
+            background: #c388f6;
+          }
+
+          .card-text {
+            color: #a66dd4;
+          }
+        }
+
+        &.total-expense-card {
+          .card-header {
+            background: #ff7ea5;
+          }
+
+          .card-text {
+            color: #d92550;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dashboard-section {
+    &__summary-reports {
+      &__prevs {
+        .card-body {
+          min-height: auto;
+          overflow-y: hidden;
+        }
+      }
+    }
+  }
+}

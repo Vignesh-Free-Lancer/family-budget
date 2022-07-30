@@ -1,0 +1,57 @@
+.budget-app {
+  &-bootstrap-table {
+    .react-bs-table-no-data {
+      height: calc(100vh - 330px);
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .budget-app {
+    &-bootstrap-table {
+      overflow-x: auto;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .budget-app {
+    &-bootstrap-table {
+      .react-bs-table-no-data {
+        height: calc(100vh - 700px);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  .budget-app {
+    &-bootstrap-table {
+      .react-bs-table-no-data {
+        height: calc(100vh - 400px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .budget-app {
+    &-bootstrap-table {
+      .react-bs-table-no-data {
+        height: calc(100vh - 330px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .budget-app {
+    &-bootstrap-table {
+      .react-bs-table-no-data {
+        height: calc(100vh - 100px);
+      }
+    }
+  }
+}
