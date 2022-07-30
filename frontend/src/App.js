@@ -15,6 +15,8 @@ import ExtraIncome from "./pages/extraIncome/ExtraIncome";
 import ExtraIncomeList from "./pages/extraIncome/ExtraIncomeList";
 import Expenses from "./pages/expenses/Expenses";
 import Report from "./pages/report/Report";
+import NotFound from "./pages/notFound/NotFound";
+import PageExpired from "./pages/pageExpired/PageExpired";
 
 const App = () => {
   /* Redirect To Landing Page When close Or Reload The Page --- Start */
@@ -55,6 +57,7 @@ const App = () => {
             <Route path="/extra-income/list" element={<ExtraIncomeList />} />
             <Route path="/expense" element={<Expenses />} />
             <Route path="/report" element={<Report />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
       </BrowserRouter>
