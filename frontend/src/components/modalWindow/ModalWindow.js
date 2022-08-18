@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./modal-window.scss";
+import { useTranslation } from "react-i18next";
 
 const ModalWindow = ({
   modalCustomClasses = "",
@@ -11,6 +12,7 @@ const ModalWindow = ({
   modalBody = "",
   modalFooter = "",
 }) => {
+  const { t } = useTranslation();
   const handleClose = () => closeModal();
 
   return (
@@ -28,7 +30,7 @@ const ModalWindow = ({
       <Modal.Body>{modalBody}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Close
+          {t("close")}
         </Button>
         {modalFooter}
       </Modal.Footer>

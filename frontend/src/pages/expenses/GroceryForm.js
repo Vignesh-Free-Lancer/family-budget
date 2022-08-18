@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./expenses.scss";
+import { useTranslation } from "react-i18next";
 
 import InputFormGroup from "../../components/inputFormGroup/InputFormGroup";
 import InputText from "../../components/inputText/InputText";
@@ -8,6 +9,8 @@ import InputSelect from "../../components/inputSelect/InputSelect";
 import { quantityType } from "../../utils/Utils";
 
 const GroceryForm = forwardRef((props, ref) => {
+  const { t } = useTranslation();
+
   // State Object For Quantity Type
   const [selectedQtyType, setSelectedQtyType] = useState("select");
   const [selectedQtyTypeText, setSelectedQtyTypeText] = useState("");
@@ -29,18 +32,18 @@ const GroceryForm = forwardRef((props, ref) => {
     <div className="expense-section-grocery-form">
       <Row>
         <Col xl={12} lg={12} md={12} sm={12} xs={12}>
-          <InputFormGroup inputLabel="Particular" inputName="particular">
+          <InputFormGroup inputLabel={t("particular")} inputName="particular">
             <InputText
               inputName="particular"
               inputType="text"
-              placeholderName="Enter particular"
+              placeholderName={t("enterParticular")}
               inputErrorMessage={groceryFormErrors.particulars}
               //   inputChange={handleGroceryInputChange}
               //   inputValue={groceryData.particulars}
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Quantity" inputName="qty">
+          <InputFormGroup inputLabel={t("quantity")} inputName="qty">
             <Row className="expense-section-grocery-form__quantity-section">
               <Col
                 xl={6}
@@ -69,7 +72,7 @@ const GroceryForm = forwardRef((props, ref) => {
                 <InputText
                   inputName="qty"
                   inputType="text"
-                  placeholderName="Enter quantity"
+                  placeholderName={t("enterQuantity")}
                   inputAlignment="right"
                   inputErrorMessage={groceryFormErrors.qty}
                   //   inputChange={handleGroceryInputChange}
@@ -81,7 +84,7 @@ const GroceryForm = forwardRef((props, ref) => {
             </Row>
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Unit price" inputName="unitPrice">
+          <InputFormGroup inputLabel={t("unitPrice")} inputName="unitPrice">
             <Row className="expense-section-grocery-form__unit-section">
               <Col
                 xl={6}
@@ -94,7 +97,7 @@ const GroceryForm = forwardRef((props, ref) => {
                 <InputText
                   inputName="unitPrice"
                   inputType="text"
-                  placeholderName="Enter unit price"
+                  placeholderName={t("enterUnitPrice")}
                   inputAlignment="right"
                   inputErrorMessage={groceryFormErrors.unitPrice}
                   //   inputChange={handleGroceryInputChange}
@@ -112,13 +115,13 @@ const GroceryForm = forwardRef((props, ref) => {
                 className="expense-section-grocery-form__unit-section__unit-type"
               >
                 <span className="input-group-text">
-                  {`Per ${
+                  {`${t("per")} ${
                     selectedQtyType === "select"
-                      ? ` Kgms`
+                      ? t("kgms")
                       : selectedQtyTypeText === "Grams"
-                      ? ` Kgms}`
+                      ? t("kgms")
                       : selectedQtyTypeText === "M. Litere"
-                      ? ` Litere`
+                      ? t("litere")
                       : ""
                   }`}
                 </span>
@@ -126,11 +129,11 @@ const GroceryForm = forwardRef((props, ref) => {
             </Row>
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Total Price" inputName="totalPrice">
+          <InputFormGroup inputLabel={t("totalPrice")} inputName="totalPrice">
             <InputText
               inputName="totalPrice"
               inputType="text"
-              placeholderName="Enter total price"
+              placeholderName={t("enterTotalPrice")}
               inputAlignment="right"
               inputErrorMessage={groceryFormErrors.totalPrice}
               //   inputChange={handleGroceryInputChange}

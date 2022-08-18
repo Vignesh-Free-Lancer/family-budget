@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./report.scss";
 import { Col, Row } from "react-bootstrap";
+import "./report.scss";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import Tab from "../../components/tab/Tab";
@@ -9,6 +10,8 @@ import SalaryReport from "./SalaryReport";
 import ExpenseReport from "./ExpenseReport";
 
 const Report = () => {
+  const { t } = useTranslation();
+
   // State Object For Month & Year
   const [selectedReportType, setSelectedReportType] = useState();
 
@@ -22,7 +25,7 @@ const Report = () => {
 
   const tabLists = [
     {
-      title: "Salary Report",
+      title: t("salaryReport"),
       eventKey: "salary-report-tab",
       content: (
         <>
@@ -33,7 +36,7 @@ const Report = () => {
     },
 
     {
-      title: "Expense Report",
+      title: t("expenseReport"),
       eventKey: "expense-report-tab",
       content: (
         <>
@@ -44,7 +47,7 @@ const Report = () => {
     },
 
     {
-      title: "Grocery Report",
+      title: t("groceryReport"),
       eventKey: "grocery-report-tab",
       content: (
         <>
@@ -55,7 +58,7 @@ const Report = () => {
   ];
 
   return (
-    <MainLayout title="Reports">
+    <MainLayout title={t("reports")}>
       <div className="report-section">
         <Row>
           <Col>

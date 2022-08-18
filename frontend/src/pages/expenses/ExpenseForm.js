@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./expenses.scss";
+import { useTranslation } from "react-i18next";
 
 import InputFormGroup from "../../components/inputFormGroup/InputFormGroup";
 import InputText from "../../components/inputText/InputText";
@@ -10,6 +11,8 @@ import CustomDatepicker from "../../components/customDatepicker/CustomDatepicker
 import ExpenseModalWindow from "./ExpenseModalWindow";
 
 const ExpenseForm = forwardRef((props, ref) => {
+  const { t } = useTranslation();
+
   // State Object For Particulars Type
   const [selectedParticularType, setSelectedParticularType] =
     useState("select");
@@ -49,11 +52,11 @@ const ExpenseForm = forwardRef((props, ref) => {
     <div className="expense-section-expense-form">
       <Row>
         <Col xl={12} lg={12} md={12} sm={12} xs={12}>
-          <InputFormGroup inputLabel="Particular" inputName="particular">
+          <InputFormGroup inputLabel={t("particular")} inputName="particular">
             <InputText
               inputName="particular"
               inputType="text"
-              placeholderName="Enter particular"
+              placeholderName={t("enterParticular")}
               inputErrorMessage={expenseFormErrors.particular}
               //   inputChange={handleExpenseInputChange}
               //   inputValue={expenseData.particular}
@@ -61,7 +64,7 @@ const ExpenseForm = forwardRef((props, ref) => {
           </InputFormGroup>
 
           <InputFormGroup
-            inputLabel="Particular Type"
+            inputLabel={t("particularType")}
             inputName="ddlParticularType"
           >
             <InputSelect
@@ -74,13 +77,13 @@ const ExpenseForm = forwardRef((props, ref) => {
           </InputFormGroup>
 
           <InputFormGroup
-            inputLabel="Estimated Costs"
+            inputLabel={t("estimatedCost")}
             inputName="estimatedCost"
           >
             <InputText
               inputName="estimatedCost"
               inputType="text"
-              placeholderName="Enter estimated costs"
+              placeholderName={t("enterEstimateCosts")}
               inputAlignment="right"
               inputErrorMessage={expenseFormErrors.estimatedCost}
               //   inputChange={handleExpenseInputChange}
@@ -90,11 +93,11 @@ const ExpenseForm = forwardRef((props, ref) => {
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Actual Costs" inputName="actualCost">
+          <InputFormGroup inputLabel={t("actualCost")} inputName="actualCost">
             <InputText
               inputName="actualCost"
               inputType="text"
-              placeholderName="Enter actual costs"
+              placeholderName={t("enterActualCosts")}
               inputAlignment="right"
               inputErrorMessage={expenseFormErrors.actualCost}
               //   inputChange={handleExpenseInputChange}
@@ -104,7 +107,10 @@ const ExpenseForm = forwardRef((props, ref) => {
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Payment Type" inputName="ddlPaymentType">
+          <InputFormGroup
+            inputLabel={t("paymentType")}
+            inputName="ddlPaymentType"
+          >
             <InputSelect
               inputName="ddlPaymentType"
               inputArray={paymentType}
@@ -114,31 +120,31 @@ const ExpenseForm = forwardRef((props, ref) => {
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Payment Date" inputName="paymentDate">
+          <InputFormGroup inputLabel={t("paymentDate")} inputName="paymentDate">
             <CustomDatepicker
               customDateChange={handlePaymentDateChange}
               customdateName="paymentDate"
-              customDatePlaceholder="Please select payment date"
+              customDatePlaceholder={t("pleaseSelectPaymentDate")}
               customMinDateRange={paymentMonthStartDate}
               customMaxDateRange={paymentMonthEndDate}
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Payment Bank" inputName="paymentBank">
+          <InputFormGroup inputLabel={t("paymentBank")} inputName="paymentBank">
             <InputText
               inputName="paymentBank"
               inputType="text"
-              placeholderName="Enter payment bank name"
+              placeholderName={t("enterPaymentBankName")}
               inputErrorMessage={expenseFormErrors.paymentBank}
               //   inputChange={handleExpenseInputChange}
               //   inputValue={expenseData.paymentBank}
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Description" inputName="description">
+          <InputFormGroup inputLabel={t("description")} inputName="description">
             <textarea
               className="form-control"
-              placeholder="Enter your hints here..."
+              placeholder={`${t("enterYourHints")}...`}
               name="description"
               //   onChange={handleExpenseInputChange}
               //   value={expenseData.description}

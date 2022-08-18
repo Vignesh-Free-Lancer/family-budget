@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
@@ -8,43 +9,44 @@ import { numberFormat } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
 
 const SalaryList = () => {
+  const { t } = useTranslation();
   // Navigate To Page
   const navigate = useNavigate();
 
   const salaryListColumns = [
     {
       dataField: "month",
-      text: "Month",
+      text: t("month"),
     },
     {
       dataField: "year",
-      text: "Year",
+      text: t("year"),
     },
     {
       dataField: "monthlySalary",
-      text: "Salary",
+      text: t("salary"),
       formatter: (cell, row) => numberFormat(row.monthlySalary),
     },
 
     {
       dataField: "totalCredit",
-      text: "Total CR",
+      text: t("totalCredit"),
       formatter: (cell, row) => numberFormat(row.totalCredit),
     },
     {
       dataField: "pf",
-      text: "PF",
+      text: t("pf"),
       formatter: (cell, row) => numberFormat(row.pf),
     },
 
     {
       dataField: "totalDebit",
-      text: "Total Debit",
+      text: t("totalDebit"),
       formatter: (cell, row) => numberFormat(row.totalDebit),
     },
     {
       dataField: "netPayAmount",
-      text: "Net Amount",
+      text: t("netAmount"),
       formatter: (cell, row) => numberFormat(row.netPayAmount),
     },
   ];
@@ -60,7 +62,7 @@ const SalaryList = () => {
   };
 
   return (
-    <MainLayout title="Salary List">
+    <MainLayout title={t("salaryList")}>
       <Row>
         <Col>
           <div className="budget-app-listview-section">

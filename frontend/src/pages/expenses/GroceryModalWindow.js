@@ -1,18 +1,21 @@
 import React, { useRef } from "react";
 import "./expenses.scss";
+import { useTranslation } from "react-i18next";
 
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 import GroceryForm from "./GroceryForm";
 
 const GroceryModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
+  const { t } = useTranslation();
   const groceryFormRef = useRef();
+
   return (
     <ModalWindow
       modalCustomClasses="expense-section-modal-window"
       showModal={openModal}
       closeModal={closeModalWindow}
       enableFullScreen={true}
-      modalTitle="Add Grocery"
+      modalTitle={t("addGrocery")}
       modalBody={<GroceryForm ref={groceryFormRef} />}
       modalFooter={
         <button
@@ -22,7 +25,7 @@ const GroceryModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
             groceryFormRef.current.triggerNewGrocery();
           }}
         >
-          Add
+          {t("add")}
         </button>
       }
     />

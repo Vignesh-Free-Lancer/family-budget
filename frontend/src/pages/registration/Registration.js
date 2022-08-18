@@ -1,11 +1,14 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./registration.scss";
+import { useTranslation } from "react-i18next";
 
 import DefaultUserImage from "../../assets/images/default-user-icon.png";
 import RegistationComp from "../../components/registration/Registration";
 
 const Registation = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="budget-app__registration">
       <Container>
@@ -21,7 +24,7 @@ const Registation = () => {
                   xs={6}
                   className="budget-app__registration__header__title"
                 >
-                  <h2>Registration</h2>
+                  <h2>{t("registration")}</h2>
                 </Col>
                 <Col
                   xl={3}

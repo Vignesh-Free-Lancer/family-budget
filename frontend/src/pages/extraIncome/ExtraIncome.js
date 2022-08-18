@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import "./extra-income.scss";
+import { useTranslation } from "react-i18next";
 
 import { extraIncomeType } from "../../utils/Utils";
 
@@ -12,6 +13,7 @@ import CustomDatepicker from "../../components/customDatepicker/CustomDatepicker
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 
 const ExtraIncome = () => {
+  const { t } = useTranslation();
   // State Object For DOB Field
   const [incomeDate, setIncomeDate] = useState("");
 
@@ -56,23 +58,26 @@ const ExtraIncome = () => {
 
   return (
     <>
-      <MainLayout title="Extra Income">
+      <MainLayout title={t("extraIncome")}>
         <div className="extra-income-section">
           <Form>
             <Row>
               <Col>
-                <InputFormGroup inputLabel="Income Date" inputName="incomeDate">
+                <InputFormGroup
+                  inputLabel={t("incomeDate")}
+                  inputName="incomeDate"
+                >
                   <CustomDatepicker
                     customDateChange={handleIncomeDateChange}
                     customdateName="incomeDate"
-                    customDatePlaceholder="Please select DOB"
+                    customDatePlaceholder={t("pleaseSelectIncomeDate")}
                     customMinDateRange={incomeMonthStartDate}
                     customMaxDateRange={incomeMonthEndDate}
                   />
                 </InputFormGroup>
 
                 <InputFormGroup
-                  inputLabel="Amount Credited To:"
+                  inputLabel={t("amountCreditedTo")}
                   inputName="ddlAmountCreditType"
                 >
                   <InputSelect
@@ -84,20 +89,20 @@ const ExtraIncome = () => {
                   />
                   <div className="input-hints">
                     <p>
-                      <span>Note:</span> Please select type for amount credit
-                      details.
+                      <span>{t("note")}:</span>{" "}
+                      {t("pleaseSelectTypeAmountDetails")}.
                     </p>
                   </div>
                 </InputFormGroup>
 
                 <InputFormGroup
-                  inputLabel="Credited Amount"
+                  inputLabel={t("creditAmount")}
                   inputName="incomeCreditAmount"
                 >
                   <InputText
                     inputName="incomeCreditAmount"
                     inputType="text"
-                    placeholderName="Enter credited amount"
+                    placeholderName={t("enterCreditAmount")}
                     inputAlignment="right"
                     inputErrorMessage={extraIncomeErrors.incomeCreditAmount}
                     // inputChange={handleInputChange}
@@ -108,12 +113,12 @@ const ExtraIncome = () => {
                 </InputFormGroup>
 
                 <InputFormGroup
-                  inputLabel="Description"
+                  inputLabel={t("description")}
                   inputName="description"
                 >
                   <textarea
                     className="form-control"
-                    placeholder="Enter your hints here..."
+                    placeholder={`${t("enterYourHints")}...`}
                     name="description"
                     //   onChange={handleExpenseInputChange}
                     //   value={expenseData.description}
@@ -122,7 +127,7 @@ const ExtraIncome = () => {
 
                 <div className="form-group extra-income-section__action-content">
                   <button type="button" className="btn btn-success">
-                    Save
+                    {t("save")}
                   </button>
 
                   <button
@@ -130,7 +135,7 @@ const ExtraIncome = () => {
                     className="btn btn-danger"
                     onClick={openModalWindow}
                   >
-                    Delete
+                    {t("delete")}
                   </button>
                 </div>
               </Col>

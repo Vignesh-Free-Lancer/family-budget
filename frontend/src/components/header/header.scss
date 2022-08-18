@@ -117,6 +117,12 @@
             background: #e3f2fd;
             color: #000000;
           }
+
+          &.active {
+            color: #000000;
+            font-weight: 600;
+            background: #9dbed6;
+          }
         }
       }
     }

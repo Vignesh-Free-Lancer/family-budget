@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import "./add-import.scss";
+import { useTranslation } from "react-i18next";
 
 const AddImportData = ({
   addImportCustomClass,
@@ -9,6 +10,8 @@ const AddImportData = ({
   customHandleNewData = () => {},
   customHandleCopyData = () => {},
 }) => {
+  const { t } = useTranslation();
+
   // Handle New Data
   const handleNew = (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const AddImportData = ({
     alert("Copy event");
     customHandleCopyData();
   };
+
   return (
     <div className={`budget-app-add-import ${addImportCustomClass}`}>
       <Row>
@@ -31,14 +35,14 @@ const AddImportData = ({
             disabled={false}
             onClick={handleCopyData}
           >
-            Copy Last Month Data
+            {t("copyLastMonthData")}
           </button>
           <button
             className="btn btn-info second-button"
             title={customSecondTitle}
             onClick={handleNew}
           >
-            New
+            {t("new")}
           </button>
         </Col>
       </Row>

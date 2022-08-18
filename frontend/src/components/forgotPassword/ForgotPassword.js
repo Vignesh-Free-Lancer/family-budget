@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import InputFormGroup from "../inputFormGroup/InputFormGroup";
 import InputText from "../inputText/InputText";
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
+
   // State Object For Password Icon Show & Hide
   const [newPasswordShown, setNewPasswordShown] = useState(false);
   const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
@@ -21,25 +24,25 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <h3>Reset Password</h3>
+      <h3>{t("forgotPassword")}</h3>
       <Form className="budget-app__forgot-password__form">
-        <InputFormGroup inputLabel="Email Address" inputName="email">
+        <InputFormGroup inputLabel={t("emailAddress")} inputName="email">
           <InputText
             inputName="email"
             inputType="email"
-            placeholderName="Enter email address"
+            placeholderName={t("enterEmailAddress")}
             inputErrorMessage=""
             // inputChange={handleInputChange}
             // inputValue={userCredential.email}
           />
         </InputFormGroup>
 
-        <InputFormGroup inputLabel="New Password" inputName="newPassword">
+        <InputFormGroup inputLabel={t("newPassword")} inputName="newPassword">
           <InputText
             inputName="newPassword"
             inputType={newPasswordShown ? "type" : "password"}
             inputClassName="password-control"
-            placeholderName="Enter new password"
+            placeholderName={t("enterNewPassword")}
             // inputErrorMessage={userErrors.newPassword}
             // inputChange={handleInputChange}
             // inputValue={userCredential.newPassword}
@@ -53,14 +56,14 @@ const ForgotPassword = () => {
         </InputFormGroup>
 
         <InputFormGroup
-          inputLabel="Confirm Password"
+          inputLabel={t("confirmPassword")}
           inputName="confirmPassword"
         >
           <InputText
             inputName="confirmPassword"
             inputType={confirmPasswordShown ? "type" : "password"}
             inputClassName="password-control"
-            placeholderName="Enter confirm password"
+            placeholderName={t("enterConfirmPassword")}
             // inputErrorMessage={userErrors.confirmPassword}
             // inputChange={handleInputChange}
             // inputValue={userCredential.confirmPassword}
@@ -75,11 +78,11 @@ const ForgotPassword = () => {
 
         <div className="form-group">
           <button type="submit" className="btn">
-            Reset Password
+            {t("forgotPassword")}
           </button>
         </div>
         <div className="form-group budget-app__forgot-password__form__back-to-login text-center">
-          Back to login? <Link to="/login">Login</Link>
+          {t("backToLogin")}? <Link to="/login">{t("login")}</Link>
         </div>
       </Form>
     </>

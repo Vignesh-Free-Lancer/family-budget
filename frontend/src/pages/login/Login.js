@@ -1,10 +1,13 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./login.scss";
+import { useTranslation } from "react-i18next";
 
 import LoginComp from "../../components/login/Login";
 
 const Login = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="budget-app__login">
       <Container>
@@ -13,7 +16,7 @@ const Login = () => {
             <Col xl={8} lg={7} md={6} sm={12} xs={12}>
               <div className="budget-app__login__left-side">
                 <div className="budget-app__login__left-side__info-text">
-                  Login into your account and easily maintain your all budgets.
+                  {t("loginPageContent")}
                 </div>
               </div>
             </Col>

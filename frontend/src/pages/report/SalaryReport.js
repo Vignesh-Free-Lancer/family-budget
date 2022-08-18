@@ -1,64 +1,67 @@
 import React from "react";
-import "./report.scss";
 import { Col, Row } from "react-bootstrap";
+import "./report.scss";
+import { useTranslation } from "react-i18next";
 
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
 import { salaryListTableData, numberFormat } from "../../utils/Utils";
 
 const SalaryReport = () => {
+  const { t } = useTranslation();
+
   const salaryReportColumns = [
     {
       dataField: "month",
-      text: "Month",
+      text: t("month"),
     },
     {
       dataField: "monthlySalary",
-      text: "Salary",
+      text: t("salary"),
       formatter: (cell, row) => numberFormat(row.monthlySalary),
     },
     {
-      dataField: "bonus",
-      text: "Bonus",
+      dataField: "bonusAmount",
+      text: t("bonusAmount"),
       formatter: (cell, row) => numberFormat(row.bonus),
     },
     {
       dataField: "otherAllowance",
-      text: "Extra Allowance",
+      text: t("extraAllowance"),
       formatter: (cell, row) => numberFormat(row.otherAllowance),
     },
     {
       dataField: "totalCredit",
-      text: "Total CR",
+      text: t("totalCredit"),
       formatter: (cell, row) => numberFormat(row.totalCredit),
     },
     {
       dataField: "pf",
-      text: "PF",
+      text: t("pf"),
       formatter: (cell, row) => numberFormat(row.pf),
     },
     {
       dataField: "incomeTax",
-      text: "Income Tax",
+      text: t("incomeTax"),
       formatter: (cell, row) => numberFormat(row.incomeTax),
     },
     {
       dataField: "professionalTax",
-      text: "Professional Tax",
+      text: t("professionalTax"),
       formatter: (cell, row) => numberFormat(row.professionalTax),
     },
     {
       dataField: "otherDeductions",
-      text: "Other Deduction",
+      text: t("otherDeductions"),
       formatter: (cell, row) => numberFormat(row.otherDeductions),
     },
     {
       dataField: "totalDebit",
-      text: "Total Debit",
+      text: t("totalDebit"),
       formatter: (cell, row) => numberFormat(row.totalDebit),
     },
     {
       dataField: "netPayAmount",
-      text: "Net Amount",
+      text: t("netAmount"),
       formatter: (cell, row) => numberFormat(row.netPayAmount),
     },
   ];

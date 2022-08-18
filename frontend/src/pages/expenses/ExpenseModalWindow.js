@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import "./expenses.scss";
+import { useTranslation } from "react-i18next";
 
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 import ExpenseForm from "./ExpenseForm";
 
 const ExpenseModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
+  const { t } = useTranslation();
   const expenseFormRef = useRef();
 
   return (
@@ -13,7 +15,7 @@ const ExpenseModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
       showModal={openModal}
       closeModal={closeModalWindow}
       enableFullScreen={true}
-      modalTitle="Add Expense"
+      modalTitle={t("addExpense")}
       modalBody={<ExpenseForm ref={expenseFormRef} />}
       modalFooter={
         <button
@@ -23,7 +25,7 @@ const ExpenseModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
             expenseFormRef.current.triggerNewExpense();
           }}
         >
-          Add
+          {t("add")}
         </button>
       }
     />

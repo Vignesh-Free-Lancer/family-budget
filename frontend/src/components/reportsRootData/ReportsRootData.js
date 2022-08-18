@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./report-root-data.scss";
+import { useTranslation } from "react-i18next";
 
 import { reportsType } from "../../utils/Utils";
 import InputFormGroup from "../inputFormGroup/InputFormGroup";
 import InputSelect from "../inputSelect/InputSelect";
 
 const ReportsRootData = ({ reportsRootData }) => {
+  const { t } = useTranslation();
+
   // State Object For Report Type
   const [selectedReportType, setSelectedReportType] = useState("select");
 
@@ -17,8 +20,9 @@ const ReportsRootData = ({ reportsRootData }) => {
     if (e.target.name === "ddlReportType") {
       setSelectedReportType(e.target.value);
       e.target.value === "select"
-        ? (reportRootDataErrors.selectedReportType =
-            "Please select report type")
+        ? (reportRootDataErrors.selectedReportType = t(
+            "pleaseSelectReportType"
+          ))
         : delete reportRootDataErrors.selectedReportType;
     }
   };
@@ -32,7 +36,7 @@ const ReportsRootData = ({ reportsRootData }) => {
       <Row>
         <Col xl={3} lg={3} md={4} sm={6} xs={12}>
           <InputFormGroup
-            inputLabel="Customize Reports"
+            inputLabel={t("customizeReports")}
             inputName="ddlFiscalYearType"
           >
             <InputSelect

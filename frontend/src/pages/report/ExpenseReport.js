@@ -1,43 +1,46 @@
 import React from "react";
-import "./report.scss";
 import { Col, Row } from "react-bootstrap";
+import "./report.scss";
+import { useTranslation } from "react-i18next";
 
 const ExpenseReport = () => {
+  const { t } = useTranslation();
+
   const expenseReportColumns = [
     {
       dataField: "month",
-      text: "Month",
+      text: t("month"),
     },
     {
       dataField: "particulars",
-      text: "Particulars",
+      text: t("particulars"),
     },
     {
       dataField: "estimatedCost",
-      text: "Estimated Cost",
+      text: t("estimatedCost"),
       key: "currency",
     },
     {
       dataField: "actualCost",
-      text: "Actual Cost",
+      text: t("actualCost"),
       key: "currency",
     },
     {
       dataField: "paymentType",
-      text: "Payment Type",
+      text: t("paymentType"),
     },
     {
       dataField: "paymentDate",
-      text: "Payment Date",
+      text: t("paymentDate"),
       key: "date",
     },
     {
       dataField: "paymentBank",
-      text: "Payment Bank",
+      text: t("paymentBank"),
     },
     {
       dataField: "description",
-      text: "Description",
+      text: t("description"),
     },
   ];
 

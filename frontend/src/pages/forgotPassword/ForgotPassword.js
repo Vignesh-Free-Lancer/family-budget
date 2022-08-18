@@ -1,12 +1,15 @@
 import React, { lazy } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./forgot-password.scss";
+import { useTranslation } from "react-i18next";
 
 const ForgotPasswordComp = lazy(() =>
   import("../../components/forgotPassword/ForgotPassword")
 );
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="budget-app__forgot-password">
       <Container>
@@ -15,8 +18,7 @@ const ForgotPassword = () => {
             <Col xl={8} lg={7} md={6} sm={12} xs={12}>
               <div className="budget-app__forgot-password__left-side">
                 <div className="budget-app__forgot-password__left-side__info-text">
-                  Using your registered email address, to reset your
-                  credentials.
+                  {t("forgotPageContent")}
                 </div>
               </div>
             </Col>

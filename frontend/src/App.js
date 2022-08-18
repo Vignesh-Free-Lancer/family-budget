@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./i18n/i18n";
 
 import AppLayout from "./layouts/appLayout/AppLayout";
 

@@ -1,6 +1,8 @@
 import React, { lazy, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
 import { minAge, maxAge } from "../../utils/Utils";
 
 const InputFormGroup = lazy(() => import("../inputFormGroup/InputFormGroup"));
@@ -12,6 +14,8 @@ const CustomDatepicker = lazy(() =>
 );
 
 const Registration = () => {
+  const { t } = useTranslation();
+
   // State Object For DOB Field
   const [userDob, setUserDob] = useState("");
 
@@ -45,33 +49,33 @@ const Registration = () => {
     <Form className="budget-app__registration__form">
       <Row>
         <Col xl={12} lg={12} md={12} sm={12} xs={12}>
-          <InputFormGroup inputLabel="Username" inputName="userName">
+          <InputFormGroup inputLabel={t("username")} inputName="userName">
             <InputText
               inputName="userName"
               inputType="text"
-              placeholderName="Enter username"
+              placeholderName={t("enterUsername")}
               inputErrorMessage=""
               //   inputChange={handleInputChange}
               //   inputValue={userData.userName}
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Email" inputName="email">
+          <InputFormGroup inputLabel={t("emailAddress")} inputName="email">
             <InputText
               inputName="email"
               inputType="email"
-              placeholderName="Enter email address"
+              placeholderName={t("enterEmailAddress")}
               inputErrorMessage=""
               //   inputChange={handleInputChange}
             />
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Password" inputName="password">
+          <InputFormGroup inputLabel={t("password")} inputName="password">
             <InputText
               inputName="password"
               inputType={passwordShown ? "type" : "password"}
               inputClassName="password-control"
-              placeholderName="Enter password"
+              placeholderName={t("enterPassword")}
               inputErrorMessage=""
               //   inputChange={handleInputChange}
             />
@@ -84,14 +88,14 @@ const Registration = () => {
           </InputFormGroup>
 
           <InputFormGroup
-            inputLabel="Confirm Password"
+            inputLabel={t("confirmPassword")}
             inputName="confirmPassword"
           >
             <InputText
               inputName="confirmPassword"
               inputType={confirmPasswordShown ? "type" : "password"}
               inputClassName="password-control"
-              placeholderName="Enter confirm password"
+              placeholderName={t("enterConfirmPassword")}
               inputErrorMessage=""
               //   inputChange={handleInputChange}
             />
@@ -103,10 +107,10 @@ const Registration = () => {
             ></span>
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="Gender" inputName="gender">
+          <InputFormGroup inputLabel={t("gender")} inputName="gender">
             <InputRadio
               inputRadioType="form-check-inline"
-              inputLabel="Male"
+              inputLabel={t("male")}
               inputName="gender"
               inputId="rdMale"
               inputErrorMessage=""
@@ -116,7 +120,7 @@ const Registration = () => {
             />
             <InputRadio
               inputRadioType="form-check-inline"
-              inputLabel="Female"
+              inputLabel={t("female")}
               inputName="gender"
               inputId="rdFemale"
               inputErrorMessage=""
@@ -132,18 +136,18 @@ const Registration = () => {
             </div> */}
           </InputFormGroup>
 
-          <InputFormGroup inputLabel="DOB" inputName="dob">
+          <InputFormGroup inputLabel={t("dob")} inputName="dob">
             <CustomDatepicker
               customDateChange={handleDobChange}
               customdateName="dob"
-              customDatePlaceholder="Please select DOB"
+              customDatePlaceholder={t("pleaseSelectDOB")}
               customMinDateRange={minAge}
               customMaxDateRange={maxAge}
             />
           </InputFormGroup>
 
           <InputFormGroup
-            inputLabel="Select Profile Image"
+            inputLabel={t("selectProfileImage")}
             inputName="email"
             inputCustomClasses="mb-3 budget-app__registration__form__profile-type"
           >
@@ -154,7 +158,7 @@ const Registration = () => {
                     setProfileImage("default");
                   }}
                 >
-                  Default
+                  {t("default")}
                 </Button>
               </li>
               <li className={`${profileImage === "new" ? "active" : ""}`}>
@@ -163,7 +167,7 @@ const Registration = () => {
                     setProfileImage("new");
                   }}
                 >
-                  Custom
+                  {t("custom")}
                 </Button>
               </li>
             </ul>
@@ -187,7 +191,7 @@ const Registration = () => {
           </InputFormGroup>
 
           <InputFormGroup
-            inputLabel="User Status"
+            inputLabel={t("userStatus")}
             inputName="isActive"
             inputCustomClasses="budget-app__registration__form__custom-user-status mb-3"
           >
@@ -215,11 +219,11 @@ const Registration = () => {
         <Col>
           <div className="form-group budget-app__registration__form__register-btn text-right">
             <button type="submit" className="btn ">
-              Register
+              {t("register")}
             </button>
           </div>
           <div className="form-group budget-app__registration__form__login-link text-right">
-            Have an account?<Link to="/login"> Login</Link>
+            {t("haveAnAccount")}?<Link to="/login"> {t("login")}</Link>
           </div>
         </Col>
       </Row>

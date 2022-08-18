@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
@@ -7,21 +8,23 @@ import { userDataList } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
+  const { t } = useTranslation();
+
   // Navigate To Page
   const navigate = useNavigate();
 
   const userHeaderColumns = [
     {
       dataField: "userName",
-      text: "Username",
+      text: t("username"),
     },
     {
       dataField: "email",
-      text: "Email",
+      text: t("email"),
     },
     {
       dataField: "dob",
-      text: "Date Of Birth",
+      text: t("dateOfBirth"),
       formatter: (cell, row) => {
         let dob = new Date(row.dob).toLocaleDateString();
         return new Date(dob).toLocaleString("en-us", {
@@ -33,7 +36,7 @@ const UserList = () => {
     },
     {
       dataField: "gender",
-      text: "Gender",
+      text: t("gender"),
     },
   ];
 

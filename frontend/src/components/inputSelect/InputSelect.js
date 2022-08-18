@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const InputSelect = ({
   inputName,
@@ -8,6 +9,8 @@ const InputSelect = ({
   inputChange = () => {},
   inputErrorMessage,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <select
@@ -18,7 +21,7 @@ const InputSelect = ({
         value={inputDefaultValue}
         onChange={inputChange}
       >
-        <option value="select">Please select...</option>
+        <option value="select">{t("pleaseSelect")}...</option>
         {inputArray.map((input, key) => {
           return (
             <option key={key} value={input.value}>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
@@ -8,27 +9,28 @@ import { numberFormat } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
 
 const ExtraIncomeList = () => {
+  const { t } = useTranslation();
   // Navigate To Page
   const navigate = useNavigate();
 
   const extraIncomeColumns = [
     {
       dataField: "extraIncomeType",
-      text: "Income Type",
+      text: t("incomeType"),
     },
     {
       dataField: "incomeDate",
-      text: "Income Date",
+      text: t("incomeDate"),
     },
     {
       dataField: "creditAmount",
-      text: "Credit Amount",
+      text: t("creditAmount"),
       formatter: (cell, row) => numberFormat(row.creditAmount),
     },
 
     {
       dataField: "description",
-      text: "Description",
+      text: t("description"),
     },
   ];
 
@@ -43,7 +45,7 @@ const ExtraIncomeList = () => {
   };
 
   return (
-    <MainLayout title="Extra Income List">
+    <MainLayout title={t("extraIncomeList")}>
       <Row>
         <Col>
           <div className="budget-app-listview-section">

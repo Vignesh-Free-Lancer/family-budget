@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./expenses.scss";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import RootData from "../../components/rootData/RootData";
@@ -12,6 +13,8 @@ import GroceryModalWindow from "./GroceryModalWindow";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
 
 const Expenses = (props) => {
+  const { t } = useTranslation();
+
   // State Object For Month & Year
   const [salaryMonth, setSalaryMonth] = useState();
   const [salaryYear, setSalaryYear] = useState();
@@ -54,72 +57,72 @@ const Expenses = (props) => {
   const expenseColumns = [
     {
       dataField: "particular",
-      text: "Particular",
+      text: t("particular"),
     },
     {
       dataField: "estimatedCost",
-      text: "Estimated Cost",
+      text: t("estimatedCost"),
       key: "currency",
     },
     {
       dataField: "actualCost",
-      text: "Actual Cost",
+      text: t("actualCost"),
       key: "currency",
     },
     {
       dataField: "paymentType",
-      text: "Payment Type",
+      text: t("paymentType"),
     },
     {
       dataField: "paymentDate",
-      text: "Payment Date",
+      text: t("paymentDate"),
       key: "date",
     },
     {
       dataField: "paymentBank",
-      text: "Payment Bank",
+      text: t("paymentBank"),
     },
     {
       dataField: "description",
-      text: "Description",
+      text: t("description"),
     },
   ];
 
   const groceryColumns = [
     {
       dataField: "particular",
-      text: "Particular",
+      text: t("particular"),
     },
     {
       dataField: "quantity",
-      text: "Quantity",
+      text: t("quantity"),
     },
     {
       dataField: "priceType",
-      text: "Price Type",
+      text: t("priceType"),
     },
     {
       dataField: "unitPrice",
-      text: "Unit Price",
+      text: t("unitPrice"),
       key: "currency",
     },
     {
       dataField: "totalPrice",
-      text: "Total Price",
+      text: t("totalPrice"),
       key: "currency",
     },
   ];
 
   const tabLists = [
     {
-      title: "Expense Lists",
+      title: t("expenseLists"),
       eventKey: "expense-tab",
       content: (
         <>
           <AddImportData
             addImportCustomClass="text-right expense-section__add-import-comp"
-            customFirstTitle="Copy expenses data"
-            customSecondTitle="Add new expense"
+            customFirstTitle={t("copyExpenseData")}
+            customSecondTitle={t("addNewExpense")}
             customHandleNewData={openExpenseModalWindow}
           />
           <BootstrapTableComp
@@ -131,14 +134,14 @@ const Expenses = (props) => {
     },
 
     {
-      title: "Grocery Lists",
+      title: t("groceryLists"),
       eventKey: "grocery-tab",
       content: (
         <>
           <AddImportData
             addImportCustomClass="text-right expense-section__add-import-comp"
-            customFirstTitle="Copy grocery data"
-            customSecondTitle="Add new grocery"
+            customFirstTitle={t("copyGroceryData")}
+            customSecondTitle={t("addNewGrocery")}
             customHandleNewData={openGroceryModalWindow}
           />
           <BootstrapTableComp
@@ -151,7 +154,7 @@ const Expenses = (props) => {
   ];
 
   return (
-    <MainLayout title="Expenses">
+    <MainLayout title={t("expenses")}>
       <div className="expense-section">
         <div className="expense-section__root-input">
           <RootData rootData={getRootData} />
@@ -161,8 +164,8 @@ const Expenses = (props) => {
             <Col>
               <div className="input-hints expense-section__input-hints">
                 <p>
-                  <span>Note:</span> Please select month & year in the above
-                  section, do add or view expense and grocery items.
+                  <span>{t("note")}:</span>{" "}
+                  {t("pleaseSelectInputToAddViewExpenses")}.
                 </p>
               </div>
               <Tab

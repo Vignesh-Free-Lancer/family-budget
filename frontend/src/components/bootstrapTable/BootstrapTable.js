@@ -3,6 +3,7 @@ import "./bootstrap-table.scss";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const BootstrapTableComp = ({
   bootstrapCustomClasses = "",
@@ -14,6 +15,7 @@ const BootstrapTableComp = ({
   tableEditAction = () => {},
   tableDeleteAction = () => {},
 }) => {
+  const { t } = useTranslation();
   // Edit Table Data
   const onEditChanged = (data) => {
     console.log("Table Edit", data);
@@ -62,22 +64,22 @@ const BootstrapTableComp = ({
 
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      Showing
+      {t("showing")}
       <span className="react-bootstrap-table-pagination-total-numbers">
         {" "}
         {from}{" "}
       </span>
-      to
+      {t("to")}
       <span className="react-bootstrap-table-pagination-total-numbers">
         {" "}
         {to}{" "}
       </span>
-      of
+      {t("of")}
       <span className="react-bootstrap-table-pagination-total-numbers">
         {" "}
         {size}{" "}
       </span>
-      Results
+      {t("results")}
     </span>
   );
 
@@ -130,7 +132,7 @@ const BootstrapTableComp = ({
         keyField={keyField}
         columns={headerColumns}
         data={tableData}
-        noDataIndication="There is no data to display here..."
+        noDataIndication={`${t("thereIsNoDataInTable")}...`}
         pagination={paginationFactory(options)}
       />
     </div>

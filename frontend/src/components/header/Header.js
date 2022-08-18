@@ -8,11 +8,20 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./header.scss";
 import Logo from "../../assets/images/budget-app-logo.png";
 import UserIcon from "../../assets/images/default-user-icon.png";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState("en");
+
+  const handleLangChange = (selectedLand) => {
+    setLanguage(selectedLand);
+    i18n.changeLanguage(selectedLand);
+  };
+
   const [show, setShow] = useState(false);
   const handleCloseMenu = () => {
     setShow(false);
@@ -25,28 +34,31 @@ const Header = () => {
         <Container fluid>
           <Navbar.Brand>
             <img alt="" src={Logo} />
-            <Link to="/">Family Budget</Link>
+            <Link to="/">{t("appTitle")}</Link>
           </Navbar.Brand>
           <Nav className="ms-auto">
             <NavLink
               to="/registration"
               className="budget-app__header__user-profile nav-link"
             >
-              My Profile
+              {t("myProfile")}
             </NavLink>
             <Nav.Link
               href="#action2"
               className="budget-app__header__user-logout"
             >
-              Logout
+              {t("logout")}
             </Nav.Link>
             <NavDropdown
-              title="En"
+              title={
+                language === "en" ? "En" : language === "hi" ? "नमस्ते" : "En"
+              }
               id="navbarScrollingDropdown"
               className="budget-app__header__language"
+              onSelect={handleLangChange}
             >
-              <NavDropdown.Item href="#action3">English</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Hindi</NavDropdown.Item>
+              <NavDropdown.Item eventKey="en">En - English</NavDropdown.Item>
+              <NavDropdown.Item eventKey="hi">Hi - Hindi</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Button
@@ -68,28 +80,28 @@ const Header = () => {
         <Offcanvas.Header closeButton>
           <img alt="" src={UserIcon} />
           <Offcanvas.Title id="offcanvasNavbarTitle">
-            Welcome, Vignesh R
+            {t("welcome")}, Vignesh R
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="pe-3 offcanvas-body__app-category">
             <NavLink to="/dashboard" onClick={handleCloseMenu}>
-              Dashboard
+              {t("dashboard")}
             </NavLink>
             <NavLink to="/salary/list" onClick={handleCloseMenu}>
-              Salary
+              {t("salary")}
             </NavLink>
             <NavLink to="/extra-income/list" onClick={handleCloseMenu}>
-              Extra Income
+              {t("extraIncome")}
             </NavLink>
             <NavLink to="/expense" onClick={handleCloseMenu}>
-              Expenses
+              {t("expenses")}
             </NavLink>
             <NavLink to="/report" onClick={handleCloseMenu}>
-              Reports
+              {t("reports")}
             </NavLink>
             <NavLink to="/user/list" onClick={handleCloseMenu}>
-              User
+              {t("user")}
             </NavLink>
           </Nav>
           <Nav className="pe-3 offcanvas-body__user-category">
@@ -97,13 +109,13 @@ const Header = () => {
               className="offcanvas-body__user-category__profile"
               href="#action1"
             >
-              My Profile
+              {t("myProfile")}
             </Nav.Link>
             <Nav.Link
               className="offcanvas-body__user-category__logout"
               href="#action2"
             >
-              Logout
+              {t("logout")}
             </Nav.Link>
           </Nav>
         </Offcanvas.Body>

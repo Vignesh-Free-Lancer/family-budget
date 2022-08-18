@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./salary.scss";
+import { useTranslation } from "react-i18next";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import RootData from "../../components/rootData/RootData";
@@ -11,6 +12,7 @@ import DisplayInformation from "../../components/displayInformation/DisplayInfor
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 
 const Salary = () => {
+  const { t } = useTranslation();
   // State Object For Month & Year
   const [salaryMonth, setSalaryMonth] = useState();
   const [salaryYear, setSalaryYear] = useState();
@@ -46,7 +48,7 @@ const Salary = () => {
 
   return (
     <>
-      <MainLayout title="Salary">
+      <MainLayout title={t("salary")}>
         <div className="salary-section">
           <div className="salary-section__root-input">
             <RootData rootData={getRootData} />
@@ -58,18 +60,18 @@ const Salary = () => {
                   accordAlwaysOpen={true}
                   defaultActive={0}
                   eventAccord={0}
-                  accordTitle="Salary Credit Details"
+                  accordTitle={t("salaryCreditDetails")}
                 >
                   <Row>
                     <Col xl={6} lg={6} md={6} sm={12} xs={12}>
                       <InputFormGroup
-                        inputLabel="Monthly Salary"
+                        inputLabel={t("monthlySalary")}
                         inputName="monthlySalary"
                       >
                         <InputText
                           inputName="monthlySalary"
                           inputType="text"
-                          placeholderName="Enter monthly salary"
+                          placeholderName={t("enterMonthlySalary")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.monthlySalary}
                           // inputChange={handleInputChange}
@@ -79,22 +81,21 @@ const Salary = () => {
                         />
                         <div className="input-hints">
                           <p>
-                            <span>Note:</span> Enter your total earning salary
-                            amount without any deduction and except bonus &
-                            extra other amounts.
+                            <span>{t("note")}:</span>{" "}
+                            {t("enterYourTotalEaringInfo")}.
                           </p>
                         </div>
                       </InputFormGroup>
                     </Col>
                     <Col xl={6} lg={6} md={6} sm={12} xs={12}>
                       <InputFormGroup
-                        inputLabel="Bonus Amount"
+                        inputLabel={t("bonusAmount")}
                         inputName="bonusAmount"
                       >
                         <InputText
                           inputName="bonusAmount"
                           inputType="text"
-                          placeholderName="Enter bonus amount"
+                          placeholderName={t("enterBonusAmount")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.bonusAmount}
                           // inputChange={handleInputChange}
@@ -105,13 +106,13 @@ const Salary = () => {
                       </InputFormGroup>
 
                       <InputFormGroup
-                        inputLabel="Other Allowance"
+                        inputLabel={t("otherAllowance")}
                         inputName="otherAllowance"
                       >
                         <InputText
                           inputName="otherAllowance"
                           inputType="text"
-                          placeholderName="Enter other allowance"
+                          placeholderName={t("enterOtherAllowance")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.otherAllowance}
                           // inputChange={handleInputChange}
@@ -121,8 +122,8 @@ const Salary = () => {
                         />
                         <div className="input-hints">
                           <p>
-                            <span>Note:</span> Enter your all other extra
-                            allowance except your monthly salary & bonus.
+                            <span>{t("note")}:</span>{" "}
+                            {t("enterExtraAllowanceInfo")}.
                           </p>
                         </div>
                       </InputFormGroup>
@@ -137,7 +138,7 @@ const Salary = () => {
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalCR"
-                  displayName="Total Credit Amount:"
+                  displayName={`${t("totalCreditAmount")}:`}
                   displayInfoClasses="green-text"
                   displayInfo="0"
                 />
@@ -150,15 +151,15 @@ const Salary = () => {
                 <Accordion
                   accordAlwaysOpen={false}
                   eventAccord={1}
-                  accordTitle="Salary Debit Details"
+                  accordTitle={t("salaryDebitDetails")}
                 >
                   <Row>
                     <Col xl={6} lg={6} md={6} sm={12} xs={12}>
-                      <InputFormGroup inputLabel="PF" inputName="pf">
+                      <InputFormGroup inputLabel={t("pf")} inputName="pf">
                         <InputText
                           inputName="pf"
                           inputType="text"
-                          placeholderName="Enter PF amount"
+                          placeholderName={t("enterPfAmount")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.pf}
                           // inputChange={handleInputChange}
@@ -169,13 +170,13 @@ const Salary = () => {
                       </InputFormGroup>
 
                       <InputFormGroup
-                        inputLabel="Professional Tax"
+                        inputLabel={t("professionalTax")}
                         inputName="professionalTax"
                       >
                         <InputText
                           inputName="professionalTax"
                           inputType="text"
-                          placeholderName="Enter professional tax amount"
+                          placeholderName={t("enterProfessionalTax")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.professionalTax}
                           // inputChange={handleInputChange}
@@ -187,13 +188,13 @@ const Salary = () => {
                     </Col>
                     <Col xl={6} lg={6} md={6} sm={12} xs={12}>
                       <InputFormGroup
-                        inputLabel="Income Tax"
+                        inputLabel={t("incomeTax")}
                         inputName="incomeTax"
                       >
                         <InputText
                           inputName="incomeTax"
                           inputType="text"
-                          placeholderName="Enter income tax amount"
+                          placeholderName={t("enterTaxAmount")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.incomeTax}
                           // inputChange={handleInputChange}
@@ -204,13 +205,13 @@ const Salary = () => {
                       </InputFormGroup>
 
                       <InputFormGroup
-                        inputLabel="Other Deductoins"
+                        inputLabel={t("otherDeductions")}
                         inputName="otherDeductions"
                       >
                         <InputText
                           inputName="otherDeductions"
                           inputType="text"
-                          placeholderName="Enter other deduction amount"
+                          placeholderName={t("enterOtherDeductions")}
                           inputAlignment="right"
                           inputErrorMessage={salaryErrors.otherDeductions}
                           // inputChange={handleInputChange}
@@ -220,8 +221,8 @@ const Salary = () => {
                         />
                         <div className="input-hints">
                           <p>
-                            <span>Note:</span> Enter your all deduction amount
-                            except pf, income-tax & professional-tax.
+                            <span>{t("note")}:</span>{" "}
+                            {t("enterYourAllDeductionsExceptRemaining")}.
                           </p>
                         </div>
                       </InputFormGroup>
@@ -236,7 +237,7 @@ const Salary = () => {
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalDR"
-                  displayName="Total Debit Amount:"
+                  displayName={`${t("totalDebitAmount")}:`}
                   displayInfoClasses="red-text"
                   displayInfo="0"
                 />
@@ -244,7 +245,7 @@ const Salary = () => {
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="netPay"
-                  displayName="Net Pay:"
+                  displayName={`${t("netPay")}:`}
                   displayInfoClasses="green-text"
                   displayInfo="0"
                 />
@@ -253,7 +254,7 @@ const Salary = () => {
           </div>
           <div className="form-group salary-section__action-content">
             <button type="button" className="btn btn-success">
-              Save
+              {t("save")}
             </button>
 
             <button
@@ -261,7 +262,7 @@ const Salary = () => {
               className="btn btn-danger"
               onClick={openModalWindow}
             >
-              Delete
+              {t("delete")}
             </button>
           </div>
         </div>
