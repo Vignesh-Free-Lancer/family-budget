@@ -6,6 +6,7 @@ import { months, dobYears } from "../../utils/Utils";
 
 const CustomDatepicker = (props) => {
   const {
+    customDatepickerClassname = "form-control",
     customDateChange,
     customdateName,
     customDatePlaceholder,
@@ -62,7 +63,7 @@ const CustomDatepicker = (props) => {
       onChange={handleCustomFateChange}
       name={customdateName}
       dateFormat="dd/MM/yyyy"
-      className={`form-control`}
+      className={customDatepickerClassname}
       placeholderText={customDatePlaceholder}
       maxDate={customMinDateRange}
       minDate={customMaxDateRange}

@@ -62,7 +62,7 @@ input[type="radio"] {
     & ~ .invalid-feedback {
       & ~ .password-icon {
         &:after {
-          bottom: 29px;
+          bottom: 35px;
         }
       }
     }

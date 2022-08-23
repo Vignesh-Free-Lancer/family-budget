@@ -3,6 +3,10 @@ import { Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
+import {
+  userFieldOnSubmitValidation,
+  userFieldOnChangeValidation,
+} from "../../utils/ValidateFields";
 import InputFormGroup from "../inputFormGroup/InputFormGroup";
 import InputText from "../inputText/InputText";
 
@@ -12,16 +16,43 @@ const Login = () => {
   // Get Router Navigation From Router-DOM
   const navigate = useNavigate();
 
-  // State Object For Password Icon Show & Hide
+  // State Object For Login
   const [passwordShown, setPasswordShown] = useState(false);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const [userErrors, setUserErrors] = useState({});
 
   // Handle Event For Password Show & Hide
   const handlePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
   };
 
+  // Input change function
+  const handleInputChange = ({ currentTarget: input }) => {
+    const errors = { ...userErrors };
+    const errorMessages = userFieldOnChangeValidation(input);
+
+    if (errorMessages) errors[input.name] = errorMessages;
+    else delete errors[input.name];
+
+    setUserErrors(errors);
+
+    const userDetails = { ...userData };
+    userDetails[input.name] = input.value;
+    setUserData(userDetails);
+  };
+
+  // Event For SigIn Function
   const handleSignIn = (e) => {
     e.preventDefault();
+
+    const errors = userFieldOnSubmitValidation("login", userData);
+    setUserErrors(errors || {});
+    if (errors) return;
+
+    console.log("User Data", userData);
 
     navigate(`/dashboard`);
   };
@@ -35,18 +66,20 @@ const Login = () => {
             inputName="email"
             inputType="email"
             placeholderName={t("enterEmailAddress")}
-            inputErrorMessage=""
-            // inputChange={handleInputChange}
+            inputErrorMessage={userErrors.email}
+            inputChange={handleInputChange}
+            inputValue={userData.email}
           />
         </InputFormGroup>
         <InputFormGroup inputLabel={t("password")} inputName="password">
           <InputText
             inputName="password"
-            inputType={passwordShown ? "type" : "password"}
+            inputType={passwordShown ? "text" : "password"}
             inputClassName="password-control"
             placeholderName={t("enterPassword")}
-            inputErrorMessage=""
-            // inputChange={handleInputChange}
+            inputErrorMessage={userErrors.password}
+            inputChange={handleInputChange}
+            inputValue={userData.password}
           />
           <span
             className={`password-icon ${

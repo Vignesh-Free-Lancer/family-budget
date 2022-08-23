@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import getYear from "date-fns/getYear";
+import i18n from "../i18n/i18n";
 
 // Array of Month Name
 export const months = [
@@ -73,6 +74,64 @@ export const numberFormat = (value) =>
     style: "currency",
     currency: "INR",
   }).format(value);
+
+// User Email Field Validation
+export const emailValidation = (email) => {
+  const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if (!email || regex.test(email) === false) {
+    return i18n.t("enterValidEmail");
+  }
+  return "";
+};
+
+// Validation Field For Password Creation
+const uppercaseRegExp = /(?=.*?[A-Z])/;
+const lowercaseRegExp = /(?=.*?[a-z])/;
+const digitsRegExp = /(?=.*?[0-9])/;
+const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+const minLengthRegExp = /.{8,}/;
+
+export const passwordRequirements = (inputValue) => {
+  const minLengthPassword = minLengthRegExp.test(inputValue);
+  const uppercasePassword = uppercaseRegExp.test(inputValue);
+  const lowercasePassword = lowercaseRegExp.test(inputValue);
+  const specialCharPassword = specialCharRegExp.test(inputValue);
+  const digitsPassword = digitsRegExp.test(inputValue);
+
+  if (!minLengthPassword) return i18n.t("passwordMinCharacters");
+  if (!uppercasePassword) return i18n.t("passwordUppercase");
+  if (!lowercasePassword) return i18n.t("passwordLowercase");
+  if (!specialCharPassword) return i18n.t("passwordSpecialCharacters");
+  if (!digitsPassword) return i18n.t("passwordOneDigit");
+};
+
+// Allow Integer Number Only In Textbox
+export const isAllowIntegerNumber = (number) => {
+  const regNumber = /^[0-9\b]+$/;
+  if (number !== "" && number !== 0 && regNumber.test(number)) {
+    return "";
+  } else {
+    return "Please enter valid number";
+  }
+};
+
+// Allow Decimal Number Only In Textbox
+export const isAllowDecimalNumber = (number, isMandatory = true) => {
+  const regDecimalNumber = /^[+-]?\d*(?:[.,]\d*)?$/;
+  if (
+    number !== "" &&
+    number !== 0 &&
+    isMandatory &&
+    regDecimalNumber.test(number)
+  ) {
+    return "";
+  } else if (number !== "" && !isMandatory && regDecimalNumber.test(number)) {
+    return "";
+  } else {
+    return "Please enter valid number";
+  }
+};
 
 // Daily Expense Type
 export const expenseParticularType = [

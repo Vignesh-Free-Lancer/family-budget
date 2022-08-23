@@ -42,8 +42,8 @@
         img {
           margin: 12px 0;
           width: 10rem;
-          height: auto;
-          border-radius: 5px;
+          height: 10rem;
+          border-radius: 50%;
           box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
             rgb(0 0 0 / 30%) 0px 1px 3px -1px;
         }
@@ -101,11 +101,11 @@
                 height: 0;
                 border-top: 50px solid transparent;
                 border-bottom: 50px solid transparent;
-                border-left: 30px solid #ddd;
+                border-left: 30px solid #ffffff;
                 position: absolute;
                 top: 1%;
                 margin-top: -50px;
-                margin-left: 1px;
+                margin-left: 3px;
                 left: 100%;
                 z-index: 1;
               }
@@ -172,6 +172,12 @@
             }
           }
         }
+
+        &-upload-status {
+          display: block;
+          color: green;
+          font-weight: 500;
+        }
       }
 
       &__custom-user-status {
@@ -184,6 +190,13 @@
         label {
           margin: 0;
         }
+      }
+
+      &__profile-option {
+        margin: 5px 0 0;
+        color: #dc3545;
+        display: block;
+        font-size: 14px;
       }
 
       .user-status {
@@ -290,6 +303,18 @@
       &__body {
         padding: 2rem 20px;
         width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .budget-app {
+    &__registration {
+      &__header {
+        &__user-image {
+          text-align: right;
+        }
       }
     }
   }

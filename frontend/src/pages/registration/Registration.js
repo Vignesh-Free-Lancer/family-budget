@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./registration.scss";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,13 @@ import RegistationComp from "../../components/registration/Registration";
 
 const Registation = () => {
   const { t } = useTranslation();
+
+  // Set User Profile Image
+  const [userProfileImage, setUserProfileImage] = useState(DefaultUserImage);
+
+  const uploadedUserProdile = (imageUrl) => {
+    setUserProfileImage(imageUrl);
+  };
 
   return (
     <div className="budget-app__registration">
@@ -34,13 +41,13 @@ const Registation = () => {
                   xs={6}
                   className="budget-app__registration__header__user-image"
                 >
-                  <img src={DefaultUserImage} alt="" />
+                  <img src={userProfileImage} alt="" />
                 </Col>
               </Row>
             </Container>
           </div>
           <div className="budget-app__registration__body">
-            <RegistationComp />
+            <RegistationComp uploadedUserProdile={uploadedUserProdile} />
           </div>
         </div>
       </Container>
