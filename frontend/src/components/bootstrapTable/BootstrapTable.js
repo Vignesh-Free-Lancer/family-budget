@@ -18,13 +18,11 @@ const BootstrapTableComp = ({
   const { t } = useTranslation();
   // Edit Table Data
   const onEditChanged = (data) => {
-    console.log("Table Edit", data);
     tableEditAction(data._id);
   };
 
   // Delete Table Data
   const onDeleteChanged = (data) => {
-    console.log("Table Delete", data);
     tableDeleteAction(data._id);
   };
 

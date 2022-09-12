@@ -1,0 +1,162 @@
+.budget-app {
+  &__email-verification {
+    &__content-section {
+      margin: 6rem 0 0;
+      height: 500px;
+      position: relative;
+      background: #afeeee;
+      background-position: 50%;
+      background-size: 100% 100%;
+      border-radius: 5px;
+      box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+        rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+    }
+
+    &__info {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 2.5rem;
+
+      h2 {
+        padding: 0 30px;
+        font-size: 32px;
+        font-weight: 700;
+        font-style: italic;
+        letter-spacing: 0.5px;
+        color: #ff8c00;
+      }
+
+      p {
+        padding: 0 5rem;
+        font-size: 20px;
+        font-weight: 400;
+        color: rgb(0 0 0 / 70%);
+
+        span {
+          font-size: 22px;
+          font-weight: 600;
+          color: #ff8c00;
+        }
+      }
+
+      button {
+        margin: 30px auto 0;
+        padding: 7px 30px 10px;
+        color: #ff8c00;
+        background: transparent;
+        display: block;
+        border-radius: 30px;
+        border: 1px solid #ff8c00;
+
+        &:hover,
+        &:focus {
+          color: #ffffff;
+          background: #b3b6ba;
+          border: 1px solid #afeeee;
+
+          span {
+            padding-right: 25px;
+
+            &:after {
+              opacity: 1;
+              right: -7px;
+              top: -16px;
+              font-size: 40px;
+            }
+          }
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+          font-size: 22px;
+          font-weight: 700;
+
+          &:after {
+            content: "\00bb";
+            position: absolute;
+            opacity: 0;
+            top: -14px;
+            right: -25px;
+            transition: 0.5s;
+            font-size: 40px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    &__bg-icon {
+      margin: 1rem 0 1rem;
+      height: 100px;
+      position: relative;
+      background: url("../../assets/images/email-verification.png") no-repeat;
+      background-position: 50%;
+      border-radius: 5px;
+    }
+
+    &__success {
+      &__content-section {
+        background: #2e8b57;
+      }
+
+      &__info {
+        h2,
+        p {
+          color: #ffffff;
+        }
+
+        button {
+          color: #ffffff;
+          border: 1px solid #ffffff;
+
+          &:hover,
+          &:focus {
+            border: 1px solid #2e8b57;
+          }
+
+          a {
+            color: #ffffff;
+            text-decoration: none;
+          }
+        }
+      }
+
+      &__bg-icon {
+        margin: 3rem 0 3rem;
+        background: url("../../assets/images/email-verified-icon.png") no-repeat;
+        background-position: 50%;
+        background-size: 10% 100%;
+      }
+    }
+
+    &__error {
+      &__content-section {
+        background: rgb(255, 165, 0);
+      }
+
+      &__info {
+        h2,
+        p {
+          color: #ffffff;
+        }
+      }
+
+      &__bg-icon {
+        margin: 3rem 0 3rem;
+        background: url("../../assets/images/email-verified-failed-icon.png")
+          no-repeat;
+        background-position: 50%;
+        background-size: 10% 100%;
+      }
+    }
+  }
+}

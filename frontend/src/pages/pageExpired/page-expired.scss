@@ -29,6 +29,19 @@
         padding-left: 1rem;
         width: 70%;
       }
+
+      &__home-link {
+        font-size: 16px;
+
+        a {
+          font-weight: 700;
+          color: #7b68ee;
+
+          &:hover {
+            color: #6a5acd;
+          }
+        }
+      }
     }
   }
 }

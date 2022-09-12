@@ -3,6 +3,7 @@
   "homePageLoginContent": "अपनी सभी आय और व्यय आसानी से प्रबंधित करें",
   "homePageRegistrationContent": "एक खाता बनाएं और अपने सभी बजट आसानी से प्रबंधित करें",
 
+  "home": "घर",
   "login": "लॉग इन करें",
   "registration": "पंजीकरण",
   "register": "पंजीकरण करवाना",
@@ -22,6 +23,7 @@
   "expenses": "खर्च",
   "reports": "रिपोर्टों",
   "user": "उपयोगकर्ता",
+  "manageProfile": "प्रोफ़ाइल प्रबंधित करें",
   "addViewMonthlySalaryInfo": "अपनी मासिक वेतन जानकारी जोड़ें/देखें",
   "addViewExtraIncomeInfo": "वेतन के अलावा अपनी अतिरिक्त आय विवरण जोड़ें / देखें",
   "addDailyMonthlyExpenses": "अपने दैनिक/मासिक व्यय विवरण जोड़ें",
@@ -38,14 +40,21 @@
   "loginPageContent": "अपने खाते में लॉगिन करें और आसानी से अपने सभी बजट बनाए रखें.",
   "signIn": "साइन इन करें",
   "forgotPassword": "पासवर्ड भूल गए",
+  "resetPassword": "पासवर्ड रीसेट",
+  "changeEmail": "ईमेल पता रीसेट करें",
   "haveNoAccount": "खाता नहीं है",
 
   "forgotPageContent": "अपने क्रेडेंशियल रीसेट करने के लिए, अपने पंजीकृत ईमेल पते का उपयोग करें.",
+  "resetPageContent": "नया पासवर्ड पुराने पासवर्ड जैसा नहीं होना चाहिए.",
+  "resetEmailPageContent": "एक बार आपका ई-मेल पता संशोधित हो जाने के बाद, कृपया अपना ई-मेल सत्यापित करें अन्यथा आपके खाते तक पहुंचने में सक्षम नहीं है",
+  "oldPassword": "पुराना पासवर्ड",
+  "enterOldPassword": "पुराना पासवर्ड डालें",
   "newPassword": "नया पासवर्ड",
   "enterNewPassword": "नया पासवर्ड दर्ज करें",
   "confirmPassword": "पासवर्ड की पुष्टि कीजिये",
   "enterConfirmPassword": "पुष्टि पासवर्ड दर्ज करें",
   "backToLogin": "लॉगिन पर वापस जाएं",
+  "submit": "प्रस्तुत",
 
   "username": "उपयोगकर्ता नाम",
   "enterUsername": "उपयोगकर्ता नाम दर्ज करें",
@@ -56,10 +65,15 @@
   "dateOfBirth": "जन्म की तारीख",
   "pleaseSelectDOB": "कृपया जन्मतिथि चुनें",
   "selectProfileImage": "प्रोफ़ाइल छवि का चयन करें",
+  "uploadProfile": "प्रोफ़ाइल अपलोड करें",
   "default": "चूक",
   "custom": "रीति",
   "userStatus": "उपयोगकर्ता की स्थिति",
   "haveAnAccount": "एक खाता है",
+  "doYouWantToActivate": "क्या आप अपना खाता सक्रिय करना चाहते हैं",
+  "here": "यहां",
+  "activateAccount": "खाता सक्रिय करें",
+  "activate": "सक्रिय",
   "userLists": "उपयोगकर्ता सूचियाँ",
   "enterOriginalEmailAddress": "अपना मूल ईमेल पता दर्ज करें, तभी आप आगे बढ़ पाएंगे",
   "enterValidEmail": "मान्य ईमेल दर्ज करें",
@@ -82,6 +96,16 @@
   "uploadProfilePicture": "कृपया एक प्रोफ़ाइल चित्र अपलोड करें",
   "selectProfileOption": "कृपया प्रोफ़ाइल विकल्प चुनें",
 
+  "accountConfirmation": "खाता पुष्टि",
+  "getStartYourAccount": "हम आपके आरंभ करने के लिए उत्साहित हैं। सबसे पहले, आपको अपने खाते की पुष्टि करनी होगी",
+  "confirmationLink": "खाता पुष्टिकरण लिंक आपके पंजीकृत ईमेल पर भेज दिया गया है",
+  "checkConfirmationMail": "अपना ईमेल जांचें और आगे बढ़ने के लिए यहां वापस आएं",
+  "proceed": "आगे बढ़ना",
+  "accountConfirmationSuccess": "आपका खाता सफलतापूर्वक सत्यापित कर दिया गया है",
+  "nowLogin": "अब आप लॉगिन कर सकते हैं",
+  "accountActivationStatus": "असुविधा के लिए खेद है, आगे बढ़ने में असमर्थ",
+  "accountActivationIssue": "कुछ तकनीकी मुद्दे। यदि आपका खाता सक्रिय करने में असमर्थ है, तो कृपया कुछ समय बाद प्रयास करें",
+
   "showing": "दिखा",
   "to": "प्रति",
   "of": "का",
@@ -94,6 +118,9 @@
   "save": "बचाना",
   "update": "अद्यतन",
   "delete": "मिटाना",
+  "removeAccount": "खाता हटाएं",
+
+  "notAuthorizedToDelete": "आप खाता हटाने के लिए अधिकृत नहीं हैं, मेरे प्रोफ़ाइल दृश्य पर जाएँ।",
 
   "month": "महीना",
   "year": "साल",
@@ -178,5 +205,20 @@
   "groceryReport": "किराना रिपोर्ट",
   "particulars": "विवरण",
   "pleaseSelectReportType": "कृपया रिपोर्ट प्रकार चुनें",
-  "customizeReports": "रिपोर्ट अनुकूलित करें"
+  "customizeReports": "रिपोर्ट अनुकूलित करें",
+
+  "sessionExpired": "सत्र समाप्त हो चुका है",
+  "sessionExpiredBrowerClose": "यदि ब्राउज़र विंडो बंद है, तो सत्र स्वतः समाप्त हो जाएगा",
+  "sessionExpiredBrowserAction": "साथ ही सुरक्षा कारणों से, हमने ब्राउज़र की बैक, फ़ॉरवर्ड और रीफ़्रेश क्रियाओं को अक्षम कर दिया है",
+
+  "thanksPageTitle": "हमारी साइट का उपयोग करने में, आपके समर्थन के लिए धन्यवाद",
+  "thanksPageFeddbackContent": "हमें उम्मीद है, आपने हमारी साइट को बेहतर बनाने के लिए अपनी प्रतिक्रिया दी",
+  "thanksPageContent": "फ़ीचर में, हमारी साइट को अपने सहयोगियों या अपने उद्योग के संपर्कों को देखें",
+  "thanksForBeing": "अच्छा होने के लिए धन्यवाद",
+  "thanksWelcome": "फिर से स्वागत",
+
+  "confirmDelete": "हटाने की पुष्टि करें",
+  "areYouSureDelete": "क्या आप आश्वस्त है कि आपको डिलीट करना है",
+  "userDelete": "उपयोगकर्ता",
+  "confirm": "पुष्टि करें"
 }

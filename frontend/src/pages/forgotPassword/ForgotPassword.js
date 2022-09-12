@@ -1,13 +1,11 @@
-import React, { lazy } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./forgot-password.scss";
 import { useTranslation } from "react-i18next";
-
-const ForgotPasswordComp = lazy(() =>
-  import("../../components/forgotPassword/ForgotPassword")
-);
+import ForgotPasswordComp from "../../components/forgotPassword/ForgotPassword";
 
 const ForgotPassword = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
   return (

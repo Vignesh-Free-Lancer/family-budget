@@ -3,6 +3,7 @@
   "homePageLoginContent": "Manage your all income & expenses easily",
   "homePageRegistrationContent": "Create an account & easily manage your all budgets",
 
+  "home": "Home",
   "login": "Login",
   "registration": "Registration",
   "register": "Register",
@@ -22,6 +23,7 @@
   "expenses": "Expenses",
   "reports": "Reports",
   "user": "User",
+  "manageProfile": "Manage Profile",
   "addViewMonthlySalaryInfo": "Add/View your monthly salary information",
   "addViewExtraIncomeInfo": "Add/View your extra income details, other than salary",
   "addDailyMonthlyExpenses": "Add your daily/monthly expense details",
@@ -38,14 +40,21 @@
   "loginPageContent": "Login into your account and easily maintain your all budgets.",
   "signIn": "Sign In",
   "forgotPassword": "Forgot Password",
+  "resetPassword": "Reset Password",
+  "changeEmail": "Reset E-mail Address",
   "haveNoAccount": "Don't have an account",
 
   "forgotPageContent": "Use your registered email address, to reset your credentials.",
+  "resetPageContent": "New password should not be same as old password.",
+  "resetEmailPageContent": "Once your E-mail address is modified, Please verify your e-mail otherwise not able to access your account",
+  "oldPassword": "Old Password",
+  "enterOldPassword": "Enter old password",
   "newPassword": "New Password",
   "enterNewPassword": "Enter new password",
   "confirmPassword": "Confirm Password",
   "enterConfirmPassword": "Enter confirm password",
   "backToLogin": "Back to login",
+  "submit": "Submit",
 
   "username": "Username",
   "enterUsername": "Enter Username",
@@ -56,10 +65,15 @@
   "dateOfBirth": "Date Of Birth",
   "pleaseSelectDOB": "Please select DOB",
   "selectProfileImage": "Select Profile Image",
+  "uploadProfile": "Upload Profile",
   "default": "Default",
   "custom": "Custom",
   "userStatus": "User Status",
   "haveAnAccount": "Have an account",
+  "doYouWantToActivate": "Do you want to activate your account",
+  "here": "Here",
+  "activateAccount": "Account Activate",
+  "activate": "Activate",
   "userLists": "User Lists",
   "enterOriginalEmailAddress": "Enter your original email address, then only you can able to proceed further",
   "enterValidEmail": "Enter valid email",
@@ -82,6 +96,16 @@
   "uploadProfilePicture": "Please upload a profile picture",
   "selectProfileOption": "Please select profile option",
 
+  "accountConfirmation": "Account Confirmation",
+  "getStartYourAccount": "We're excited to have you get started. First, you need to confirm your account",
+  "confirmationLink": "Account confirmation link has been sent to your registered email",
+  "checkConfirmationMail": "Check your email and come back here to proceed",
+  "proceed": "Proceed",
+  "accountConfirmationSuccess": "Your account has been verified successfully",
+  "nowLogin": "You can now login",
+  "accountActivationStatus": "Sorry for the inconvenience, Unable to proceed further",
+  "accountActivationIssue": "Some technical issues. If unable to activate your account, Please try after some time",
+
   "showing": "Showing",
   "to": "to",
   "of": "of",
@@ -94,6 +118,9 @@
   "save": "Save",
   "update": "Update",
   "delete": "Delete",
+  "removeAccount": "Remove Account",
+
+  "notAuthorizedToDelete": "You are not authorized to delete account, Go to my profile view.",
 
   "month": "Month",
   "year": "Year",
@@ -178,5 +205,20 @@
   "groceryReport": "Grocery Report",
   "particulars": "Particulars",
   "pleaseSelectReportType": "Please select report type",
-  "customizeReports": "Customize Reports"
+  "customizeReports": "Customize Reports",
+
+  "sessionExpired": "Session has expired",
+  "sessionExpiredBrowerClose": "If the browser window is closed, the session will expire automatically",
+  "sessionExpiredBrowserAction": "Also for security reasons, we have disabled the Back, Forward, and Refresh actions of the browser",
+
+  "thanksPageTitle": "Thanks for your support, in utilizing our site",
+  "thanksPageFeddbackContent": "We hope, you gave your feedback to improve our site",
+  "thanksPageContent": "In Feature, refer our site to your colleagues or contacts within your industry",
+  "thanksForBeing": "Thanks for being you",
+  "thanksWelcome": "Welcome back again",
+
+  "confirmDelete": "Confirm Delete",
+  "areYouSureDelete": "Are you sure you want to delete",
+  "userDelete": "user",
+  "confirm": "Confirm"
 }

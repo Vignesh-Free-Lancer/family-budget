@@ -6,6 +6,7 @@ import "./home.scss";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
   return (

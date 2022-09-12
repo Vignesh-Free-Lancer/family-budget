@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useToasts } from "react-toast-notifications";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -9,11 +11,40 @@ import {
 } from "../../utils/ValidateFields";
 import InputFormGroup from "../inputFormGroup/InputFormGroup";
 import InputText from "../inputText/InputText";
+import { userForgotPasswordAction } from "../../redux/actions/UserActions";
+import Loading from "../loading/Loading";
 
 const ForgotPassword = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
-  // State Object For Login
+  // Dispatch the action to redux
+  const dispatch = useDispatch();
+
+  // Get forgot password state from redux store
+  const userCredential = useSelector((state) => state.userForgotPassword);
+  const {
+    loading: forgotPageLoading,
+    error: forgotPageError,
+    userForgotPassword,
+  } = userCredential;
+
+  // Show notification to user
+  const { addToast } = useToasts();
+  // Toast notfication
+  useEffect(() => {
+    if (forgotPageError) addToast(forgotPageError, { appearance: "error" });
+
+    if (userForgotPassword && userForgotPassword.message)
+      addToast(userForgotPassword.message, { appearance: "success" });
+
+    return () => {
+      delete userCredential.error;
+      delete userCredential.userForgotPassword;
+    };
+  }, [userCredential, userForgotPassword, forgotPageError, addToast]);
+
+  // State Object For Forgot Password
   const [newPasswordShown, setNewPasswordShown] = useState(false);
   const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
   const [userData, setUserData] = useState({
@@ -56,11 +87,24 @@ const ForgotPassword = () => {
     setUserErrors(errors || {});
     if (errors) return;
 
-    console.log("User Data", userData);
+    dispatch(userForgotPasswordAction(userData.email, userData.password));
+
+    resetInputFields();
+  };
+
+  // Cleare all the state values after success
+  const resetInputFields = () => {
+    const userInfos = { ...userData };
+    userInfos.email = "";
+    userInfos.password = "";
+    userInfos.confirmPassword = "";
+    setUserData(userInfos);
   };
 
   return (
     <>
+      {forgotPageLoading && <Loading />}
+
       <h3>{t("forgotPassword")}</h3>
       <Form
         className="budget-app__forgot-password__form"

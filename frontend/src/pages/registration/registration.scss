@@ -211,15 +211,18 @@
         }
       }
 
-      &__register-btn {
+      &__btn-section {
         margin: 24px 0 0;
 
         button {
           font-size: 16px;
           font-weight: 700;
+        }
+
+        .btn-register {
+          background: #7fffd4;
+          border: 1px solid #7fffd4;
           color: rgb(0 0 0 / 0.7);
-          background: #afeeee;
-          border: 1px solid #afeeee;
 
           &:hover {
             color: #000000;
@@ -240,6 +243,23 @@
           &:hover,
           &:focus {
             color: #b8860b;
+            text-decoration: none;
+          }
+        }
+      }
+
+      &__activate-link {
+        margin: 24px 0 0;
+
+        span {
+          font-weight: 600;
+          color: #3cb371;
+          text-decoration: none;
+          cursor: pointer;
+
+          &:hover,
+          &:focus {
+            color: #2e8b57;
             text-decoration: none;
           }
         }
@@ -288,6 +308,10 @@
   .budget-app {
     &__registration {
       &__header {
+        .row {
+          height: 7rem;
+        }
+
         &__title {
           h2 {
             margin-left: 0;
@@ -297,6 +321,10 @@
 
         &__user-image {
           text-align: left;
+
+          img {
+            display: none;
+          }
         }
       }
 

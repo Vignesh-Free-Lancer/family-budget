@@ -29,7 +29,6 @@ const ExtraIncome = () => {
 
   // Handle The Date Field On Change Function
   const handleIncomeDateChange = (date) => {
-    console.log("Income Date", date);
     setIncomeDate(date);
     // date === null
     //   ? (userErrors.dob = "Please select dob")

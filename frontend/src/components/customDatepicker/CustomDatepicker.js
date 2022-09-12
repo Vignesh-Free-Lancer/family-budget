@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { getMonth, getYear } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,18 +7,23 @@ import { months, dobYears } from "../../utils/Utils";
 const CustomDatepicker = (props) => {
   const {
     customDatepickerClassname = "form-control",
-    customDateChange,
     customdateName,
     customDatePlaceholder,
+    customDateValue = "",
+    customDateChange,
     customMinDateRange,
     customMaxDateRange,
   } = props;
-  const [customDate, setCustomDate] = useState("");
+  const [customDate, setCustomDate] = useState(customDateValue);
 
-  const handleCustomFateChange = (date) => {
+  const handleCustomDateChange = (date) => {
     setCustomDate(date);
     customDateChange(date);
   };
+
+  useEffect(() => {
+    customDateValue !== "" && setCustomDate(customDateValue);
+  }, [customDateValue]);
 
   return (
     <DatePicker
@@ -60,7 +65,7 @@ const CustomDatepicker = (props) => {
         </div>
       )}
       selected={customDate}
-      onChange={handleCustomFateChange}
+      onChange={handleCustomDateChange}
       name={customdateName}
       dateFormat="dd/MM/yyyy"
       className={customDatepickerClassname}

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useToasts } from "react-toast-notifications";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import {
   userFieldOnSubmitValidation,
@@ -9,19 +11,48 @@ import {
 } from "../../utils/ValidateFields";
 import InputFormGroup from "../inputFormGroup/InputFormGroup";
 import InputText from "../inputText/InputText";
+import { userLoginAction } from "../../redux/actions/UserActions";
+import Loading from "../loading/Loading";
 
 const Login = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
-  // Get Router Navigation From Router-DOM
+  // Navigate to another page without redirection using react-router-dom
   const navigate = useNavigate();
 
-  // State Object For Login
+  // Dispatch the action to redux
+  const dispatch = useDispatch();
+
+  // Check user login credential from redux store
+  const userDetails = useSelector((state) => state.userLogin, shallowEqual);
+  const { loading: loginLoading, error: loginError, userInfos } = userDetails;
+
+  // If user logged in successfully, redirect to dashboard page
+  useEffect(() => {
+    if (userInfos) {
+      navigate("/dashboard");
+    }
+  }, [navigate, userInfos]);
+
+  // Show notification to user
+  const { addToast } = useToasts();
+  useEffect(() => {
+    if (loginError)
+      addToast(loginError, { appearance: "error", autoDismissTimeout: "6000" });
+
+    return () => {
+      delete userDetails.error;
+    };
+  }, [userDetails, loginError, addToast]);
+
+  // State object for login form
   const [passwordShown, setPasswordShown] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  // State object for login form Error
   const [userErrors, setUserErrors] = useState({});
 
   // Handle Event For Password Show & Hide
@@ -32,7 +63,7 @@ const Login = () => {
   // Input change function
   const handleInputChange = ({ currentTarget: input }) => {
     const errors = { ...userErrors };
-    const errorMessages = userFieldOnChangeValidation(input);
+    const errorMessages = userFieldOnChangeValidation(input, {}, true);
 
     if (errorMessages) errors[input.name] = errorMessages;
     else delete errors[input.name];
@@ -52,13 +83,13 @@ const Login = () => {
     setUserErrors(errors || {});
     if (errors) return;
 
-    console.log("User Data", userData);
-
-    navigate(`/dashboard`);
+    dispatch(userLoginAction(userData.email, userData.password));
   };
 
   return (
     <>
+      {loginLoading && <Loading />}
+
       <h3>{t("signIn")}</h3>
       <Form className="budget-app__login__form" onSubmit={handleSignIn}>
         <InputFormGroup inputLabel={t("emailAddress")} inputName="email">

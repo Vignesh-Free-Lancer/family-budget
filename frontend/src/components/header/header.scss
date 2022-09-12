@@ -1,6 +1,6 @@
 .budget-app {
   &__header {
-    height: 50px;
+    // height: 50px;
     background: #e3f2fd;
 
     // App Name & Logo
@@ -87,16 +87,31 @@
       }
     }
 
-    // Header - Global Language
-    &__language {
+    // Header - Dropdown Items
+    &__dropdown-list {
       position: relative;
 
       .nav-link {
         &:before {
-          content: "\f0ac";
           font-family: FontAwesome;
           display: inline-block;
           padding-right: 5px;
+        }
+      }
+
+      &-menu {
+        .nav-link {
+          &:before {
+            content: "\f007";
+          }
+        }
+      }
+
+      &-language {
+        .nav-link {
+          &:before {
+            content: "\f0ac";
+          }
         }
       }
 
@@ -160,6 +175,8 @@
 
     img {
       width: 25%;
+      height: 100px;
+      border-radius: 50%;
     }
 
     .btn-close {
@@ -186,12 +203,14 @@
       flex-direction: column;
 
       a {
+        padding: 0.6rem 0;
         font-size: 18px;
         font-weight: 700;
         letter-spacing: 0.5px;
         color: rgba(0, 0, 0, 0.55);
-        display: block;
-        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         text-decoration: none;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
           border-color 0.15s ease-in-out;
@@ -199,6 +218,138 @@
         &:hover {
           // color: rgba(0, 0, 0, 0.8);
           color: #8b008b;
+        }
+
+        &:before {
+          content: "";
+          margin-right: 10px;
+          background-repeat: no-repeat;
+          width: 30px;
+          height: 30px;
+          display: inline-block;
+          background-size: 100%;
+        }
+      }
+
+      // Set icons for each category
+      &__profile {
+        &:before {
+          background: url("../../assets/images/default-user-icon.png");
+        }
+      }
+
+      &__reset-password {
+        &:before {
+          background: url("../../assets/images/reset-password-icon.png");
+        }
+      }
+
+      &__reset-email {
+        &:before {
+          background: url("../../assets/images/email-icon.png");
+        }
+      }
+
+      &__dashboard {
+        &:before {
+          background: url("../../assets/images/dashboard-icon.png");
+        }
+      }
+
+      &__salary {
+        &:before {
+          background: url("../../assets/images/salary-icon.png");
+        }
+      }
+
+      &__extra-income {
+        &:before {
+          background: url("../../assets/images/extra-income-icon.png");
+        }
+      }
+
+      &__expense {
+        &:before {
+          background: url("../../assets/images/expenses-icon.png");
+        }
+      }
+
+      &__report {
+        &:before {
+          background: url("../../assets/images/reports-icon.png");
+        }
+      }
+
+      &__user {
+        &:before {
+          background: url("../../assets/images/user-icon.png");
+        }
+      }
+
+      // Manage Profile Accordion
+      .budget-app {
+        &__accordion {
+          .accordion {
+            &-item {
+              border-radius: 0;
+            }
+
+            &-button {
+              padding: 0.6rem 0;
+              font-size: 18px;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              color: rgba(0, 0, 0, 0.55);
+              background: none;
+              border: none;
+
+              &:before {
+                content: "";
+                margin-right: 10px;
+                background: url("../../assets/images/profile-management-icon.png")
+                  no-repeat;
+                width: 30px;
+                height: 30px;
+                display: inline-block;
+                background-size: 100%;
+              }
+
+              &.collapsed,
+              &:not(.collapsed) {
+                background: none;
+                border: none;
+                border-radius: 0;
+              }
+
+              &:not(.collapsed) {
+                color: #8b008b;
+                box-shadow: none;
+              }
+
+              &:hover {
+                color: #8b008b;
+                background: none;
+                border: none;
+              }
+
+              &:focus {
+                box-shadow: none;
+              }
+            }
+
+            &-body {
+              padding: 0 1.25rem;
+            }
+
+            &-collapse {
+              background: none;
+
+              &.show {
+                background: none;
+                border-radius: 0;
+              }
+            }
+          }
         }
       }
     }
@@ -216,33 +367,23 @@
         font-size: 20px;
         font-weight: 600;
         color: rgba(0, 0, 0, 0.55);
+        display: flex;
 
         &:hover {
           color: rgba(0, 0, 0, 0.7);
         }
       }
 
-      // Header - User Profile
-      &__profile {
-        position: relative;
-
-        &:before {
-          content: "\f007";
-          font-family: FontAwesome;
-          display: inline-block;
-          padding-right: 5px;
-        }
-      }
-
       // Header - User Logout
       &__logout {
-        position: relative;
-
         &:before {
-          content: "\f08b";
-          font-family: FontAwesome;
+          content: "";
+          margin-right: 10px;
+          background: url("../../assets/images/menu-logout-icon.png") no-repeat;
+          width: 30px;
+          height: 30px;
           display: inline-block;
-          padding-right: 5px;
+          background-size: 100%;
         }
       }
     }
@@ -263,8 +404,8 @@
         }
       }
 
-      // Header - Global Language
-      &__language {
+      // Header - Dropdown Items
+      &__dropdown-list {
         .dropdown-menu {
           position: absolute;
         }
@@ -296,8 +437,8 @@
         display: none;
       }
 
-      // Header - Global Language
-      &__language {
+      // Header - Dropdown Items
+      &__dropdown-list {
         .dropdown-menu {
           position: absolute;
 
@@ -325,6 +466,7 @@
     &-header {
       img {
         width: 20%;
+        height: 75px;
       }
 
       .btn-close {
@@ -343,15 +485,29 @@
     &-body {
       &__app-category {
         a {
-          padding: 12px 14px;
+          padding: 12px 0;
           font-size: 20px;
           font-weight: 600;
+        }
+
+        // Manage Profile Accordion
+        .budget-app {
+          &__accordion {
+            .accordion {
+              &-button {
+                padding: 12px 0;
+                font-size: 20px;
+                font-weight: 600;
+              }
+            }
+          }
         }
       }
 
       &__user-category {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
+        align-items: center;
       }
     }
   }

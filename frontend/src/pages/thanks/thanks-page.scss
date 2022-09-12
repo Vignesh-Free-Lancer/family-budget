@@ -1,0 +1,42 @@
+.thanks-page {
+  &-section {
+    margin: 6rem auto 0;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+
+    .row {
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__content {
+      padding: 30px 20px;
+      color: rgb(0, 0, 0, 50%);
+
+      h1 {
+        margin: 0 0 30px;
+        font-size: 30px;
+        font-weight: 600;
+        color: rgb(0, 0, 0, 70%);
+      }
+
+      p {
+        margin: 0 0 20px;
+        font-size: 22px;
+      }
+
+      img {
+        padding: 15px 0;
+        width: 10rem;
+      }
+
+      h5 {
+        font-size: 26px;
+        font-weight: 600;
+        color: rgb(0, 0, 0, 70%);
+      }
+    }
+  }
+}

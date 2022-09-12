@@ -1,11 +1,12 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import "./login.scss";
+import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 import LoginComp from "../../components/login/Login";
 
 const Login = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
   return (

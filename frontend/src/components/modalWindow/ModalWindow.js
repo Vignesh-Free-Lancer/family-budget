@@ -12,7 +12,10 @@ const ModalWindow = ({
   modalBody = "",
   modalFooter = "",
 }) => {
+  // Get translation locale
   const { t } = useTranslation();
+
+  // Close modal window event
   const handleClose = () => closeModal();
 
   return (

@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import "./registration.scss";
+import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 import DefaultUserImage from "../../assets/images/default-user-icon.png";
 import RegistationComp from "../../components/registration/Registration";
 
 const Registation = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
-  // Set User Profile Image
+  // Get user id from url
+  const { userId } = useParams();
+
+  // State object for user profile image
   const [userProfileImage, setUserProfileImage] = useState(DefaultUserImage);
 
-  const uploadedUserProdile = (imageUrl) => {
+  // Callback function for upload profile image
+  const uploadedUserProfile = (imageUrl) => {
     setUserProfileImage(imageUrl);
   };
 
@@ -31,7 +37,11 @@ const Registation = () => {
                   xs={6}
                   className="budget-app__registration__header__title"
                 >
-                  <h2>{t("registration")}</h2>
+                  {!userId ? (
+                    <h2>{t("registration")}</h2>
+                  ) : (
+                    <h2>{t("myProfile")}</h2>
+                  )}
                 </Col>
                 <Col
                   xl={3}
@@ -47,7 +57,7 @@ const Registation = () => {
             </Container>
           </div>
           <div className="budget-app__registration__body">
-            <RegistationComp uploadedUserProdile={uploadedUserProdile} />
+            <RegistationComp uploadedUserProfile={uploadedUserProfile} />
           </div>
         </div>
       </Container>
