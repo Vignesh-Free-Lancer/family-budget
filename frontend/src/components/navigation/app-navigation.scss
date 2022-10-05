@@ -1,0 +1,30 @@
+.budget-app {
+  &-navigation {
+    margin: 20px 0;
+    text-align: right;
+
+    &-group {
+    }
+
+    button {
+      margin-left: 1px !important;
+
+      &:before {
+        font-family: FontAwesome;
+        display: block;
+      }
+    }
+
+    &__add-item {
+      &:before {
+        content: "\f067";
+      }
+    }
+
+    &__listview {
+      &:before {
+        content: "\f03a";
+      }
+    }
+  }
+}

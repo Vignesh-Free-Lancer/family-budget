@@ -34,7 +34,7 @@ import {
 } from "../constants/UserConstants";
 
 // User Registration Action
-export const UserRegistrationAction =
+export const userRegistrationAction =
   (username, email, password, gender, dob, pic, isActive) =>
   async (dispatch) => {
     try {

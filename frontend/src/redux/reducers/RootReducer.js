@@ -10,10 +10,18 @@ import {
   UserAccountActivationReducer,
   UserResetPasswordReducer,
   UserResetEmailReducer,
-  userUpdateReducer,
-  userDeleteReducer,
-  userListReducer,
+  UserUpdateReducer,
+  UserDeleteReducer,
+  UserListReducer,
 } from "../reducers/UserReducer";
+
+// Import Salary Reducer
+import {
+  SalaryCreateReducer,
+  SalaryListReducer,
+  SalaryUpdateReducer,
+  SalaryDeleteReducer,
+} from "../reducers/SalaryReducer";
 
 const appReducer = combineReducers({
   userRecords: UserRegistrationReducer,
@@ -23,9 +31,14 @@ const appReducer = combineReducers({
   userAccountActivation: UserAccountActivationReducer,
   userResetPassword: UserResetPasswordReducer,
   userResetEmail: UserResetEmailReducer,
-  userUpdatedData: userUpdateReducer,
-  userDeletedData: userDeleteReducer,
-  userListData: userListReducer,
+  userUpdatedData: UserUpdateReducer,
+  userDeletedData: UserDeleteReducer,
+  userListData: UserListReducer,
+
+  salaryRecords: SalaryCreateReducer,
+  salaryListData: SalaryListReducer,
+  salaryUpdatedData: SalaryUpdateReducer,
+  salaryDeletedData: SalaryDeleteReducer,
 });
 
 const rootReducer = (state, action) => {

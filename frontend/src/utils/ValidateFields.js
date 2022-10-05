@@ -1,4 +1,8 @@
-import { emailValidation, passwordRequirements } from "../utils/Utils";
+import {
+  emailValidation,
+  passwordRequirements,
+  isAllowDecimalNumber,
+} from "../utils/Utils";
 import i18n from "../i18n/i18n";
 
 export const userFieldOnSubmitValidation = (
@@ -125,6 +129,218 @@ export const userFieldOnChangeValidation = (
     if (input.value.trim() !== "" && userData.newPassword !== "") {
       if (input.value !== userData.newPassword)
         return i18n.t("passwordNotMatch");
+    }
+  }
+};
+
+export const rootFieldOnSubmitValidation = (monthName, yearName) => {
+  const errors = {};
+
+  if (monthName === "select") errors.selectedMonth = i18n.t("selectMonth");
+  if (yearName === "select") errors.selectedYear = i18n.t("selectYear");
+
+  return Object.keys(errors).length === 0 ? null : errors;
+};
+
+export const salaryFieldOnChangeValidation = (input, salaryData = {}) => {
+  let stateSalary =
+    parseFloat(salaryData.monthlySalary) > 0
+      ? parseFloat(salaryData.monthlySalary)
+      : 0;
+
+  let stateBonus =
+    parseFloat(salaryData.bonusAmount) > 0
+      ? isNaN(salaryData.bonusAmount)
+        ? 0
+        : parseFloat(salaryData.bonusAmount)
+      : 0;
+
+  let stateAllowance =
+    parseFloat(salaryData.otherAllowance) > 0
+      ? isNaN(salaryData.otherAllowance)
+        ? 0
+        : parseFloat(salaryData.otherAllowance)
+      : 0;
+
+  let statePF =
+    parseFloat(salaryData.pf) > 0
+      ? isNaN(salaryData.pf)
+        ? 0
+        : parseFloat(salaryData.pf)
+      : 0;
+
+  let stateIncomeTax =
+    parseFloat(salaryData.incomeTax) > 0
+      ? isNaN(salaryData.incomeTax)
+        ? 0
+        : parseFloat(salaryData.incomeTax)
+      : 0;
+
+  let stateProfessionalTax =
+    parseFloat(salaryData.professionalTax) > 0
+      ? isNaN(salaryData.professionalTax)
+        ? 0
+        : parseFloat(salaryData.professionalTax)
+      : 0;
+
+  let stateOtherDeduction =
+    parseFloat(salaryData.otherDeductions) > 0
+      ? isNaN(salaryData.otherDeductions)
+        ? 0
+        : parseFloat(salaryData.otherDeductions)
+      : 0;
+
+  if (input.name === "monthlySalary") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalCR = parseFloat(stateBonus) + parseFloat(stateAllowance);
+
+      return i18n.t("enterMonthlySalary");
+    } else {
+      salaryData.totalCR = isNaN(
+        input.value + parseFloat(stateBonus) + parseFloat(stateAllowance)
+      )
+        ? parseFloat(0) + parseFloat(stateBonus) + parseFloat(stateAllowance)
+        : parseFloat(input.value) +
+          parseFloat(stateBonus) +
+          parseFloat(stateAllowance);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "bonusAmount") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalCR = parseFloat(stateSalary) + parseFloat(stateAllowance);
+    } else {
+      salaryData.totalCR = isNaN(
+        input.value + parseFloat(stateSalary) + parseFloat(stateAllowance)
+      )
+        ? parseFloat(0) + parseFloat(stateSalary) + parseFloat(stateAllowance)
+        : parseFloat(input.value) +
+          parseFloat(stateSalary) +
+          parseFloat(stateAllowance);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "otherAllowance") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalCR = parseFloat(stateSalary) + parseFloat(stateBonus);
+    } else {
+      salaryData.totalCR = isNaN(
+        input.value + parseFloat(stateSalary) + parseFloat(stateBonus)
+      )
+        ? parseFloat(0) + parseFloat(stateSalary) + parseFloat(stateBonus)
+        : parseFloat(input.value) +
+          parseFloat(stateSalary) +
+          parseFloat(stateBonus);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "pf") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalDR =
+        parseFloat(stateIncomeTax) +
+        parseFloat(stateProfessionalTax) +
+        parseFloat(stateOtherDeduction);
+    } else {
+      salaryData.totalDR = isNaN(
+        input.value +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction)
+      )
+        ? parseFloat(0) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction)
+        : parseFloat(input.value) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "incomeTax") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalDR =
+        parseFloat(statePF) +
+        parseFloat(stateProfessionalTax) +
+        parseFloat(stateOtherDeduction);
+    } else {
+      salaryData.totalDR = isNaN(
+        input.value +
+          parseFloat(statePF) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction)
+      )
+        ? parseFloat(0) +
+          parseFloat(statePF) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction)
+        : parseFloat(input.value) +
+          parseFloat(statePF) +
+          parseFloat(stateProfessionalTax) +
+          parseFloat(stateOtherDeduction);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "professionalTax") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalDR =
+        parseFloat(statePF) +
+        parseFloat(stateIncomeTax) +
+        parseFloat(stateOtherDeduction);
+    } else {
+      salaryData.totalDR = isNaN(
+        input.value +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateOtherDeduction)
+      )
+        ? parseFloat(0) +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateOtherDeduction)
+        : parseFloat(input.value) +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateOtherDeduction);
+
+      return isAllowDecimalNumber(input.value);
+    }
+  }
+
+  if (input.name === "otherDeductions") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      salaryData.totalDR =
+        parseFloat(statePF) +
+        parseFloat(stateIncomeTax) +
+        parseFloat(stateProfessionalTax);
+    } else {
+      salaryData.totalDR = isNaN(
+        input.value +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax)
+      )
+        ? parseFloat(0) +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax)
+        : parseFloat(input.value) +
+          parseFloat(statePF) +
+          parseFloat(stateIncomeTax) +
+          parseFloat(stateProfessionalTax);
+
+      return isAllowDecimalNumber(input.value);
     }
   }
 };

@@ -30,9 +30,9 @@ const SalaryReport = () => {
       formatter: (cell, row) => numberFormat(row.otherAllowance),
     },
     {
-      dataField: "totalCredit",
-      text: t("totalCredit"),
-      formatter: (cell, row) => numberFormat(row.totalCredit),
+      dataField: "totalCR",
+      text: t("totalCR"),
+      formatter: (cell, row) => numberFormat(row.totalCR),
     },
     {
       dataField: "pf",
@@ -55,9 +55,9 @@ const SalaryReport = () => {
       formatter: (cell, row) => numberFormat(row.otherDeductions),
     },
     {
-      dataField: "totalDebit",
-      text: t("totalDebit"),
-      formatter: (cell, row) => numberFormat(row.totalDebit),
+      dataField: "totalDR",
+      text: t("totalDR"),
+      formatter: (cell, row) => numberFormat(row.totalDR),
     },
     {
       dataField: "netPayAmount",

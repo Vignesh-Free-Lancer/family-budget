@@ -7,12 +7,14 @@ const app = express(); // main thing - Call express js
 const { notFound, errorHandler } = require("./middlewares/ErrorMiddleware");
 // Import application api routes
 const userRoutes = require("./routes/UserRoutes");
+const salaryRoutes = require("./routes/SalaryRoutes");
 
 dotenv.config();
 connectDB();
 
 app.use(express.json()); // to accept json data
 app.use("/", userRoutes); // Use user routes for api call
+app.use("/", salaryRoutes); // Use salary routes for api call
 
 // Error Handling middlewares
 app.use(notFound);

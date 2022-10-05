@@ -122,17 +122,22 @@
 
   "notAuthorizedToDelete": "आप खाता हटाने के लिए अधिकृत नहीं हैं, मेरे प्रोफ़ाइल दृश्य पर जाएँ।",
 
+  "selectMonth": "कृपया महीने का चयन करें",
+  "selectYear": "कृपया वर्ष चुनें",
+
+  "enterValidNumber": "कृपया मान्य संख्या दर्ज करें",
+
   "month": "महीना",
   "year": "साल",
-  "totalDebit": "कुल डेबिट",
-  "totalCredit": "कुल क्रेडिट",
+  "totalDR": "कुल डेबिट",
+  "totalCR": "कुल क्रेडिट",
   "income": "आय",
   "expense": "व्यय",
   "pf": "पीएफ",
   "salaryList": "वेतन सूची",
   "salaryCreditDetails": "वेतन क्रेडिट विवरण",
   "monthlySalary": "मासिक वेतन",
-  "enterMonthlySalary": "मासिक वेतन दर्ज करें",
+  "enterMonthlySalary": "अपनी मासिक वेतन राशि दर्ज करें",
   "bonusAmount": "बोनस राशि",
   "enterBonusAmount": "बोनस राशि दर्ज करें",
   "otherAllowance": "अन्य भत्ता",

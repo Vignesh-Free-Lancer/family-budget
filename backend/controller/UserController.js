@@ -407,7 +407,7 @@ const getAllUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Export all user api controller method
+// Export All User API Controller Method
 module.exports = {
   userRegistration,
   userAccountConfirmation,

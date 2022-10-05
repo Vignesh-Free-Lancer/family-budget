@@ -112,7 +112,7 @@ export const isAllowIntegerNumber = (number) => {
   if (number !== "" && number !== 0 && regNumber.test(number)) {
     return "";
   } else {
-    return "Please enter valid number";
+    return i18n.t("enterValidNumber");
   }
 };
 
@@ -129,8 +129,24 @@ export const isAllowDecimalNumber = (number, isMandatory = true) => {
   } else if (number !== "" && !isMandatory && regDecimalNumber.test(number)) {
     return "";
   } else {
-    return "Please enter valid number";
+    return i18n.t("enterValidNumber");
   }
+};
+
+// Reset Input Field When Focus
+export const resetInput = (e) => {
+  return (e.target.value =
+    e.target.value > 0
+      ? e.target.value
+      : isNaN(e.target.value)
+      ? e.target.value
+      : "");
+};
+
+// Reset Default Value When OnBlur Input Field
+export const resetDefaultValue = (e) => {
+  return (e.target.value =
+    e.target.value === 0 || e.target.value === "" ? 0 : e.target.value);
 };
 
 // Daily Expense Type

@@ -189,7 +189,7 @@ export const UserResetEmailReducer = (state = {}, action) => {
 };
 
 // User Update Reducer
-export const userUpdateReducer = (state = {}, action) => {
+export const UserUpdateReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_REQUEST:
       return {
@@ -213,7 +213,7 @@ export const userUpdateReducer = (state = {}, action) => {
 };
 
 // User Delete Reducer
-export const userDeleteReducer = (state = {}, action) => {
+export const UserDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DELETE_REQUEST:
       return {
@@ -237,7 +237,7 @@ export const userDeleteReducer = (state = {}, action) => {
 };
 
 // User List Reducer
-export const userListReducer = (state = {}, action) => {
+export const UserListReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LIST_REQUEST:
       return {

@@ -122,17 +122,22 @@
 
   "notAuthorizedToDelete": "You are not authorized to delete account, Go to my profile view.",
 
+  "selectMonth": "Please select month",
+  "selectYear": "Please select year",
+
+  "enterValidNumber": "Please enter valid number",
+
   "month": "Month",
   "year": "Year",
-  "totalDebit": " Total Debit",
-  "totalCredit": "Total Credit",
+  "totalDR": " Total Debit",
+  "totalCR": "Total Credit",
   "income": "Income",
   "expense": "Expense",
   "pf": "PF",
   "salaryList": "Salary List",
   "salaryCreditDetails": "Salary Credit Details",
   "monthlySalary": "Monthly Salary",
-  "enterMonthlySalary": "Enter monthly salary",
+  "enterMonthlySalary": "Enter your monthly salary amount",
   "bonusAmount": "Bonus Amount",
   "enterBonusAmount": "Enter bonus amount",
   "otherAllowance": "Other Allowance",

@@ -18,7 +18,7 @@ import InputCheckbox from "../inputCheckbox/InputCheckbox";
 import CustomDatepicker from "../customDatepicker/CustomDatepicker";
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 import {
-  UserRegistrationAction,
+  userRegistrationAction,
   userAccountActivationAction,
   userUpdateAction,
   userTopLevelDeleteAction,
@@ -329,7 +329,7 @@ const Registration = ({ uploadedUserProfile }) => {
     return Object.keys(errors).length === 0 ? null : errors;
   };
 
-  // User registration  & update event
+  // User registration save & update event
   const handleRegistration = (e) => {
     e.preventDefault();
 
@@ -344,7 +344,7 @@ const Registration = ({ uploadedUserProfile }) => {
 
     if (!userId) {
       dispatch(
-        UserRegistrationAction(
+        userRegistrationAction(
           userData.username,
           userData.email,
           userData.password,

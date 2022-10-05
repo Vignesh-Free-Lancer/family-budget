@@ -22,13 +22,13 @@ const Dashboard = () => {
       label: t("month"),
     },
     {
-      path: "totalCredit",
-      label: t("totalDebit"),
+      path: "totalCR",
+      label: t("totalDR"),
       key: "currency",
     },
     {
-      path: "totalDebit",
-      label: t("totalCredit"),
+      path: "totalDR",
+      label: t("totalCR"),
       key: "currency",
     },
     {

@@ -23,7 +23,7 @@ const BootstrapTableComp = ({
 
   // Delete Table Data
   const onDeleteChanged = (data) => {
-    tableDeleteAction(data._id);
+    tableDeleteAction(data);
   };
 
   const tableRowAction = (cell, row, rowIndex, formatExtraData) => {
