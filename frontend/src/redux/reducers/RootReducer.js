@@ -23,6 +23,14 @@ import {
   SalaryDeleteReducer,
 } from "../reducers/SalaryReducer";
 
+// Import Extra Income Reducer
+import {
+  ExtraIncomeCreateReducer,
+  ExtraIncomeListReducer,
+  ExtraIncomeUpdateReducer,
+  ExtraIncomeDeleteReducer,
+} from "../reducers/ExtraIncomeReducer";
+
 const appReducer = combineReducers({
   userRecords: UserRegistrationReducer,
   userAccountConfirmation: UserAccountConfirmationReducer,
@@ -39,6 +47,11 @@ const appReducer = combineReducers({
   salaryListData: SalaryListReducer,
   salaryUpdatedData: SalaryUpdateReducer,
   salaryDeletedData: SalaryDeleteReducer,
+
+  extraIncomeRecords: ExtraIncomeCreateReducer,
+  extraIncomeListData: ExtraIncomeListReducer,
+  extraIncomeUpdatedData: ExtraIncomeUpdateReducer,
+  extraIncomeDeletedData: ExtraIncomeDeleteReducer,
 });
 
 const rootReducer = (state, action) => {

@@ -100,6 +100,9 @@ const Salary = () => {
   const [salaryMonth, setSalaryMonth] = useState();
   const [salaryYear, setSalaryYear] = useState();
 
+  // State object for root data handling error
+  const [rootDataErrors, setRootDataErrors] = useState({});
+
   // State object for salary data
   const [salaryData, setSalaryData] = useState({
     monthlySalary: 0,
@@ -115,9 +118,6 @@ const Salary = () => {
     isSalaryActive: true,
   });
 
-  // State object for root data handling error
-  const [rootDataErrors, setRootDataErrors] = useState({});
-
   // State obejct for handling salary error
   const [salaryErrors, setSalaryErrors] = useState({});
 
@@ -131,6 +131,7 @@ const Salary = () => {
   // Get/Fire event from child component
   const rootDataRef = useRef(null);
 
+  // Fetch salary record based on id
   const fetchSalaryById = async () => {
     // const response = await dispatch(salaryGetByIdAction(salaryId));
     const { data } = await axios.get(`/api/salary/${salaryId}`);
@@ -168,7 +169,6 @@ const Salary = () => {
 
   // Input Change Function
   const handleInputChange = ({ currentTarget: input }) => {
-    // Validation
     const errors = { ...salaryErrors }; //First clone the existing errors
     const errorMessage = salaryFieldOnChangeValidation(input, salaryData);
 
@@ -243,7 +243,6 @@ const Salary = () => {
   // Salary save & update event
   const handleSalaryData = (e) => {
     e.preventDefault();
-    console.log(salaryMonth, salaryYear);
 
     const rootErrors = rootFieldOnSubmitValidation(salaryMonth, salaryYear);
     setRootDataErrors(rootErrors || {});

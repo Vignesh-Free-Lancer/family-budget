@@ -70,8 +70,8 @@ const CustomDatepicker = (props) => {
       dateFormat="dd/MM/yyyy"
       className={customDatepickerClassname}
       placeholderText={customDatePlaceholder}
-      maxDate={customMinDateRange}
-      minDate={customMaxDateRange}
+      maxDate={customMaxDateRange}
+      minDate={customMinDateRange}
     />
   );
 };

@@ -68,6 +68,22 @@ export const dobYears = range(
 export const minAge = new Date().setFullYear(new Date().getFullYear() - 18);
 export const maxAge = new Date().setFullYear(new Date().getFullYear() - 66);
 
+// Convert Month Number Into Month String
+export const monthName = (monthNumber) => {
+  const curDate = new Date();
+  curDate.setMonth(monthNumber - 1);
+  return curDate.toLocaleString("en-US", { month: "short" });
+};
+
+// Get Month Start And End Date Based On Month & Year
+export const getStartEndDate = (month, year) => {
+  const currentMonthDate = "1-" + monthName(month) + "-" + year;
+  const date = new Date(currentMonthDate);
+  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  return { firstDay, lastDay };
+};
+
 // Convert Values Into Currency Format
 export const numberFormat = (value) =>
   new Intl.NumberFormat("en-IN", {

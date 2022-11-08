@@ -1,7 +1,10 @@
 .extra-income {
   &-section {
-    margin: 30px auto 0;
-    width: 40%;
+    margin: 0;
+
+    &__root-input {
+      margin: 0 0 40px;
+    }
 
     label {
       margin: 0 0 4px;

@@ -20,6 +20,20 @@ const salaryCreation = asyncHandler(async (req, res) => {
     netPayAmount,
   } = req.body;
 
+  // Check salary Record Exists Or Not
+  const salaryRecordExists = await Salary.find({ month: month, year: year });
+
+  const getExistingRecord = salaryRecordExists.find((obj) => {
+    return obj;
+  });
+
+  console.log("Record exist", salaryRecordExists, getExistingRecord);
+
+  if (salaryRecordExists.length > 0 && getExistingRecord.isSalaryActive) {
+    res.status(400);
+    throw new Error("Salary record already exists for this month and year");
+  }
+
   const salaryDetail = new Salary({
     userId: req.user._id,
     month,
