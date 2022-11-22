@@ -9,6 +9,8 @@ const { notFound, errorHandler } = require("./middlewares/ErrorMiddleware");
 const userRoutes = require("./routes/UserRoutes");
 const salaryRoutes = require("./routes/SalaryRoutes");
 const extraIncomeRoutes = require("./routes/ExtraIncomeRoutes");
+const expenseRoutes = require("./routes/ExpenseRoutes");
+const groceryRoutes = require("./routes/GroceryRoutes");
 
 dotenv.config();
 connectDB();
@@ -17,6 +19,8 @@ app.use(express.json()); // to accept json data
 app.use("/", userRoutes); // Use user routes for api call
 app.use("/", salaryRoutes); // Use salary routes for api call
 app.use("/", extraIncomeRoutes); // Use extra income routes for api call
+app.use("/", expenseRoutes); // Use expense routes for api call
+app.use("/", groceryRoutes); // Use grocery routes for api call
 
 // Error Handling middlewares
 app.use(notFound);

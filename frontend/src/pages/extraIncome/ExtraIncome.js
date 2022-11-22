@@ -11,6 +11,8 @@ import {
   extraIncomeType,
   isAllowDecimalNumber,
   getStartEndDate,
+  resetInput,
+  resetDefaultValue,
 } from "../../utils/Utils";
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import FormNavigation from "../../components/navigation/FormNavigation";
@@ -131,6 +133,7 @@ const ExtraIncome = () => {
   // Get/Fire event from child component
   const rootDataRef = useRef(null);
 
+  // Get month start and end data from selected month & year
   useEffect(() => {
     const days = getStartEndDate(extraIncomeMonth, extraIncomeYear);
     setIncomeMonthStartDate(days.firstDay);
@@ -394,8 +397,8 @@ const ExtraIncome = () => {
                     inputAlignment="right"
                     inputErrorMessage={extraIncomeErrors.incomeCreditAmount}
                     inputChange={handleInputChange}
-                    // inputBlur={resetDefaultValue}
-                    // inputFocus={resetInput}
+                    inputBlur={resetDefaultValue}
+                    inputFocus={resetInput}
                     inputValue={extraIncomeData.incomeCreditAmount}
                   />
                 </InputFormGroup>

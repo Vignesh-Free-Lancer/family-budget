@@ -172,7 +172,7 @@ export const expenseParticularType = [
 ];
 
 // Expense Payment Type
-export const paymentType = [
+export const expensePaymentType = [
   { value: "cash", name: "Cash" },
   { value: "netbanking", name: "Net Banking" },
   { value: "creditcard", name: "Credit Card" },

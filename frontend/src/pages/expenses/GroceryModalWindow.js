@@ -1,13 +1,20 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./expenses.scss";
 import { useTranslation } from "react-i18next";
 
 import ModalWindow from "../../components/modalWindow/ModalWindow";
 import GroceryForm from "./GroceryForm";
+import { RootDataContext } from "./Expenses";
 
 const GroceryModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
+  // Get translation locale
   const { t } = useTranslation();
+
+  // Pass child comp reference to parent component
   const groceryFormRef = useRef();
+
+  // Get Expense RootData From Context
+  const { selectedRecordData } = useContext(RootDataContext);
 
   return (
     <ModalWindow
@@ -25,7 +32,7 @@ const GroceryModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
             groceryFormRef.current.triggerNewGrocery();
           }}
         >
-          {t("add")}
+          {!selectedRecordData ? t("add") : t("update")}
         </button>
       }
     />

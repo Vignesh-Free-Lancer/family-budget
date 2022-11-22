@@ -31,6 +31,30 @@
   // Table Comp
   &__boot-table {
     margin: 0 0 30px;
+
+    button {
+      padding: 0 5px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #9400d3;
+      border: none;
+      background: none;
+      box-shadow: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border: none;
+        background: none;
+        box-shadow: none;
+        color: #9400d3;
+      }
+
+      &:before {
+        font-family: FontAwesome;
+        display: inline-block;
+      }
+    }
   }
 
   // Modal Window

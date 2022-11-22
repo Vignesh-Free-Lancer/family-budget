@@ -31,6 +31,24 @@ import {
   ExtraIncomeDeleteReducer,
 } from "../reducers/ExtraIncomeReducer";
 
+// Import Expense Reducer
+import {
+  ExpenseCreateReducer,
+  ExpenseImportReducer,
+  ExpenseListReducer,
+  ExpenseUpdateReducer,
+  ExpenseDeleteReducer,
+} from "../reducers/ExpenseReducer";
+
+// Import Grocery Reducer
+import {
+  GroceryCreateReducer,
+  GroceryImportReducer,
+  GroceryListReducer,
+  GroceryUpdateReducer,
+  GroceryDeleteReducer,
+} from "../reducers/GroceryReducer";
+
 const appReducer = combineReducers({
   userRecords: UserRegistrationReducer,
   userAccountConfirmation: UserAccountConfirmationReducer,
@@ -52,6 +70,18 @@ const appReducer = combineReducers({
   extraIncomeListData: ExtraIncomeListReducer,
   extraIncomeUpdatedData: ExtraIncomeUpdateReducer,
   extraIncomeDeletedData: ExtraIncomeDeleteReducer,
+
+  expenseRecords: ExpenseCreateReducer,
+  expenseImportRecords: ExpenseImportReducer,
+  expenseListData: ExpenseListReducer,
+  expenseUpdatedData: ExpenseUpdateReducer,
+  expenseDeletedData: ExpenseDeleteReducer,
+
+  groceryRecords: GroceryCreateReducer,
+  groceryImportRecords: GroceryImportReducer,
+  groceryListData: GroceryListReducer,
+  groceryUpdatedData: GroceryUpdateReducer,
+  groceryDeletedData: GroceryDeleteReducer,
 });
 
 const rootReducer = (state, action) => {

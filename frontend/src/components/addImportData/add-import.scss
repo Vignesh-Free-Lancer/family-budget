@@ -30,6 +30,12 @@
           box-shadow: none;
         }
       }
+
+      &:disabled {
+        color: rgb(0, 0, 0, 0.4);
+        background: none;
+        border: none;
+      }
     }
 
     .first-button {

@@ -27,8 +27,6 @@ const salaryCreation = asyncHandler(async (req, res) => {
     return obj;
   });
 
-  console.log("Record exist", salaryRecordExists, getExistingRecord);
-
   if (salaryRecordExists.length > 0 && getExistingRecord.isSalaryActive) {
     res.status(400);
     throw new Error("Salary record already exists for this month and year");

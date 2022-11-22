@@ -15,7 +15,9 @@ const BootstrapTableComp = ({
   tableEditAction = () => {},
   tableDeleteAction = () => {},
 }) => {
+  // Get translation locale
   const { t } = useTranslation();
+
   // Edit Table Data
   const onEditChanged = (data) => {
     tableEditAction(data._id);
@@ -26,6 +28,7 @@ const BootstrapTableComp = ({
     tableDeleteAction(data);
   };
 
+  // Table Actions
   const tableRowAction = (cell, row, rowIndex, formatExtraData) => {
     return (
       <div className="budget-app-listview-section__action-group">
@@ -45,6 +48,7 @@ const BootstrapTableComp = ({
     );
   };
 
+  // Add extra column to table for actions
   const addAction = (headerArray, actionField) => {
     const found = headerArray.some(
       (header) => header.dataField === actionField
@@ -60,6 +64,7 @@ const BootstrapTableComp = ({
 
   tableActionEnabled && addAction(headerColumns, "actions");
 
+  // Custom style the pagination
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
       {t("showing")}
@@ -81,6 +86,7 @@ const BootstrapTableComp = ({
     </span>
   );
 
+  // Display the pagination options
   const options = {
     paginationSize: 5,
     pageStartIndex: 1,

@@ -9,7 +9,9 @@ const AddImportData = ({
   customSecondTitle = "",
   customHandleNewData = () => {},
   customHandleCopyData = () => {},
+  checkDataExists,
 }) => {
+  // Get translation locale
   const { t } = useTranslation();
 
   // Handle New Data
@@ -21,7 +23,6 @@ const AddImportData = ({
   // Handle Copy Data
   const handleCopyData = (e) => {
     e.preventDefault();
-    alert("Copy event");
     customHandleCopyData();
   };
 
@@ -32,7 +33,7 @@ const AddImportData = ({
           <button
             className="btn btn-primary first-button"
             title={customFirstTitle}
-            disabled={false}
+            disabled={checkDataExists}
             onClick={handleCopyData}
           >
             {t("copyLastMonthData")}

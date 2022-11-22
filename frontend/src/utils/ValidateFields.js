@@ -2,9 +2,11 @@ import {
   emailValidation,
   passwordRequirements,
   isAllowDecimalNumber,
+  isAllowIntegerNumber,
 } from "../utils/Utils";
 import i18n from "../i18n/i18n";
 
+// User Form Submit Validation
 export const userFieldOnSubmitValidation = (
   formType,
   userData = {},
@@ -82,6 +84,7 @@ export const userFieldOnSubmitValidation = (
   return Object.keys(errors).length === 0 ? null : errors;
 };
 
+// User Form On-Change Validation
 export const userFieldOnChangeValidation = (
   input,
   userData = {},
@@ -133,6 +136,7 @@ export const userFieldOnChangeValidation = (
   }
 };
 
+// Root Data Submit Validation
 export const rootFieldOnSubmitValidation = (monthName, yearName) => {
   const errors = {};
 
@@ -142,6 +146,7 @@ export const rootFieldOnSubmitValidation = (monthName, yearName) => {
   return Object.keys(errors).length === 0 ? null : errors;
 };
 
+// Salary Form On-Change Validation
 export const salaryFieldOnChangeValidation = (input, salaryData = {}) => {
   let stateSalary =
     parseFloat(salaryData.monthlySalary) > 0
@@ -342,5 +347,162 @@ export const salaryFieldOnChangeValidation = (input, salaryData = {}) => {
 
       return isAllowDecimalNumber(input.value);
     }
+  }
+};
+
+// Expense Form Submit Validation
+export const expenseFieldSubmitValidation = (
+  expenseData,
+  selectedParticularType,
+  selectedPaymentType,
+  paymentDate
+) => {
+  const errors = {};
+
+  if (expenseData.particular.trim() === "")
+    errors.particular = i18n.t("pleaseEnterParticular");
+
+  if (selectedParticularType === "select")
+    errors.selectedParticularType = i18n.t("PleaseSelectParticularType");
+
+  if (
+    parseInt(expenseData.estimatedCost) === 0 ||
+    expenseData.estimatedCost === ""
+  ) {
+    errors.estimatedCost = i18n.t("pleaseEnterEstimateCost");
+  } else if (isAllowDecimalNumber(expenseData.estimatedCost) !== "") {
+    errors.estimatedCost = isAllowDecimalNumber(expenseData.estimatedCost);
+  }
+
+  if (parseInt(expenseData.actualCost) === 0 || expenseData.actualCost === "") {
+    errors.actualCost = i18n.t("pleaseEnterActualCost");
+  } else if (isAllowDecimalNumber(expenseData.actualCost) !== "") {
+    errors.actualCost = isAllowDecimalNumber(expenseData.actualCost);
+  }
+
+  if (selectedPaymentType === "select")
+    errors.selectedPaymentType = i18n.t("pleaseSelectePaymentType");
+
+  if (selectedPaymentType !== "cash" && selectedPaymentType !== "select") {
+    if (expenseData.paymentBank.trim() === "")
+      errors.paymentBank = i18n.t("pleaseEnterBankName");
+  }
+
+  if (paymentDate === null || paymentDate === "" || paymentDate === undefined)
+    errors.paymentDate = i18n.t("pleaseSelectPaymentDate");
+
+  return Object.keys(errors).length === 0 ? null : errors;
+};
+
+// Expense Form Input On-Change Validation
+export const expenseFieldOnChangeValidation = (input) => {
+  if (input.name === "particular") {
+    if (input.value.trim() === "") return i18n.t("pleaseEnterParticular");
+  }
+
+  if (input.name === "estimatedCost") {
+    if (parseFloat(input.value) === 0 || input.value === "")
+      return i18n.t("pleaseEnterEstimateCost");
+    else return isAllowDecimalNumber(input.value);
+  }
+
+  if (input.name === "actualCost") {
+    if (parseFloat(input.value) === 0 || input.value === "")
+      return i18n.t("pleaseEnterActualCost");
+    else return isAllowDecimalNumber(input.value);
+  }
+};
+
+// Grocery Form Submit Validation
+export const groceryFieldSubmitValidation = (groceryData, selectedQtyType) => {
+  const errors = {};
+
+  if (groceryData.particulars.trim() === "")
+    errors.particulars = i18n.t("pleaseEnterParticular");
+
+  if (selectedQtyType === "select")
+    errors.selectedQtyType = i18n.t("pleaseSelectQuantityType");
+
+  if (parseInt(groceryData.qty) === 0 || groceryData.qty === "") {
+    errors.qty = i18n.t("pleaseEnterQuantityValue");
+  } else if (isAllowDecimalNumber(groceryData.qty) !== "") {
+    errors.qty = isAllowDecimalNumber(groceryData.qty);
+  }
+
+  if (isAllowDecimalNumber(groceryData.unitPrice, false) !== "") {
+    errors.unitPrice = isAllowDecimalNumber(groceryData.unitPrice, false);
+  }
+
+  return Object.keys(errors).length === 0 ? null : errors;
+};
+
+// Grocery Form Input On-Change Validation
+export const groceryFieldOnChangeValidation = (
+  input,
+  groceryData,
+  selectedQtyType
+) => {
+  let stateQty =
+    parseFloat(groceryData.qty) > 0
+      ? isNaN(groceryData.qty)
+        ? 0
+        : parseFloat(groceryData.qty)
+      : 0;
+
+  let stateUnitPrice =
+    parseFloat(groceryData.unitPrice) > 0
+      ? isNaN(groceryData.unitPrice)
+        ? 0
+        : parseFloat(groceryData.unitPrice)
+      : 0;
+
+  if (input.name === "particulars") {
+    if (input.value.trim() === "") return i18n.t("pleaseEnterParticular");
+  }
+
+  if (input.name === "qty") {
+    if (parseFloat(input.value) === 0 || input.value === "") {
+      groceryData.totalPrice = parseInt(0);
+      return i18n.t("pleaseEnterQuantityValue");
+    } else {
+      if (selectedQtyType === "gms" || selectedQtyType === "mltr") {
+        let rate = isNaN(input.value) ? 0 : parseFloat(input.value) / 1000;
+
+        groceryData.totalPrice = isNaN(
+          parseFloat(stateUnitPrice) * parseFloat(rate)
+        )
+          ? 0
+          : parseFloat(stateUnitPrice) * parseFloat(rate);
+      } else if (
+        selectedQtyType === "kgms" ||
+        selectedQtyType === "ltr" ||
+        selectedQtyType === "box"
+      ) {
+        groceryData.totalPrice = isNaN(input.value)
+          ? 0
+          : parseFloat(stateUnitPrice) * parseFloat(input.value);
+      }
+      return isAllowIntegerNumber(input.value);
+    }
+  }
+
+  if (input.name === "unitPrice") {
+    if (selectedQtyType === "gms" || selectedQtyType === "mltr") {
+      let rate = isNaN(input.value) ? 0 : parseFloat(input.value) / 1000;
+
+      groceryData.totalPrice = isNaN(parseFloat(stateQty) * parseFloat(rate))
+        ? 0
+        : parseFloat(stateQty) * parseFloat(rate);
+    } else if (
+      selectedQtyType === "kgms" ||
+      selectedQtyType === "ltr" ||
+      selectedQtyType === "box"
+    ) {
+      groceryData.totalPrice = isNaN(input.value)
+        ? 0
+        : parseFloat(stateQty) * parseFloat(input.value);
+    }
+
+    return isAllowDecimalNumber(input.value);
   }
 };
