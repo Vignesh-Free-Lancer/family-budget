@@ -13,6 +13,7 @@ const CustomDatepicker = (props) => {
     customDateChange,
     customMinDateRange,
     customMaxDateRange,
+    customDatepickerDisabled = false,
   } = props;
   const [customDate, setCustomDate] = useState(customDateValue);
 
@@ -72,6 +73,7 @@ const CustomDatepicker = (props) => {
       placeholderText={customDatePlaceholder}
       maxDate={customMaxDateRange}
       minDate={customMinDateRange}
+      disabled={customDatepickerDisabled}
     />
   );
 };

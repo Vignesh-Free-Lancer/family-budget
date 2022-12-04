@@ -74,7 +74,7 @@ const RootData = forwardRef((props, ref) => {
 
   return (
     <Row>
-      <Col xl={3} lg={3} md={4} sm={6} xs={6}>
+      <Col xl={3} lg={4} md={4} sm={6} xs={6}>
         <InputSelect
           inputName="ddlMonth"
           inputDefaultValue={selectedMonth}
@@ -83,7 +83,7 @@ const RootData = forwardRef((props, ref) => {
           inputErrorMessage={rootMonthYearErrors.selectedMonth}
         />
       </Col>
-      <Col xl={3} lg={3} md={4} sm={6} xs={6}>
+      <Col xl={3} lg={4} md={4} sm={6} xs={6}>
         <InputSelect
           inputName="ddlYear"
           inputDefaultValue={selectedYear}

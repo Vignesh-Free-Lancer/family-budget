@@ -109,6 +109,7 @@ const ExtraIncome = () => {
 
   // State Object For Income Field
   const [incomeDate, setIncomeDate] = useState("");
+  const [incomeDateDisable, setIncomeDateDisable] = useState(true);
 
   // State Object For Payment Credited Type
   const [selectedCreditType, setSelectedCreditType] = useState("select");
@@ -126,6 +127,9 @@ const ExtraIncome = () => {
 
   // Root data onChnage event
   const getRootData = (month, year, rootErrors) => {
+    if (month !== "select" && year !== "select") {
+      setIncomeDateDisable(false);
+    }
     setExtraIncomeMonth(month);
     setExtraIncomeYear(year);
   };
@@ -161,7 +165,7 @@ const ExtraIncome = () => {
       setExtraIncomeMonth("select");
       setExtraIncomeYear("select");
       rootDataRef.current.resetRootData();
-      setIncomeDate("");
+      setIncomeDate(null);
       setSelectedCreditType("select");
 
       setExtraIncomeData({
@@ -171,7 +175,7 @@ const ExtraIncome = () => {
         isExtraIncomeActive: true,
       });
     }
-  }, [extraIncomeId]);
+  }, [extraIncomeId, extraIncomeDatas]);
 
   // Handle The Date Field On Change Function
   const handleIncomeDateChange = (date) => {
@@ -342,6 +346,7 @@ const ExtraIncome = () => {
                     customDateChange={handleIncomeDateChange}
                     customMinDateRange={incomeMonthStartDate}
                     customMaxDateRange={incomeMonthEndDate}
+                    customDatepickerDisabled={incomeDateDisable}
                   />
                   <div
                     className="invalid-feedback"

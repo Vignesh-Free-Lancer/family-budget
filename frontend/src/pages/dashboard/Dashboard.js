@@ -35,7 +35,6 @@ const Dashboard = () => {
     (state) => state.lastThreeMonthDashboardData
   );
   const { lastThreeMonthDashboardDetail } = lastThreeMonthDashboardInfos;
-  console.log(lastThreeMonthDashboardDetail);
 
   // Get Current Month Salary Details
   const currentMonthSalaryInfo = useSelector(

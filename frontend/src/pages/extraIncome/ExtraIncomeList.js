@@ -78,7 +78,7 @@ const ExtraIncomeList = () => {
   // Get extraIncome list
   useEffect(() => {
     dispatch(extraIncomeListAction());
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, extraIncomeDeleted]);
 
   const extraIncomeColumns = [
     {
