@@ -72,13 +72,14 @@ const SalaryList = () => {
   // Get salary list
   useEffect(() => {
     dispatch(salaryListAction());
-  }, [dispatch]);
+  }, [dispatch, salaryDeleted]);
 
   // Table Header
   const salaryListColumns = [
     {
       dataField: "month",
       text: t("month"),
+      formatter: (cell, row) => monthsList[row.month - 1].name,
     },
     {
       dataField: "year",

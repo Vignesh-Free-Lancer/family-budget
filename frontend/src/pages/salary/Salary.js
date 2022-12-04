@@ -165,7 +165,7 @@ const Salary = () => {
         isSalaryActive: true,
       });
     }
-  }, [salaryId]);
+  }, [salaryId, salaryDatas]);
 
   // Input Change Function
   const handleInputChange = ({ currentTarget: input }) => {
