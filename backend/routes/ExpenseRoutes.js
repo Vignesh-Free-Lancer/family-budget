@@ -12,6 +12,7 @@ const {
   getExpenseById,
   expenseUpdateById,
   expenseDeleteById,
+  expenseReportLists,
 } = require("../controller/ExpenseController");
 
 // Expense route end-point
@@ -23,6 +24,9 @@ router
   .get(getExpenseById)
   .put(authUser, expenseUpdateById);
 router.route("/api/expense/remove/:expenseId").put(authUser, expenseDeleteById);
+router
+  .route("/api/expense/report/:reportType/:month?/:year?")
+  .get(authUser, expenseReportLists);
 
 // Export all expense router end-point
 module.exports = router;

@@ -14,6 +14,9 @@ import {
   GROCERY_DETAIL_UPDATE_FAILURE,
   GROCERY_DETAIL_UPDATE_REQUEST,
   GROCERY_DETAIL_UPDATE_SUCCESS,
+  GROCERY_REPORT_CREATE_FAILURE,
+  GROCERY_REPORT_CREATE_REQUEST,
+  GROCERY_REPORT_CREATE_SUCCESS,
 } from "../constants/GroceryConstants";
 
 // Grocery Create Reducer
@@ -125,6 +128,28 @@ export const GroceryDeleteReducer = (state = {}, action) => {
       return {
         loading: false,
         success: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// Grocery Report List Reducer
+export const GroceryReportListReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GROCERY_REPORT_CREATE_REQUEST:
+      return {
+        loading: true,
+      };
+    case GROCERY_REPORT_CREATE_SUCCESS:
+      return {
+        loading: false,
+        groceryReportLists: action.payload,
+      };
+    case GROCERY_REPORT_CREATE_FAILURE:
+      return {
+        loading: false,
         error: action.payload,
       };
     default:

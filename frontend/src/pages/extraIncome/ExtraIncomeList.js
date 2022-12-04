@@ -149,7 +149,7 @@ const ExtraIncomeList = () => {
       <RecordDeleteScreen
         deleteScreenClasses="salary-section__delete-modal"
         recordId={selectedRecord && selectedRecord._id}
-        recordNav="/salary/list"
+        recordNav="/extra-income/list"
         ref={deleteScreenRef}
         deleteScreenContent={
           <>

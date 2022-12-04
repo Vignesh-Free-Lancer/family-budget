@@ -1,7 +1,4 @@
 import {
-  SALARY_DETAIL_BY_ID_FAILURE,
-  SALARY_DETAIL_BY_ID_REQUEST,
-  SALARY_DETAIL_BY_ID_SUCCESS,
   SALARY_DETAIL_CREATE_FAILURE,
   SALARY_DETAIL_CREATE_REQUEST,
   SALARY_DETAIL_CREATE_SUCCESS,
@@ -14,6 +11,9 @@ import {
   SALARY_DETAIL_UPDATE_FAILURE,
   SALARY_DETAIL_UPDATE_REQUEST,
   SALARY_DETAIL_UPDATE_SUCCESS,
+  SALARY_REPORT_CREATE_FAILURE,
+  SALARY_REPORT_CREATE_REQUEST,
+  SALARY_REPORT_CREATE_SUCCESS,
 } from "../constants/SalaryConstants";
 
 // Salary Create Reducer
@@ -103,6 +103,28 @@ export const SalaryDeleteReducer = (state = {}, action) => {
       return {
         loading: false,
         success: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// Salary Report List Reducer
+export const SalaryReportListReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SALARY_REPORT_CREATE_REQUEST:
+      return {
+        loading: true,
+      };
+    case SALARY_REPORT_CREATE_SUCCESS:
+      return {
+        loading: false,
+        salaryReportLists: action.payload,
+      };
+    case SALARY_REPORT_CREATE_FAILURE:
+      return {
+        loading: false,
         error: action.payload,
       };
     default:

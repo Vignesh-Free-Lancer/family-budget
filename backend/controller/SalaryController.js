@@ -21,7 +21,11 @@ const salaryCreation = asyncHandler(async (req, res) => {
   } = req.body;
 
   // Check salary Record Exists Or Not
-  const salaryRecordExists = await Salary.find({ month: month, year: year });
+  const salaryRecordExists = await Salary.find({
+    userId: req.user._id,
+    month: month,
+    year: year,
+  });
 
   const getExistingRecord = salaryRecordExists.find((obj) => {
     return obj;
@@ -66,20 +70,9 @@ const salaryLists = asyncHandler(async (req, res) => {
     month: 1,
   });
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const previousMonth = currentDate.getMonth();
-
-  const lastMonthSalaryDetails = salaryListsResponse.filter(
-    (salaryData) =>
-      parseInt(salaryData.month) === previousMonth &&
-      parseInt(salaryData.year) === currentYear
-  );
-
   if (salaryListsResponse.length > 0) {
     res.status(201).json({
       totalLength: salaryListsResponse.length,
-      lastMonthSalary: lastMonthSalaryDetails,
       salaryListsResponse,
     });
   } else if (salaryListsResponse.length === 0) {
@@ -186,6 +179,156 @@ const salaryDeleteById = asyncHandler(async (req, res) => {
   }
 });
 
+// Salary Reports Controller Method
+const salaryReportLists = asyncHandler(async (req, res) => {
+  const { reportType, month, year } = req.params;
+  const currentDate = new Date();
+
+  let reportMonth = 0,
+    reportYear = 0,
+    salaryReportDatas,
+    sumOfSalaryReportDatas;
+
+  if (reportType === "this-month") {
+    reportMonth = currentDate.getMonth() + 1;
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-month") {
+    reportMonth = currentDate.getMonth();
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-3-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 2);
+    const beforeThreeMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeThreeMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-6-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 5);
+    const beforeSixMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeSixMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "this-year") {
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-year") {
+    reportYear = currentDate.getFullYear() - 1;
+  } else if (reportType === "custom-year") {
+    reportYear = year;
+  } else if (reportType === "custom-range") {
+    reportMonth = month;
+    reportYear = year;
+  }
+
+  if (
+    reportType === "this-month" ||
+    reportType === "last-month" ||
+    reportType === "last-3-month" ||
+    reportType === "last-6-month" ||
+    reportType === "custom-range"
+  ) {
+    salaryReportDatas = await Salary.find({
+      userId: req.user._id,
+      year: reportYear,
+      month: reportMonth,
+      isSalaryActive: true,
+    }).sort({
+      year: -1,
+      month: 1,
+    });
+
+    sumOfSalaryReportDatas = await Salary.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+            month: reportMonth,
+            isSalaryActive: true,
+          },
+        },
+        {
+          $group: {
+            _id: "$userId",
+            totalCRAmount: { $sum: "$totalCR" },
+            totalDRAmount: { $sum: "$totalDR" },
+            totalNetPayAmount: { $sum: "$netPayAmount" },
+          },
+        },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  } else if (
+    reportType === "this-year" ||
+    reportType === "last-year" ||
+    reportType === "custom-year"
+  ) {
+    salaryReportDatas = await Salary.find({
+      userId: req.user._id,
+      year: reportYear,
+      isSalaryActive: true,
+    }).sort({
+      month: 1,
+    });
+
+    sumOfSalaryReportDatas = await Salary.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+            isSalaryActive: true,
+          },
+        },
+        {
+          $group: {
+            _id: "$userId",
+            totalCRAmount: { $sum: "$totalCR" },
+            totalDRAmount: { $sum: "$totalDR" },
+            totalNetPayAmount: { $sum: "$netPayAmount" },
+          },
+        },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  }
+
+  if (salaryReportDatas && salaryReportDatas.length > 0) {
+    res.status(201).json({
+      totalReportsLength: salaryReportDatas.length,
+      salaryReportDatas,
+      sumOfSalaryReport: sumOfSalaryReportDatas,
+      message: `Your salary reports generated successfully on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }.`,
+    });
+  } else if (salaryReportDatas && salaryReportDatas.length === 0) {
+    res.status(201).json({
+      totalReportsLength: salaryReportDatas.length,
+      message: `There is no data to display on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }`,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Salary records not available");
+  }
+});
+
 // Export All Salary API Controller Method
 module.exports = {
   salaryCreation,
@@ -193,4 +336,5 @@ module.exports = {
   getSalaryById,
   salaryUpdateById,
   salaryDeleteById,
+  salaryReportLists,
 };

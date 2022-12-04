@@ -15,6 +15,9 @@ import {
   EXPENSE_DETAIL_UPDATE_FAILURE,
   EXPENSE_DETAIL_UPDATE_REQUEST,
   EXPENSE_DETAIL_UPDATE_SUCCESS,
+  EXPENSE_REPORT_CREATE_FAILURE,
+  EXPENSE_REPORT_CREATE_REQUEST,
+  EXPENSE_REPORT_CREATE_SUCCESS,
 } from "../constants/ExpenseConstants";
 
 // Expense Create Action
@@ -235,6 +238,40 @@ export const expenseDeleteAction =
     } catch (error) {
       dispatch({
         type: EXPENSE_DETAIL_DELETE_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+// Expense Report List Action
+export const expenseReportListAction =
+  (reportType, month, year) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: EXPENSE_REPORT_CREATE_REQUEST });
+
+      const {
+        userLogin: { userInfos },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfos.token}`,
+        },
+      };
+
+      const { data } = await axios.get(
+        `/api/expense/report/${reportType}/${month}/${year}`,
+        config
+      );
+
+      dispatch({ type: EXPENSE_REPORT_CREATE_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: EXPENSE_REPORT_CREATE_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

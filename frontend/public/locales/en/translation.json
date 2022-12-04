@@ -200,7 +200,9 @@
   "add": "Add",
   "close": "Close",
   "addExpense": "Add Expense",
+  "modifyExpense": "Modify Expense",
   "addGrocery": "Add Grocery",
+  "modifyGrocery": "Modify Grocery",
   "enterParticular": "Enter particular",
   "particularType": "Particular Type",
   "enterEstimateCosts": "Enter estimated costs",
@@ -228,6 +230,7 @@
   "particulars": "Particulars",
   "pleaseSelectReportType": "Please select report type",
   "customizeReports": "Customize Reports",
+  "generateReports": "Generate Reports",
 
   "sessionExpired": "Session has expired",
   "sessionExpiredBrowerClose": "If the browser window is closed, the session will expire automatically",

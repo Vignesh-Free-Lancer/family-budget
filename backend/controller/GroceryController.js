@@ -203,6 +203,216 @@ const groceryDeleteById = asyncHandler(async (req, res) => {
   }
 });
 
+// Grocery Reports Controller Method
+const groceryReportLists = asyncHandler(async (req, res) => {
+  const { reportType, month, year } = req.params;
+  const currentDate = new Date();
+
+  let reportMonth = 0,
+    reportYear = 0,
+    groceryReportResults = [],
+    groupedGroceryData,
+    sumOfYearlyGroceryReports = [],
+    sumOfMonthlyGroceryReports = [];
+
+  if (reportType === "this-month") {
+    reportMonth = currentDate.getMonth() + 1;
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-month") {
+    reportMonth = currentDate.getMonth();
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-3-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 2);
+    const beforeThreeMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeThreeMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-6-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 5);
+    const beforeSixMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeSixMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "this-year") {
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-year") {
+    reportYear = currentDate.getFullYear() - 1;
+  } else if (reportType === "custom-year") {
+    reportYear = parseInt(year);
+  } else if (reportType === "custom-range") {
+    reportMonth = parseInt(month);
+    reportYear = parseInt(year);
+  }
+
+  if (
+    reportType === "this-month" ||
+    reportType === "last-month" ||
+    reportType === "last-3-month" ||
+    reportType === "last-6-month" ||
+    reportType === "custom-range"
+  ) {
+    groceryReportResults = await Grocery.find({
+      userId: req.user._id,
+      year: reportYear,
+      month: reportMonth,
+    }).sort({
+      year: -1,
+      month: 1,
+    });
+
+    groupedGroceryData = await Grocery.aggregate([
+      {
+        $match: {
+          userId: req.user._id,
+          year: reportYear,
+          month: reportMonth,
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          reportItems: {
+            $push: "$$ROOT",
+          },
+        },
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          month: "$_id",
+          reportItems: 1,
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          "reportItems.month": 0,
+        },
+      },
+    ]);
+
+    sumOfMonthlyGroceryReports = await Grocery.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+            month: reportMonth,
+          },
+        },
+        {
+          $group: {
+            _id: "$month",
+            totalMonthlyGroceryAmount: { $sum: "$totalPrice" },
+          },
+        },
+        { $sort: { _id: 1 } },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  } else if (
+    reportType === "this-year" ||
+    reportType === "last-year" ||
+    reportType === "custom-year"
+  ) {
+    groceryReportResults = await Grocery.find({
+      userId: req.user._id,
+      year: reportYear,
+    }).sort({
+      month: 1,
+    });
+
+    groupedGroceryData = await Grocery.aggregate([
+      {
+        $match: {
+          userId: req.user._id,
+          year: reportYear,
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          reportItems: {
+            $push: "$$ROOT",
+          },
+          monthlyAmount: { $sum: "$totalPrice" },
+        },
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          month: "$_id",
+          reportItems: 1,
+          monthlyAmount: "$monthlyAmount",
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          "reportItems.month": 0,
+        },
+      },
+    ]);
+
+    sumOfYearlyGroceryReports = await Grocery.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+          },
+        },
+        {
+          $group: {
+            _id: "$userId",
+            totalYearlyGroceryAmount: { $sum: "$totalPrice" },
+          },
+        },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  }
+
+  if (groceryReportResults.length > 0) {
+    res.status(201).json({
+      totalReportLength: groceryReportResults.length,
+      groupedGroceryData,
+      groceryReportResults,
+      yearlyGroceryReport: sumOfYearlyGroceryReports,
+      monthlyGroceryReport: sumOfMonthlyGroceryReports,
+      message: `Your grocery reports generated successfully on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }.`,
+    });
+  } else if (groceryReportResults.length === 0) {
+    res.status(201).json({
+      totalReportLength: groceryReportResults.length,
+      message: `There is no data to display on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }`,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Grocery records not available");
+  }
+});
+
 // Export All Grocery API Controller Method
 module.exports = {
   groceryCreation,
@@ -211,4 +421,5 @@ module.exports = {
   getGroceryById,
   groceryUpdateById,
   groceryDeleteById,
+  groceryReportLists,
 };

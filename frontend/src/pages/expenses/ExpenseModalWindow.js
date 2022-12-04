@@ -22,7 +22,7 @@ const ExpenseModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
       showModal={openModal}
       closeModal={closeModalWindow}
       enableFullScreen={true}
-      modalTitle={t("addExpense")}
+      modalTitle={!selectedRecordData ? t("addExpense") : t("modifyExpense")}
       modalBody={<ExpenseForm ref={expenseFormRef} />}
       modalFooter={
         <button

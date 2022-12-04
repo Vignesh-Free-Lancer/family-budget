@@ -12,6 +12,7 @@ const {
   getGroceryById,
   groceryUpdateById,
   groceryDeleteById,
+  groceryReportLists,
 } = require("../controller/GroceryController");
 
 // Grocery route end-point
@@ -23,6 +24,9 @@ router
   .get(getGroceryById)
   .put(authUser, groceryUpdateById);
 router.route("/api/grocery/remove/:groceryId").put(authUser, groceryDeleteById);
+router
+  .route("/api/grocery/report/:reportType/:month?/:year?")
+  .get(authUser, groceryReportLists);
 
 // Export all grocery router end-point
 module.exports = router;

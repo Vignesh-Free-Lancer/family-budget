@@ -1,0 +1,126 @@
+.custom-table {
+  &__collapsable {
+    thead {
+      tr {
+        th {
+          padding: 8px 12px;
+          color: #ffffff;
+          background: rgba(70, 130, 180, 0.65);
+          text-align: center;
+          vertical-align: middle;
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: #f2f2f2;
+        }
+
+        &:nth-child(even) {
+          background-color: #ffffff;
+        }
+
+        &.parent-row {
+          font-weight: 600;
+          cursor: pointer;
+
+          td {
+            color: #800080;
+          }
+
+          &.row-collapsed {
+            td {
+              &:before {
+                font-family: "FontAwesome";
+                content: "\f105";
+                font-size: 18px;
+                font-weight: bold;
+                color: #495057;
+                padding-right: 12px;
+                padding-left: 10px;
+              }
+            }
+          }
+
+          &.row-expanded {
+            background: #add8e6;
+            border: 1px solid #add8e6;
+
+            td {
+              &:before {
+                font-family: "FontAwesome";
+                content: "\f104";
+                font-size: 18px;
+                font-weight: bold;
+                color: #495057;
+                padding-right: 12px;
+                padding-left: 10px;
+              }
+            }
+          }
+        }
+
+        &.expandable-row {
+          background: #ffffff;
+        }
+
+        &.footer-row {
+          background: #ffffff;
+
+          td {
+            font-weight: 600;
+            text-align: right;
+          }
+
+          .footer-content {
+            color: #800080;
+          }
+
+          .footer-values {
+            padding-left: 7px;
+            color: #d92550;
+          }
+        }
+      }
+    }
+  }
+
+  &__no-records {
+    height: calc(100vh - 330px);
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .custom-table {
+    &__no-records {
+      height: calc(100vh - 700px);
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  .custom-table {
+    &__no-records {
+      height: calc(100vh - 400px);
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .custom-table {
+    &__no-records {
+      height: calc(100vh - 330px);
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .custom-table {
+    &__no-records {
+      height: calc(100vh - 100px);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./report.scss";
 import { useTranslation } from "react-i18next";
@@ -8,19 +8,42 @@ import Tab from "../../components/tab/Tab";
 import ReportsRootData from "../../components/reportsRootData/ReportsRootData";
 import SalaryReport from "./SalaryReport";
 import ExpenseReport from "./ExpenseReport";
+import GroceryReport from "./GroceryReport";
 
 const Report = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
-  // State Object For Month & Year
-  const [selectedReportType, setSelectedReportType] = useState();
+  // Get/Fire event from child component
+  const salaryReportRef = useRef(null);
+  const expenseReportRef = useRef(null);
+  const groceryReportRef = useRef(null);
 
-  // State Obejct For Handling Expense Error
-  const [reportErrors, setReportErrors] = useState({});
+  // Salary Root data onChnage event
+  const getSalaryReportsRootData = (reportType, month, year) => {
+    salaryReportRef.current.salaryReportCallbak(
+      reportType,
+      month === "select" ? 0 : month,
+      year === "select" ? 0 : year
+    );
+  };
 
-  const getReportsRootData = (reportType, rootDataErrors) => {
-    setSelectedReportType(reportType);
-    setReportErrors(rootDataErrors);
+  // Expense Root data onChnage event
+  const getExpenseReportsRootData = (reportType, month, year) => {
+    expenseReportRef.current.expenseReportCallbak(
+      reportType,
+      month === "select" ? 0 : month,
+      year === "select" ? 0 : year
+    );
+  };
+
+  // Grocery Root data onChnage event
+  const getGroceryReportsRootData = (reportType, month, year) => {
+    groceryReportRef.current.groceryReportCallbak(
+      reportType,
+      month === "select" ? 0 : month,
+      year === "select" ? 0 : year
+    );
   };
 
   const tabLists = [
@@ -29,8 +52,8 @@ const Report = () => {
       eventKey: "salary-report-tab",
       content: (
         <>
-          <ReportsRootData reportsRootData={getReportsRootData} />
-          <SalaryReport />
+          <ReportsRootData reportsRootData={getSalaryReportsRootData} />
+          <SalaryReport ref={salaryReportRef} />
         </>
       ),
     },
@@ -40,8 +63,8 @@ const Report = () => {
       eventKey: "expense-report-tab",
       content: (
         <>
-          <ReportsRootData reportsRootData={getReportsRootData} />
-          <ExpenseReport />
+          <ReportsRootData reportsRootData={getExpenseReportsRootData} />
+          <ExpenseReport ref={expenseReportRef} />
         </>
       ),
     },
@@ -51,7 +74,8 @@ const Report = () => {
       eventKey: "grocery-report-tab",
       content: (
         <>
-          <ReportsRootData reportsRootData={getReportsRootData} />
+          <ReportsRootData reportsRootData={getGroceryReportsRootData} />
+          <GroceryReport ref={groceryReportRef} />
         </>
       ),
     },

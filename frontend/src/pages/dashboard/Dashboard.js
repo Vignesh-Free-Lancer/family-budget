@@ -1,53 +1,110 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./dashboard.scss";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import BoxLayout from "../../layouts/boxLayout/BoxLayout";
 import CardLayout from "../../layouts/cardLayout/CardLayout";
 import LineChart from "../../components/chart/LineChart";
 
-import { dashboardTableData, numberFormat } from "../../utils/Utils";
+import { getLast3Months, numberFormat } from "../../utils/Utils";
 import DashboardCard from "../../components/dashboard/DashboardCard";
-import TableComponent from "../../components/table/TableComponent";
+import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
+
+import {
+  expenseCurrentMonthAction,
+  extraIncomeCurrentMonthAction,
+  lastThreeMonthIncomeAction,
+  salaryCurrentMonthAction,
+} from "../../redux/actions/DashboardActions";
 
 const Dashboard = () => {
+  // Get translation locale
   const { t } = useTranslation();
 
-  // Custom Define The Table Header
-  const headerColumns = [
+  // Dispatch the action to redux
+  const dispatch = useDispatch();
+
+  // Get Last 3 Month Name From Current Date For Chart Label
+  const lastThreeMonthNames = getLast3Months();
+
+  // Get Last 3 Month Salary, Income & Expense Data From Redux Store
+  const lastThreeMonthDashboardInfos = useSelector(
+    (state) => state.lastThreeMonthDashboardData
+  );
+  const { lastThreeMonthDashboardDetail } = lastThreeMonthDashboardInfos;
+  console.log(lastThreeMonthDashboardDetail);
+
+  // Get Current Month Salary Details
+  const currentMonthSalaryInfo = useSelector(
+    (state) => state.salaryCurrentMonthData
+  );
+  const { salaryCurrentMonth } = currentMonthSalaryInfo;
+
+  // Get Current Month Extra Income Details
+  const currentMonthExtraIncomeInfos = useSelector(
+    (state) => state.extraIncomeCurrentMonthData
+  );
+  const { extraIncomeCurrentMonth } = currentMonthExtraIncomeInfos;
+
+  // Get Current Month Expense Details
+  const currentMonthExpenseInfos = useSelector(
+    (state) => state.expenseCurrentMonthData
+  );
+  const { expenseCurrentMonth } = currentMonthExpenseInfos;
+
+  // Sum of salary + extra income
+  const getCurrentMonthTotalIncome = () => {
+    const currentMonthSalary =
+      salaryCurrentMonth &&
+      salaryCurrentMonth.currentMonthSalary &&
+      salaryCurrentMonth.currentMonthSalary.netPayAmount;
+
+    const currentMonthExtraIncome =
+      extraIncomeCurrentMonth &&
+      extraIncomeCurrentMonth.currentMonthExtraIncome &&
+      extraIncomeCurrentMonth.currentMonthExtraIncome.incomeCreditAmount;
+
+    const totalIncome = currentMonthSalary + currentMonthExtraIncome;
+
+    return totalIncome;
+  };
+
+  // Get Current Month Total Income
+  const totalIncomeAmount = getCurrentMonthTotalIncome();
+
+  // Custom Define The Table Header For Last 6 Month Salary Details
+  const salaryReportColumns = [
     {
-      path: "month",
-      label: t("month"),
+      dataField: "month",
+      text: t("month"),
+    },
+
+    {
+      dataField: "totalCR",
+      text: t("totalCR"),
+      formatter: (cell, row) => numberFormat(row.totalCR),
     },
     {
-      path: "totalCR",
-      label: t("totalDR"),
-      key: "currency",
+      dataField: "totalDR",
+      text: t("totalDR"),
+      formatter: (cell, row) => numberFormat(row.totalDR),
     },
     {
-      path: "totalDR",
-      label: t("totalCR"),
-      key: "currency",
-    },
-    {
-      path: "netAmount",
-      label: t("netAmount"),
-      key: "currency",
+      dataField: "netPayAmount",
+      text: t("netAmount"),
+      formatter: (cell, row) => numberFormat(row.netPayAmount),
     },
   ];
 
-  // Default Table Header Sort Order
-  const [tableSortColumn, setTableSortColumn] = useState({
-    path: "netAmount",
-    order: "asc",
-  });
-
-  // Table Header Sort Method
-  const handleTableSort = (sortHeader) => {
-    setTableSortColumn(sortHeader);
-  };
+  useEffect(() => {
+    dispatch(lastThreeMonthIncomeAction()); // Dispatch The Action For Get Last 3 Month Salary, Income & Expense Details
+    dispatch(expenseCurrentMonthAction()); // Dispatch The Action For Current Month Expense Details
+    dispatch(salaryCurrentMonthAction()); // Dispatch The Action For Current Month Salary Details
+    dispatch(extraIncomeCurrentMonthAction()); // Dispatch The Action For Current Month Extra Income Details
+  }, [dispatch]);
 
   return (
     <MainLayout title={t("dashboard")}>
@@ -99,13 +156,18 @@ const Dashboard = () => {
         <div className="dashboard-section__summary-reports__prevs">
           <Row>
             <Col xl={5} lg={5} md={6} sm={12} xs={12}>
-              <BoxLayout title={t("lastThreeMonthSalaryInfo")}>
-                <TableComponent
-                  customTableClass="dashboard-section__summary-reports__prevs__summary-table"
-                  columnHeaders={headerColumns}
-                  sortColumn={tableSortColumn}
-                  onSort={handleTableSort}
-                  dataLists={dashboardTableData}
+              <BoxLayout
+                title={t("lastThreeMonthsalaryInfo")}
+                cusomtBoxLayoutClassname="budget-app-listview-section"
+              >
+                <BootstrapTableComp
+                  tableBordered={false}
+                  headerColumns={salaryReportColumns}
+                  tableData={
+                    lastThreeMonthDashboardDetail &&
+                    lastThreeMonthDashboardDetail.lastThreeMonthSalary
+                  }
+                  tablePaginationEnabled={false}
                 />
               </BoxLayout>
             </Col>
@@ -113,10 +175,17 @@ const Dashboard = () => {
               <BoxLayout title={t("lastThreeMonthIncomeExpenseInfo")}>
                 <LineChart
                   chartCustomClass="line-chart"
+                  chartLabels={lastThreeMonthNames}
                   chartDatasetLabel1={t("income")}
                   chartDatasetLabel2={t("expense")}
-                  chartLabels=""
-                  chartDatas=""
+                  chartDatasetData1={
+                    lastThreeMonthDashboardDetail &&
+                    lastThreeMonthDashboardDetail.lastThreeMonthIncome
+                  }
+                  chartDatasetData2={
+                    lastThreeMonthDashboardDetail &&
+                    lastThreeMonthDashboardDetail.lastThreeMonthExpense
+                  }
                 />
               </BoxLayout>
             </Col>
@@ -132,25 +201,47 @@ const Dashboard = () => {
                     cardType="salary-card"
                     title={t("salary")}
                     subTitle={t("netAmount")}
-                    content={numberFormat(0.0)}
+                    content={
+                      salaryCurrentMonth &&
+                      salaryCurrentMonth.currentMonthSalary &&
+                      numberFormat(
+                        salaryCurrentMonth.currentMonthSalary.netPayAmount
+                      )
+                    }
                   />
                   <CardLayout
                     cardType="extra-income-card"
                     title={t("extraIncome")}
                     subTitle={t("amount")}
-                    content={numberFormat(0.0)}
+                    content={
+                      extraIncomeCurrentMonth &&
+                      extraIncomeCurrentMonth.currentMonthExtraIncome &&
+                      numberFormat(
+                        extraIncomeCurrentMonth.currentMonthExtraIncome
+                          .incomeCreditAmount
+                      )
+                    }
                   />
                   <CardLayout
                     cardType="total-income-card"
                     title={t("totalIncome")}
                     subTitle={t("amount")}
-                    content={numberFormat(0.0)}
+                    content={numberFormat(
+                      isNaN(totalIncomeAmount) ? 0 : totalIncomeAmount
+                    )}
                   />
                   <CardLayout
                     cardType="total-expense-card"
                     title={t("totalExpense")}
                     subTitle={t("amount")}
-                    content={numberFormat(0.0)}
+                    content={
+                      expenseCurrentMonth &&
+                      expenseCurrentMonth.currentMonthExpense &&
+                      numberFormat(
+                        expenseCurrentMonth.currentMonthExpense
+                          .totalMonthlyExpenseAmount
+                      )
+                    }
                   />
                 </Row>
               </BoxLayout>

@@ -11,6 +11,7 @@ const salaryRoutes = require("./routes/SalaryRoutes");
 const extraIncomeRoutes = require("./routes/ExtraIncomeRoutes");
 const expenseRoutes = require("./routes/ExpenseRoutes");
 const groceryRoutes = require("./routes/GroceryRoutes");
+const dashboardRoutes = require("./routes/DashboardRoutes");
 
 dotenv.config();
 connectDB();
@@ -21,6 +22,7 @@ app.use("/", salaryRoutes); // Use salary routes for api call
 app.use("/", extraIncomeRoutes); // Use extra income routes for api call
 app.use("/", expenseRoutes); // Use expense routes for api call
 app.use("/", groceryRoutes); // Use grocery routes for api call
+app.use("/", dashboardRoutes); // Use dashboard routes for api call
 
 // Error Handling middlewares
 app.use(notFound);

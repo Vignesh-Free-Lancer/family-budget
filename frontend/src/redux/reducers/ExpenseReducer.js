@@ -14,6 +14,9 @@ import {
   EXPENSE_DETAIL_UPDATE_FAILURE,
   EXPENSE_DETAIL_UPDATE_REQUEST,
   EXPENSE_DETAIL_UPDATE_SUCCESS,
+  EXPENSE_REPORT_CREATE_FAILURE,
+  EXPENSE_REPORT_CREATE_REQUEST,
+  EXPENSE_REPORT_CREATE_SUCCESS,
 } from "../constants/ExpenseConstants";
 
 // Expense Create Reducer
@@ -125,6 +128,28 @@ export const ExpenseDeleteReducer = (state = {}, action) => {
       return {
         loading: false,
         success: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// Expense Report List Reducer
+export const ExpenseReportListReducer = (state = {}, action) => {
+  switch (action.type) {
+    case EXPENSE_REPORT_CREATE_REQUEST:
+      return {
+        loading: true,
+      };
+    case EXPENSE_REPORT_CREATE_SUCCESS:
+      return {
+        loading: false,
+        expenseReportLists: action.payload,
+      };
+    case EXPENSE_REPORT_CREATE_FAILURE:
+      return {
+        loading: false,
         error: action.payload,
       };
     default:

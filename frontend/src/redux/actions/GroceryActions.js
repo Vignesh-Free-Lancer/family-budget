@@ -15,6 +15,9 @@ import {
   GROCERY_DETAIL_UPDATE_FAILURE,
   GROCERY_DETAIL_UPDATE_REQUEST,
   GROCERY_DETAIL_UPDATE_SUCCESS,
+  GROCERY_REPORT_CREATE_FAILURE,
+  GROCERY_REPORT_CREATE_REQUEST,
+  GROCERY_REPORT_CREATE_SUCCESS,
 } from "../constants/GroceryConstants";
 
 // Grocery Create Action
@@ -204,6 +207,40 @@ export const groceryDeleteAction =
     } catch (error) {
       dispatch({
         type: GROCERY_DETAIL_DELETE_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+// Grocery Report List Action
+export const groceryReportListAction =
+  (reportType, month, year) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: GROCERY_REPORT_CREATE_REQUEST });
+
+      const {
+        userLogin: { userInfos },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfos.token}`,
+        },
+      };
+
+      const { data } = await axios.get(
+        `/api/grocery/report/${reportType}/${month}/${year}`,
+        config
+      );
+
+      dispatch({ type: GROCERY_REPORT_CREATE_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: GROCERY_REPORT_CREATE_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

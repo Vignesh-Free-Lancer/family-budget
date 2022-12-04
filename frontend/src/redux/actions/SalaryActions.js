@@ -1,8 +1,5 @@
 import axios from "axios";
 import {
-  SALARY_DETAIL_BY_ID_FAILURE,
-  SALARY_DETAIL_BY_ID_REQUEST,
-  SALARY_DETAIL_BY_ID_SUCCESS,
   SALARY_DETAIL_CREATE_FAILURE,
   SALARY_DETAIL_CREATE_REQUEST,
   SALARY_DETAIL_CREATE_SUCCESS,
@@ -15,6 +12,9 @@ import {
   SALARY_DETAIL_UPDATE_FAILURE,
   SALARY_DETAIL_UPDATE_REQUEST,
   SALARY_DETAIL_UPDATE_SUCCESS,
+  SALARY_REPORT_CREATE_FAILURE,
+  SALARY_REPORT_CREATE_REQUEST,
+  SALARY_REPORT_CREATE_SUCCESS,
 } from "../constants/SalaryConstants";
 
 // Salary Create Action
@@ -207,3 +207,37 @@ export const salaryDeleteAction = (salaryId) => async (dispatch, getState) => {
     });
   }
 };
+
+// Salary Report List Action
+export const salaryReportListAction =
+  (reportType, month, year) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: SALARY_REPORT_CREATE_REQUEST });
+
+      const {
+        userLogin: { userInfos },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${userInfos.token}`,
+        },
+      };
+
+      const { data } = await axios.get(
+        `/api/salary/report/${reportType}/${month}/${year}`,
+        config
+      );
+
+      dispatch({ type: SALARY_REPORT_CREATE_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: SALARY_REPORT_CREATE_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };

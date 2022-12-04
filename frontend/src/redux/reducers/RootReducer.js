@@ -21,6 +21,7 @@ import {
   SalaryListReducer,
   SalaryUpdateReducer,
   SalaryDeleteReducer,
+  SalaryReportListReducer,
 } from "../reducers/SalaryReducer";
 
 // Import Extra Income Reducer
@@ -38,6 +39,7 @@ import {
   ExpenseListReducer,
   ExpenseUpdateReducer,
   ExpenseDeleteReducer,
+  ExpenseReportListReducer,
 } from "../reducers/ExpenseReducer";
 
 // Import Grocery Reducer
@@ -47,7 +49,16 @@ import {
   GroceryListReducer,
   GroceryUpdateReducer,
   GroceryDeleteReducer,
+  GroceryReportListReducer,
 } from "../reducers/GroceryReducer";
+
+// Import Dashboard Reducer
+import {
+  LastThreeMonthDashboardDetailReducer,
+  SalaryCurrentMonthReducer,
+  ExtraIncomeCurrentMonthReducer,
+  ExpenseCurrentMonthReducer,
+} from "../reducers/DashboardReducer";
 
 const appReducer = combineReducers({
   userRecords: UserRegistrationReducer,
@@ -65,6 +76,7 @@ const appReducer = combineReducers({
   salaryListData: SalaryListReducer,
   salaryUpdatedData: SalaryUpdateReducer,
   salaryDeletedData: SalaryDeleteReducer,
+  salaryReportListData: SalaryReportListReducer,
 
   extraIncomeRecords: ExtraIncomeCreateReducer,
   extraIncomeListData: ExtraIncomeListReducer,
@@ -76,12 +88,19 @@ const appReducer = combineReducers({
   expenseListData: ExpenseListReducer,
   expenseUpdatedData: ExpenseUpdateReducer,
   expenseDeletedData: ExpenseDeleteReducer,
+  expenseReportListData: ExpenseReportListReducer,
 
   groceryRecords: GroceryCreateReducer,
   groceryImportRecords: GroceryImportReducer,
   groceryListData: GroceryListReducer,
   groceryUpdatedData: GroceryUpdateReducer,
   groceryDeletedData: GroceryDeleteReducer,
+  groceryReportListData: GroceryReportListReducer,
+
+  lastThreeMonthDashboardData: LastThreeMonthDashboardDetailReducer,
+  salaryCurrentMonthData: SalaryCurrentMonthReducer,
+  extraIncomeCurrentMonthData: ExtraIncomeCurrentMonthReducer,
+  expenseCurrentMonthData: ExpenseCurrentMonthReducer,
 });
 
 const rootReducer = (state, action) => {

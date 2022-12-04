@@ -22,7 +22,7 @@ const GroceryModalWindow = ({ openModal, closeModalWindow = () => {} }) => {
       showModal={openModal}
       closeModal={closeModalWindow}
       enableFullScreen={true}
-      modalTitle={t("addGrocery")}
+      modalTitle={!selectedRecordData ? t("addGrocery") : t("modifyGrocery")}
       modalBody={<GroceryForm ref={groceryFormRef} />}
       modalFooter={
         <button

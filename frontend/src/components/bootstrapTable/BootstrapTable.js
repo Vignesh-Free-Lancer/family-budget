@@ -11,6 +11,7 @@ const BootstrapTableComp = ({
   keyField = "_id",
   headerColumns = [],
   tableData = [],
+  tablePaginationEnabled = true,
   tableActionEnabled = false,
   tableEditAction = () => {},
   tableDeleteAction = () => {},
@@ -137,7 +138,7 @@ const BootstrapTableComp = ({
         columns={headerColumns}
         data={tableData}
         noDataIndication={`${t("thereIsNoDataInTable")}...`}
-        pagination={paginationFactory(options)}
+        pagination={tablePaginationEnabled && paginationFactory(options)}
       />
     </div>
   );

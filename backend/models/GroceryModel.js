@@ -8,7 +8,7 @@ const grocerySchema = mongoose.Schema(
       ref: "User",
     },
     month: {
-      type: String,
+      type: Number,
       required: true,
     },
     year: {

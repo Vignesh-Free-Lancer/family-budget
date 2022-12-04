@@ -200,7 +200,9 @@
   "add": "जोड़ें",
   "close": "बंद करना",
   "addExpense": "व्यय जोड़ें",
+  "modifyExpense": "व्यय संशोधित करें",
   "addGrocery": "किराना जोड़ें",
+  "modifyGrocery": "किराना संशोधित करें",
   "enterParticular": "विशेष दर्ज करें",
   "particularType": "खास किस्म",
   "enterEstimateCosts": "अनुमानित लागत दर्ज करें",
@@ -228,6 +230,7 @@
   "particulars": "विवरण",
   "pleaseSelectReportType": "कृपया रिपोर्ट प्रकार चुनें",
   "customizeReports": "रिपोर्ट अनुकूलित करें",
+  "generateReports": "रिपोर्ट उत्पन्न करें",
 
   "sessionExpired": "सत्र समाप्त हो चुका है",
   "sessionExpiredBrowerClose": "यदि ब्राउज़र विंडो बंद है, तो सत्र स्वतः समाप्त हो जाएगा",

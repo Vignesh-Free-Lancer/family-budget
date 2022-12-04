@@ -228,6 +228,219 @@ const expenseDeleteById = asyncHandler(async (req, res) => {
   }
 });
 
+// Expense Reports Controller Method
+const expenseReportLists = asyncHandler(async (req, res) => {
+  const { reportType, month, year } = req.params;
+  const currentDate = new Date();
+
+  let reportMonth = 0,
+    reportYear = 0,
+    expenseReportResults = [],
+    groupedExpenseData,
+    sumOfYearlyExpenseReports = [],
+    sumOfMonthlyExpenseReports = [],
+    chartReportsData = [];
+
+  if (reportType === "this-month") {
+    reportMonth = currentDate.getMonth() + 1;
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-month") {
+    reportMonth = currentDate.getMonth();
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-3-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 2);
+    const beforeThreeMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeThreeMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-6-month") {
+    const currentMonth = currentDate.getMonth();
+    currentDate.setMonth(currentDate.getMonth() - 5);
+    const beforeSixMonths = currentDate.getMonth();
+
+    reportMonth = { $gte: beforeSixMonths, $lte: currentMonth };
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "this-year") {
+    reportYear = currentDate.getFullYear();
+  } else if (reportType === "last-year") {
+    reportYear = currentDate.getFullYear() - 1;
+  } else if (reportType === "custom-year") {
+    reportYear = parseInt(year);
+  } else if (reportType === "custom-range") {
+    reportMonth = parseInt(month);
+    reportYear = parseInt(year);
+  }
+
+  if (
+    reportType === "this-month" ||
+    reportType === "last-month" ||
+    reportType === "last-3-month" ||
+    reportType === "last-6-month" ||
+    reportType === "custom-range"
+  ) {
+    expenseReportResults = await Expense.find({
+      userId: req.user._id,
+      year: reportYear,
+      month: reportMonth,
+    }).sort({
+      year: -1,
+      month: 1,
+    });
+
+    groupedExpenseData = await Expense.aggregate([
+      {
+        $match: {
+          userId: req.user._id,
+          year: reportYear,
+          month: reportMonth,
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          reportItems: {
+            $push: "$$ROOT",
+          },
+          monthlyAmount: { $sum: "$actualCost" },
+        },
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          month: "$_id",
+          reportItems: 1,
+          monthlyAmount: "$monthlyAmount",
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          "reportItems.month": 0,
+        },
+      },
+    ]);
+
+    sumOfMonthlyExpenseReports = await Expense.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+            month: reportMonth,
+          },
+        },
+        {
+          $group: {
+            _id: "$month",
+            totalMonthlyExpenseAmount: { $sum: "$actualCost" },
+          },
+        },
+        { $sort: { _id: 1 } },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  } else if (
+    reportType === "this-year" ||
+    reportType === "last-year" ||
+    reportType === "custom-year"
+  ) {
+    expenseReportResults = await Expense.find({
+      userId: req.user._id,
+      year: reportYear,
+    }).sort({
+      month: 1,
+    });
+
+    groupedExpenseData = await Expense.aggregate([
+      {
+        $match: {
+          userId: req.user._id,
+          year: reportYear,
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          reportItems: {
+            $push: "$$ROOT",
+          },
+          monthlyAmount: { $sum: "$actualCost" },
+        },
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          month: "$_id",
+          reportItems: 1,
+          monthlyAmount: "$monthlyAmount",
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          "reportItems.month": 0,
+        },
+      },
+    ]);
+
+    sumOfYearlyExpenseReports = await Expense.aggregate(
+      [
+        {
+          $match: {
+            userId: req.user._id,
+            year: reportYear,
+          },
+        },
+        {
+          $group: {
+            _id: "$userId",
+            totalYearlyExpenseAmount: { $sum: "$actualCost" },
+          },
+        },
+      ],
+      function (err, data) {
+        if (err) throw err;
+        return data;
+      }
+    );
+  }
+
+  if (expenseReportResults.length > 0) {
+    res.status(201).json({
+      totalReportLength: expenseReportResults.length,
+      groupedExpenseData,
+      expenseReportResults,
+      yearlyExpensesReport: sumOfYearlyExpenseReports,
+      monthlyExpensesReport: sumOfMonthlyExpenseReports,
+      message: `Your expense reports generated successfully on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }.`,
+    });
+  } else if (expenseReportResults.length === 0) {
+    res.status(201).json({
+      totalReportLength: expenseReportResults.length,
+      message: `There is no data to display on ${
+        reportType === "custom-year"
+          ? `year - ${reportYear}`
+          : reportType === "custom-range"
+          ? `${reportMonth} - ${reportYear}`
+          : reportType
+      }`,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Expense records not available");
+  }
+});
+
 // Export All Expense API Controller Method
 module.exports = {
   expenseCreation,
@@ -236,4 +449,5 @@ module.exports = {
   getExpenseById,
   expenseUpdateById,
   expenseDeleteById,
+  expenseReportLists,
 };

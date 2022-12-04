@@ -84,6 +84,18 @@ export const getStartEndDate = (month, year) => {
   return { firstDay, lastDay };
 };
 
+// Get last 3 months names from current date
+export const getLast3Months = () => {
+  const today = new Date();
+  let last3Months = [];
+
+  for (let i = 1; i <= 3; i++) {
+    last3Months.push(monthsList[today.getMonth() - i].name);
+  }
+
+  return last3Months.reverse();
+};
+
 // Convert Values Into Currency Format
 export const numberFormat = (value) =>
   new Intl.NumberFormat("en-IN", {
@@ -205,6 +217,7 @@ export const reportsType = [
   { value: "last-6-month", name: "Last 6 Months" },
   { value: "this-year", name: "This Year" },
   { value: "last-year", name: "Last Year" },
+  { value: "custom-year", name: "Custom Year" },
   { value: "custom-range", name: "Custom Range" },
 ];
 
