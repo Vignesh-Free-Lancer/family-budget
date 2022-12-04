@@ -601,7 +601,7 @@ const Expenses = (props) => {
         ref={expenseDeleteScreenRef}
         deleteScreenContent={
           <>
-            Do you want to delete the expense item -{" "}
+            {t("doYouWantDeleteExpenseItem")} -{" "}
             <b style={{ color: "#FF0000" }}>
               {selectedRecord && selectedRecord.particular}
             </b>
@@ -616,7 +616,7 @@ const Expenses = (props) => {
         ref={groceryDeleteScreenRef}
         deleteScreenContent={
           <>
-            Do you want to delete the grocery item -{" "}
+            {t("doYouWantDeleteGroceryItem")} -{" "}
             <b style={{ color: "#FF0000" }}>
               {selectedRecord && selectedRecord.particulars}
             </b>

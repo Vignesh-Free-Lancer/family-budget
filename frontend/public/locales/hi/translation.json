@@ -1,4 +1,7 @@
 {
+  "hi": "नमस्ते",
+  "hindi": "हिन्दी",
+
   "homePageTitle": "आपके सभी बजटों को बनाए रखने के लिए एक सुरक्षित स्थान",
   "homePageLoginContent": "अपनी सभी आय और व्यय आसानी से प्रबंधित करें",
   "homePageRegistrationContent": "एक खाता बनाएं और अपने सभी बजट आसानी से प्रबंधित करें",
@@ -157,6 +160,7 @@
   "totalCreditAmount": "कुल क्रेडिट राशि",
   "totalDebitAmount": "कुल डेबिट राशि",
   "netPay": "कुल भुगतान",
+  "doYouWantToDeleteSalaryData": "क्या आप वेतन डेटा को हटाना चाहते हैं",
 
   "extraIncomeList": "अतिरिक्त आय सूची",
   "incomeType": "आय प्रकार",
@@ -172,6 +176,7 @@
   "pleaseSelectAmountCreditType": "कृपया क्रेडिट प्रकार चुनें",
   "pleaseEnterCreditAmount": "कृपया क्रेडिट राशि दर्ज करें",
   "PleaseEnterBankNameForAmountCredited": "क्रेडिट की गई राशि के लिए कृपया बैंक का नाम दर्ज करें",
+  "doYouWantToDeleteExtraIncome": "क्या आप आय डेटा को हटाना चाहते हैं",
 
   "pleaseSelectMonthYear": "कृपया माह और वर्ष चुनें",
   "pleaseSelectMonth": "कृपया महीने का चयन करें",
@@ -229,6 +234,8 @@
   "totalMonthlyGrocery": "कुल मासिक किराना",
   "totalYearlyGrocery": "कुल वार्षिक किराना",
   "groceryAmount": "किराना राशि",
+  "doYouWantDeleteExpenseItem": "क्या आप व्यय मद को हटाना चाहते हैं",
+  "doYouWantDeleteGroceryItem": "क्या आप किराना आइटम हटाना चाहते हैं",
 
   "salaryReport": "वेतन रिपोर्ट",
   "expenseReport": "व्यय आख्या",
@@ -241,6 +248,7 @@
   "sessionExpired": "सत्र समाप्त हो चुका है",
   "sessionExpiredBrowerClose": "यदि ब्राउज़र विंडो बंद है, तो सत्र स्वतः समाप्त हो जाएगा",
   "sessionExpiredBrowserAction": "साथ ही सुरक्षा कारणों से, हमने ब्राउज़र की बैक, फ़ॉरवर्ड और रीफ़्रेश क्रियाओं को अक्षम कर दिया है",
+  "goTo": "के लिए जाओ",
 
   "thanksPageTitle": "हमारी साइट का उपयोग करने में, आपके समर्थन के लिए धन्यवाद",
   "thanksPageFeddbackContent": "हमें उम्मीद है, आपने हमारी साइट को बेहतर बनाने के लिए अपनी प्रतिक्रिया दी",
@@ -251,5 +259,32 @@
   "confirmDelete": "हटाने की पुष्टि करें",
   "areYouSureDelete": "क्या आप आश्वस्त है कि आपको डिलीट करना है",
   "userDelete": "उपयोगकर्ता",
-  "confirm": "पुष्टि करें"
+  "confirm": "पुष्टि करें",
+
+  "January": "जनवरी",
+  "February": "फ़रवरी",
+  "March": "मार्च",
+  "April": "अप्रैल",
+  "May": "मई",
+  "June": "जून",
+  "July": "जुलाई",
+  "August": "अगस्त",
+  "September": "सितंबर",
+  "October": "अक्टूबर",
+  "November": "नवंबर",
+  "December": "दिसंबर",
+
+  "Cash": "नकद",
+  "Bank": "बैंक",
+  "G-Pay": "जी-पे",
+  "UPI Pay": "यूपीआई भुगतान",
+
+  "This Month": "इस महीने",
+  "Last Month": "पिछले महीने",
+  "Last 3 Months": "पिछले 3 महीने",
+  "Last 6 Months": "पिछले 6 महीने",
+  "This Year": "इस साल",
+  "Last Year": "पिछले साल",
+  "Custom Year": "कस्टम वर्ष",
+  "Custom Range": "कस्टम रेंज"
 }

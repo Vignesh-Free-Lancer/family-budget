@@ -153,7 +153,8 @@ const SalaryList = () => {
         ref={deleteScreenRef}
         deleteScreenContent={
           <>
-            Do you want to delete the salary data on{" "}
+            {t("doYouWantToDeleteSalaryData")}
+            {"  "}
             <b style={{ color: "#FF0000" }}>
               {selectedRecord && monthsList[selectedRecord.month - 1].name} -{" "}
               {selectedRecord && selectedRecord.year}

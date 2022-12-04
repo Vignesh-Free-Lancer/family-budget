@@ -153,7 +153,8 @@ const ExtraIncomeList = () => {
         ref={deleteScreenRef}
         deleteScreenContent={
           <>
-            Do you want to delete the salary data on{" "}
+            {t("doYouWantToDeleteExtraIncome")}
+            {"  "}
             <b style={{ color: "#FF0000" }}>
               {selectedRecord &&
                 new Date(selectedRecord.incomeDate).toLocaleDateString()}

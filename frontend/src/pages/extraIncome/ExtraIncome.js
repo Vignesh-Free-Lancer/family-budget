@@ -415,7 +415,7 @@ const ExtraIncome = () => {
                   <InputText
                     inputName="amountCreditedBank"
                     inputType="text"
-                    placeholderName="Enter bank name for amount credited"
+                    placeholderName={t("PleaseEnterBankNameForAmountCredited")}
                     inputErrorMessage={extraIncomeErrors.amountCreditedBank}
                     inputChange={handleInputChange}
                     inputValue={extraIncomeData.amountCreditedBank}

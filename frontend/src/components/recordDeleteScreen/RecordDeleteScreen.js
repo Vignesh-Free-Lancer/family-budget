@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +52,7 @@ const RecordDeleteScreen = forwardRef((props, ref) => {
         modalCustomClasses={deleteScreenClasses}
         showModal={openModal}
         closeModal={closeModalWindow}
-        modalTitle="Confirm Delete"
+        modalTitle={t("confirmDelete")}
         modalBody={deleteScreenContent}
         modalFooter={
           <button
@@ -59,7 +60,7 @@ const RecordDeleteScreen = forwardRef((props, ref) => {
             className="btn btn-danger"
             onClick={deleteRecordData}
           >
-            Confirm
+            {t("confirm")}
           </button>
         }
       />

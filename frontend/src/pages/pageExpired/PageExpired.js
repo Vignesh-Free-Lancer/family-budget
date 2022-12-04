@@ -23,7 +23,7 @@ const PageExpired = () => {
                 <li>{t("sessionExpiredBrowserAction")}.</li>
               </ul>
               <div className="page-expired-section__expire-content__home-link">
-                Go to <Link to="/"> {t("home")}</Link>.
+                {t("goTo")} <Link to="/"> {t("home")}</Link>.
               </div>
             </div>
           </Col>

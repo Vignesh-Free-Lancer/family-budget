@@ -1,4 +1,7 @@
 {
+  "hi": "Hi",
+  "hindi": "Hindi",
+
   "homePageTitle": "One safe place to maintain your all budgets",
   "homePageLoginContent": "Manage your all income & expenses easily",
   "homePageRegistrationContent": "Create an account & easily manage your all budgets",
@@ -157,6 +160,7 @@
   "totalCreditAmount": "Total Credit Amount",
   "totalDebitAmount": "Total Debit Amount",
   "netPay": "Net Pay",
+  "doYouWantToDeleteSalaryData": "Do you want to delete the salary data on",
 
   "extraIncomeList": "Extra Income List",
   "incomeType": "Income Type",
@@ -172,6 +176,7 @@
   "pleaseSelectAmountCreditType": "Please select credit type",
   "pleaseEnterCreditAmount": "Please enter credit amount",
   "PleaseEnterBankNameForAmountCredited": "Please enter bank name for amount credited",
+  "doYouWantToDeleteExtraIncome": "Do you want to delete the income data on",
 
   "pleaseSelectMonthYear": "Please select month & year",
   "pleaseSelectMonth": "Please select month",
@@ -229,6 +234,8 @@
   "totalMonthlyGrocery": "Total Monthly Grocery",
   "totalYearlyGrocery": "Total Yearly Grocery",
   "groceryAmount": "Grocery Amount",
+  "doYouWantDeleteExpenseItem": "Do you want to delete the expense item",
+  "doYouWantDeleteGroceryItem": "Do you want to delete the grocery item",
 
   "salaryReport": "Salary Report",
   "expenseReport": "Expense Report",
@@ -241,6 +248,7 @@
   "sessionExpired": "Session has expired",
   "sessionExpiredBrowerClose": "If the browser window is closed, the session will expire automatically",
   "sessionExpiredBrowserAction": "Also for security reasons, we have disabled the Back, Forward, and Refresh actions of the browser",
+  "goTo": "Go to",
 
   "thanksPageTitle": "Thanks for your support, in utilizing our site",
   "thanksPageFeddbackContent": "We hope, you gave your feedback to improve our site",
@@ -251,5 +259,32 @@
   "confirmDelete": "Confirm Delete",
   "areYouSureDelete": "Are you sure you want to delete",
   "userDelete": "user",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+
+  "January": "January",
+  "February": "February",
+  "March": "March",
+  "April": "April",
+  "May": "May",
+  "June": "June",
+  "July": "July",
+  "August": "August",
+  "September": "September",
+  "October": "October",
+  "November": "November",
+  "December": "December",
+
+  "Cash": "Cash",
+  "Bank": "Bank",
+  "G-Pay": "G-Pay",
+  "UPI Pay": "UPI Pay",
+
+  "This Month": "This Month",
+  "Last Month": "Last Month",
+  "Last 3 Months": "Last 3 Months",
+  "Last 6 Months": "Last 6 Months",
+  "This Year": "This Year",
+  "Last Year": "Last Year",
+  "Custom Year": "Custom Year",
+  "Custom Range": "Custom Range"
 }

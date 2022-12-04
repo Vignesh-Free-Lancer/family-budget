@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./dashboard.scss";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import BoxLayout from "../../layouts/boxLayout/BoxLayout";
 import CardLayout from "../../layouts/cardLayout/CardLayout";
 import LineChart from "../../components/chart/LineChart";
 
-import { getLast3Months, numberFormat } from "../../utils/Utils";
+import { getLast3Months, monthsList, numberFormat } from "../../utils/Utils";
 import DashboardCard from "../../components/dashboard/DashboardCard";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
 
@@ -79,6 +79,7 @@ const Dashboard = () => {
     {
       dataField: "month",
       text: t("month"),
+      formatter: (cell, row) => monthsList[row.month - 1].name,
     },
 
     {
@@ -156,7 +157,7 @@ const Dashboard = () => {
           <Row>
             <Col xl={5} lg={5} md={6} sm={12} xs={12}>
               <BoxLayout
-                title={t("lastThreeMonthsalaryInfo")}
+                title={t("lastThreeMonthSalaryInfo")}
                 cusomtBoxLayoutClassname="budget-app-listview-section"
               >
                 <BootstrapTableComp

@@ -102,7 +102,7 @@ const Header = () => {
               onSelect={handleLangChange}
             >
               <NavDropdown.Item eventKey="en">En - English</NavDropdown.Item>
-              <NavDropdown.Item eventKey="hi">Hi - Hindi</NavDropdown.Item>
+              <NavDropdown.Item eventKey="hi">नमस्ते - हिन्दी</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           {userInfos && (
