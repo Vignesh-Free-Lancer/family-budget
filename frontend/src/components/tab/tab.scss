@@ -82,6 +82,28 @@
               &:after {
                 border-left: 30px solid #5baf57;
               }
+
+              &:hover,
+              &:focus {
+                border-color: #5baf57;
+                color: #ffffff;
+                background: #5baf57;
+
+                &:after {
+                  border-left: 30px solid #5baf57;
+                }
+              }
+            }
+
+            &:hover,
+            &:focus {
+              isolation: unset;
+              background: #808080;
+              border: rgba(255, 255, 255, 0.9);
+
+              &:after {
+                border-left: 30px solid #808080;
+              }
             }
           }
         }

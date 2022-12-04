@@ -223,6 +223,12 @@
   "pleaseEnterBankName": "कृपया बैंक का नाम दर्ज करें",
   "pleaseSelectQuantityType": "कृपया मात्रा प्रकार चुनें",
   "pleaseEnterQuantityValue": "कृपया मात्रा मान दर्ज करें",
+  "totalMonthlyExpense": "कुल मासिक व्यय",
+  "totalYearlyExpense": "कुल वार्षिक व्यय",
+  "expenseAmount": "व्यय राशि",
+  "totalMonthlyGrocery": "कुल मासिक किराना",
+  "totalYearlyGrocery": "कुल वार्षिक किराना",
+  "groceryAmount": "किराना राशि",
 
   "salaryReport": "वेतन रिपोर्ट",
   "expenseReport": "व्यय आख्या",

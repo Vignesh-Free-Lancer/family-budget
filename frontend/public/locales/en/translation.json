@@ -223,6 +223,12 @@
   "pleaseEnterBankName": "Please enter bank name",
   "pleaseSelectQuantityType": "Please select quantity type",
   "pleaseEnterQuantityValue": "Please enter quantity value",
+  "totalMonthlyExpense": "Total Monthly Expense",
+  "totalYearlyExpense": "Total Yearly Expense",
+  "expenseAmount": "Expense Amount",
+  "totalMonthlyGrocery": "Total Monthly Grocery",
+  "totalYearlyGrocery": "Total Yearly Grocery",
+  "groceryAmount": "Grocery Amount",
 
   "salaryReport": "Salary Report",
   "expenseReport": "Expense Report",

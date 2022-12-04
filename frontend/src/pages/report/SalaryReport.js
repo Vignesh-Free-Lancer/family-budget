@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { numberFormat } from "../../utils/Utils";
+import { monthsList, numberFormat } from "../../utils/Utils";
 import BootstrapTableComp from "../../components/bootstrapTable/BootstrapTable";
 import DisplayInformation from "../../components/displayInformation/DisplayInformation";
 import { salaryReportListAction } from "../../redux/actions/SalaryActions";
@@ -30,6 +30,7 @@ const SalaryReport = forwardRef((props, ref) => {
   // State Object For Hide and Clear State Values
   const [clearState, setClearState] = useState();
 
+  // Cleare State Values When Navigate
   useEffect(() => {
     setClearState("reset");
     dispatch(salaryReportListAction("select", 0, 0));
@@ -98,6 +99,7 @@ const SalaryReport = forwardRef((props, ref) => {
     {
       dataField: "month",
       text: t("month"),
+      formatter: (cell, row) => monthsList[row.month - 1].name,
     },
     {
       dataField: "monthlySalary",
@@ -108,11 +110,6 @@ const SalaryReport = forwardRef((props, ref) => {
       dataField: "bonusAmount",
       text: t("bonusAmount"),
       formatter: (cell, row) => numberFormat(row.bonusAmount),
-    },
-    {
-      dataField: "otherAllowance",
-      text: t("extraAllowance"),
-      formatter: (cell, row) => numberFormat(row.otherAllowance),
     },
     {
       dataField: "totalCR",
@@ -154,7 +151,6 @@ const SalaryReport = forwardRef((props, ref) => {
   return (
     <>
       {clearState !== "reset" && salaryReportLoading && <Loading />}
-
       <div className="report-section__salary-tab budget-app-listview-section">
         <Row>
           <Col>
@@ -175,7 +171,16 @@ const SalaryReport = forwardRef((props, ref) => {
               displayLabel="totalCR"
               displayName={`${t("totalCreditAmount")}:`}
               displayInfoClasses="green-text"
-              displayInfo={numberFormat(0)}
+              displayInfo={numberFormat(
+                isNaN(
+                  salaryReportLists &&
+                    salaryReportLists.sumOfSalaryReport &&
+                    salaryReportLists.sumOfSalaryReport.totalCRAmount
+                )
+                  ? 0
+                  : salaryReportLists &&
+                      salaryReportLists.sumOfSalaryReport.totalCRAmount
+              )}
             />
 
             <DisplayInformation
@@ -183,7 +188,16 @@ const SalaryReport = forwardRef((props, ref) => {
               displayLabel="totalDR"
               displayName={`${t("totalDebitAmount")}:`}
               displayInfoClasses="red-text"
-              displayInfo={numberFormat(0)}
+              displayInfo={numberFormat(
+                isNaN(
+                  salaryReportLists &&
+                    salaryReportLists.sumOfSalaryReport &&
+                    salaryReportLists.sumOfSalaryReport.totalDRAmount
+                )
+                  ? 0
+                  : salaryReportLists &&
+                      salaryReportLists.sumOfSalaryReport.totalDRAmount
+              )}
             />
 
             <DisplayInformation
@@ -191,7 +205,16 @@ const SalaryReport = forwardRef((props, ref) => {
               displayLabel="netPay"
               displayName={`${t("netAmount")}:`}
               displayInfoClasses="green-text"
-              displayInfo={numberFormat(0)}
+              displayInfo={numberFormat(
+                isNaN(
+                  salaryReportLists &&
+                    salaryReportLists.sumOfSalaryReport &&
+                    salaryReportLists.sumOfSalaryReport.totalNetPayAmount
+                )
+                  ? 0
+                  : salaryReportLists &&
+                      salaryReportLists.sumOfSalaryReport.totalNetPayAmount
+              )}
             />
           </Col>
         </Row>

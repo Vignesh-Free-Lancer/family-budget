@@ -30,6 +30,7 @@ const ExpenseReport = forwardRef((props, ref) => {
   // State Object For Hide and Clear State Values
   const [clearState, setClearState] = useState();
 
+  // Cleare State Values When Navigate
   useEffect(() => {
     setClearState("reset");
     dispatch(expenseReportListAction("select", 0, 0));
@@ -146,36 +147,51 @@ const ExpenseReport = forwardRef((props, ref) => {
               dataLists={
                 expenseReportLists && expenseReportLists.groupedExpenseData
               }
-              footerContent={`Expense Amount: `}
+              footerContent={`${t("expenseAmount")}: `}
               tableCollapseBodyErrorMessage={
                 expenseReportLists && expenseReportLists.message
               }
             />
           </Col>
         </Row>
-        {expenseReportLists &&
-          expenseReportLists.yearlyExpensesReport &&
-          expenseReportLists.yearlyExpensesReport.length > 0 && (
-            <Row className="report-section__expense-tab display-info-section">
-              <Col xl={6} lg={6} md={6} sm={6} xs={12}></Col>
-              <Col xl={6} lg={6} md={6} sm={6} xs={12}>
+
+        <Row className="report-section__expense-tab display-info-section">
+          <Col xl={6} lg={6} md={6} sm={6} xs={12}></Col>
+          <Col xl={6} lg={6} md={6} sm={6} xs={12}>
+            {expenseReportLists &&
+              expenseReportLists.sumOfTotalMonthlyExpenseReport > 0 && (
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalCR"
-                  displayName={`Total Expense Amount:`}
+                  displayName={`${t("totalMonthlyExpense")}:`}
+                  displayInfoClasses="red-text"
+                  displayInfo={numberFormat(
+                    expenseReportLists &&
+                      expenseReportLists.sumOfTotalMonthlyExpenseReport > 0 &&
+                      expenseReportLists.sumOfTotalMonthlyExpenseReport
+                  )}
+                />
+              )}
+
+            {expenseReportLists &&
+              expenseReportLists.yearlyExpensesReport &&
+              expenseReportLists.yearlyExpensesReport
+                .totalYearlyExpenseAmount && (
+                <DisplayInformation
+                  customClasses="text-right"
+                  displayLabel="totalCR"
+                  displayName={`${t("totalYearlyExpense")}:`}
                   displayInfoClasses="red-text"
                   displayInfo={numberFormat(
                     expenseReportLists &&
                       expenseReportLists.yearlyExpensesReport &&
-                      expenseReportLists.yearlyExpensesReport.length > 0 &&
-                      expenseReportLists.yearlyExpensesReport.find(
-                        (totalAmount) => totalAmount
-                      ).totalYearlyExpenseAmount
+                      expenseReportLists.yearlyExpensesReport
+                        .totalYearlyExpenseAmount
                   )}
                 />
-              </Col>
-            </Row>
-          )}
+              )}
+          </Col>
+        </Row>
       </div>
     </>
   );

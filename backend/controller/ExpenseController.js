@@ -2,6 +2,8 @@
 const asyncHandler = require("express-async-handler");
 // Import Expense Schema
 const Expense = require("../models/ExpenseModel");
+// Import Month List For Display The Month Name
+const monthsList = require("../utils/Utils");
 
 // Expense Create Controller Method
 const expenseCreation = asyncHandler(async (req, res) => {
@@ -409,18 +411,32 @@ const expenseReportLists = asyncHandler(async (req, res) => {
     );
   }
 
+  // Get total monthly expense amount
+  let totalMonthlyExpenseReportAmount = 0;
+  sumOfMonthlyExpenseReports.forEach((report) => {
+    totalMonthlyExpenseReportAmount =
+      parseFloat(totalMonthlyExpenseReportAmount) +
+      parseFloat(report.totalMonthlyExpenseAmount);
+  });
+
+  // Get total yearly expense amount
+  const totalYearlyExpenseReportAmount = sumOfYearlyExpenseReports.find(
+    (report) => report
+  );
+
   if (expenseReportResults.length > 0) {
     res.status(201).json({
       totalReportLength: expenseReportResults.length,
       groupedExpenseData,
       expenseReportResults,
-      yearlyExpensesReport: sumOfYearlyExpenseReports,
+      yearlyExpensesReport: totalYearlyExpenseReportAmount,
+      sumOfTotalMonthlyExpenseReport: totalMonthlyExpenseReportAmount,
       monthlyExpensesReport: sumOfMonthlyExpenseReports,
       message: `Your expense reports generated successfully on ${
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }.`,
     });
@@ -431,7 +447,7 @@ const expenseReportLists = asyncHandler(async (req, res) => {
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }`,
     });

@@ -2,6 +2,8 @@
 const asyncHandler = require("express-async-handler");
 // Import Salary Schema
 const Salary = require("../models/salaryModel");
+// Import Month List For Display The Month Name
+const monthsList = require("../utils/Utils");
 
 // Salary Create Controller Method
 const salaryCreation = asyncHandler(async (req, res) => {
@@ -214,10 +216,10 @@ const salaryReportLists = asyncHandler(async (req, res) => {
   } else if (reportType === "last-year") {
     reportYear = currentDate.getFullYear() - 1;
   } else if (reportType === "custom-year") {
-    reportYear = year;
+    reportYear = parseInt(year);
   } else if (reportType === "custom-range") {
-    reportMonth = month;
-    reportYear = year;
+    reportMonth = parseInt(month);
+    reportYear = parseInt(year);
   }
 
   if (
@@ -299,16 +301,20 @@ const salaryReportLists = asyncHandler(async (req, res) => {
     );
   }
 
+  const sumOfSalaryReportAmount = sumOfSalaryReportDatas.find(
+    (report) => report
+  );
+
   if (salaryReportDatas && salaryReportDatas.length > 0) {
     res.status(201).json({
       totalReportsLength: salaryReportDatas.length,
       salaryReportDatas,
-      sumOfSalaryReport: sumOfSalaryReportDatas,
+      sumOfSalaryReport: sumOfSalaryReportAmount,
       message: `Your salary reports generated successfully on ${
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }.`,
     });
@@ -319,7 +325,7 @@ const salaryReportLists = asyncHandler(async (req, res) => {
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }`,
     });

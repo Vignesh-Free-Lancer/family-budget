@@ -2,6 +2,8 @@
 const asyncHandler = require("express-async-handler");
 // Import Grocery Schema
 const Grocery = require("../models/GroceryModel");
+// Import Month List For Display The Month Name
+const monthsList = require("../utils/Utils");
 
 // Grocery Create Controller Method
 const groceryCreation = asyncHandler(async (req, res) => {
@@ -381,18 +383,32 @@ const groceryReportLists = asyncHandler(async (req, res) => {
     );
   }
 
+  // Get total monthly grocery amount
+  let totalMonthlyGroceryReportAmount = 0;
+  sumOfMonthlyGroceryReports.forEach((report) => {
+    totalMonthlyGroceryReportAmount =
+      parseFloat(totalMonthlyGroceryReportAmount) +
+      parseFloat(report.totalMonthlyGroceryAmount);
+  });
+
+  // Get total yearly grocery amount
+  const totalYearlyGroceryReportAmount = sumOfYearlyGroceryReports.find(
+    (report) => report
+  );
+
   if (groceryReportResults.length > 0) {
     res.status(201).json({
       totalReportLength: groceryReportResults.length,
       groupedGroceryData,
       groceryReportResults,
-      yearlyGroceryReport: sumOfYearlyGroceryReports,
+      yearlyGroceryReport: totalYearlyGroceryReportAmount,
+      sumOfTotalMonthlyGroceryReport: totalMonthlyGroceryReportAmount,
       monthlyGroceryReport: sumOfMonthlyGroceryReports,
       message: `Your grocery reports generated successfully on ${
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }.`,
     });
@@ -403,7 +419,7 @@ const groceryReportLists = asyncHandler(async (req, res) => {
         reportType === "custom-year"
           ? `year - ${reportYear}`
           : reportType === "custom-range"
-          ? `${reportMonth} - ${reportYear}`
+          ? `${monthsList[reportMonth - 1].name} - ${reportYear}`
           : reportType
       }`,
     });

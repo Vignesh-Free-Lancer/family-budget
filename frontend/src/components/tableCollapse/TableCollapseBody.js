@@ -1,6 +1,6 @@
 import React from "react";
 import _ from "lodash";
-import { numberFormat } from "../../utils/Utils";
+import { monthsList, numberFormat } from "../../utils/Utils";
 
 class TableCollapseBody extends React.Component {
   state = { expanded: false };
@@ -44,10 +44,10 @@ class TableCollapseBody extends React.Component {
         className={`parent-row ${
           this.state.expanded ? "row-expanded" : "row-collapsed"
         }`}
-        key="main"
+        key={this.createCellKey([], 0)}
         onClick={this.toggleExpander}
       >
-        <td colSpan={columnWrap}>{month}</td>
+        <td colSpan={columnWrap}>{monthsList[month - 1].name}</td>
       </tr>,
       this.state.expanded && (
         <>
@@ -63,7 +63,9 @@ class TableCollapseBody extends React.Component {
           {footerData && (
             <tr className="footer-row" key="footerRow">
               <td colSpan={columnWrap}>
-                <span className="footer-content">{`${month} - ${footerContent} `}</span>
+                <span className="footer-content">{`${
+                  monthsList[month - 1].name
+                } - ${footerContent} `}</span>
                 <span className="footer-values">
                   {numberFormat(footerData)}
                 </span>

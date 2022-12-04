@@ -30,6 +30,7 @@ const GroceryReport = forwardRef((props, ref) => {
   // State Object For Hide and Clear State Values
   const [clearState, setClearState] = useState();
 
+  // Cleare State Values When Navigate
   useEffect(() => {
     setClearState("reset");
     dispatch(groceryReportListAction("select", 0, 0));
@@ -131,36 +132,51 @@ const GroceryReport = forwardRef((props, ref) => {
               dataLists={
                 groceryReportLists && groceryReportLists.groupedGroceryData
               }
-              footerContent={`Grocery Amount: `}
+              footerContent={`${t("groceryAmount")}: `}
               tableCollapseBodyErrorMessage={
                 groceryReportLists && groceryReportLists.message
               }
             />
           </Col>
         </Row>
-        {groceryReportLists &&
-          groceryReportLists.yearlyGroceryReport &&
-          groceryReportLists.yearlyGroceryReport.length > 0 && (
-            <Row className="report-section__grocery-tab display-info-section">
-              <Col xl={6} lg={6} md={6} sm={6} xs={12}></Col>
-              <Col xl={6} lg={6} md={6} sm={6} xs={12}>
+
+        <Row className="report-section__grocery-tab display-info-section">
+          <Col xl={6} lg={6} md={6} sm={6} xs={12}></Col>
+          <Col xl={6} lg={6} md={6} sm={6} xs={12}>
+            {groceryReportLists &&
+              groceryReportLists.sumOfTotalMonthlyGroceryReport > 0 && (
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalCR"
-                  displayName={`Total Grocery Amount:`}
+                  displayName={`${t("totalMonthlyExpense")}:`}
+                  displayInfoClasses="red-text"
+                  displayInfo={numberFormat(
+                    groceryReportLists &&
+                      groceryReportLists.sumOfTotalMonthlyGroceryReport > 0 &&
+                      groceryReportLists.sumOfTotalMonthlyGroceryReport
+                  )}
+                />
+              )}
+
+            {groceryReportLists &&
+              groceryReportLists.yearlyGroceryReport &&
+              groceryReportLists.yearlyGroceryReport
+                .totalYearlyGroceryAmount && (
+                <DisplayInformation
+                  customClasses="text-right"
+                  displayLabel="totalCR"
+                  displayName={`${t("totalYearlyGrocery")}:`}
                   displayInfoClasses="red-text"
                   displayInfo={numberFormat(
                     groceryReportLists &&
                       groceryReportLists.yearlyGroceryReport &&
-                      groceryReportLists.yearlyGroceryReport.length > 0 &&
-                      groceryReportLists.yearlyGroceryReport.find(
-                        (totalAmount) => totalAmount
-                      ).totalYearlyGroceryAmount
+                      groceryReportLists.yearlyGroceryReport
+                        .totalYearlyGroceryAmount
                   )}
                 />
-              </Col>
-            </Row>
-          )}
+              )}
+          </Col>
+        </Row>
       </div>
     </>
   );
