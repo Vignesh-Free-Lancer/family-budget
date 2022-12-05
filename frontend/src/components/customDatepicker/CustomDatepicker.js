@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { getMonth, getYear } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-// import "./custom-datepicker.scss";
 import { months } from "../../utils/Utils";
 
 const CustomDatepicker = (props) => {
