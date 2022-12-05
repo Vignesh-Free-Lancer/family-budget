@@ -22,7 +22,7 @@ const sendConfirmationEmail = (
 
     const mailerLinkHost =
       process.env.NODE_ENV === "production"
-        ? "https://buddy-budget.herokuapp.com"
+        ? "https://family-budget.herokuapp.com"
         : process.env.NODE_ENV === "development"
         ? `http://${process.env.DOMAIN}`
         : "http://127.0.0.1:5000";
