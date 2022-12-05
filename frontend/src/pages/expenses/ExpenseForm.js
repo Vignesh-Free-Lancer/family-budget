@@ -15,6 +15,7 @@ import { RootDataContext } from "./Expenses";
 import {
   expenseParticularType,
   expensePaymentType,
+  getDefaultYears,
   getStartEndDate,
   resetDefaultValue,
   resetInput,
@@ -247,6 +248,7 @@ const ExpenseForm = forwardRef((props, ref) => {
               }`}
               customdateName="paymentDate"
               customDatePlaceholder={t("pleaseSelectPaymentDate")}
+              customDataYears={getDefaultYears}
               customDateValue={paymentDate}
               customDateChange={handlePaymentDateChange}
               customMinDateRange={paymentMonthStartDate}

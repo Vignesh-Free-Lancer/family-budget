@@ -25,7 +25,7 @@ const InputSelect = ({
         {inputArray.map((input, key) => {
           return (
             <option key={key} value={input.value}>
-              {t(input.name)}
+              {t(input.value)}
             </option>
           );
         })}

@@ -34,7 +34,7 @@ export const monthsList = [
   { value: "12", name: "December" },
 ];
 
-const baseyear = 2015;
+const baseyear = 2000;
 const currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 
@@ -60,13 +60,21 @@ export const range = (start, end) => {
 // Get year from 1960 to 18years before from current
 // export const years = range(1990, getYear(new Date()) + 1, 1);
 export const dobYears = range(
-  new Date().getFullYear() - 66,
+  1970,
   getYear(new Date(new Date().setFullYear(new Date().getFullYear() - 17)))
 );
 
+// Get year dropdown for form filling except user dob
+export const getDefaultYears = range(
+  2000,
+  getYear(new Date(new Date().setFullYear(new Date().getFullYear() + 1)))
+);
+
 // Restrict DOB Min 18 Years & Max 75 Years
-export const minAge = new Date().setFullYear(new Date().getFullYear() - 18);
-export const maxAge = new Date().setFullYear(new Date().getFullYear() - 66);
+export const minAge = new Date(
+  new Date().setFullYear(new Date().getFullYear() - 18)
+);
+export const maxAge = new Date(new Date().setFullYear(1970));
 
 // Convert Month Number Into Month String
 export const monthName = (monthNumber) => {

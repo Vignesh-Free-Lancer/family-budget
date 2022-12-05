@@ -163,7 +163,7 @@ const userLogin = asyncHandler(async (req, res) => {
     }
   } else if (user === null) {
     res.status(404);
-    throw new Error("User not yet registered, Please register your account");
+    throw new Error("User not exist or invalid email address.");
   } else {
     res.status(400);
     throw new Error("Invalid credentials!");

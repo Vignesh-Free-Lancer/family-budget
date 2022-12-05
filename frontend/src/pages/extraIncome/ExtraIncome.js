@@ -13,6 +13,7 @@ import {
   getStartEndDate,
   resetInput,
   resetDefaultValue,
+  getDefaultYears,
 } from "../../utils/Utils";
 import MainLayout from "../../layouts/mainLayout/MainLayout";
 import FormNavigation from "../../components/navigation/FormNavigation";
@@ -342,6 +343,7 @@ const ExtraIncome = () => {
                     }`}
                     customdateName="incomeDate"
                     customDatePlaceholder={t("pleaseSelectIncomeDate")}
+                    customDataYears={getDefaultYears}
                     customDateValue={incomeDate}
                     customDateChange={handleIncomeDateChange}
                     customMinDateRange={incomeMonthStartDate}

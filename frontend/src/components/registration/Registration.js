@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
-import { minAge, maxAge, emailValidation } from "../../utils/Utils";
+import { minAge, maxAge, emailValidation, dobYears } from "../../utils/Utils";
 import {
   userFieldOnSubmitValidation,
   userFieldOnChangeValidation,
@@ -530,10 +530,13 @@ const Registration = ({ uploadedUserProfile }) => {
                 }`}
                 customdateName="dob"
                 customDatePlaceholder={t("pleaseSelectDOB")}
+                customDataYears={dobYears}
                 customDateValue={userDob}
                 customDateChange={handleDobChange}
-                customMinDateRange={minAge}
-                customMaxDateRange={maxAge}
+                // customMinDateRange={minAge}
+                // customMaxDateRange={maxAge}
+                customDatepickerPrev={false}
+                customDatepickerNext={false}
               />
               <div
                 className="invalid-feedback"

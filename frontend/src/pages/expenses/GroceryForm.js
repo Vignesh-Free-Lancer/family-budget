@@ -88,7 +88,7 @@ const GroceryForm = forwardRef((props, ref) => {
   const handleSelectChange = (e) => {
     if (e.target.name === "ddlQtyType") {
       setSelectedQtyType(e.target.value);
-      setSelectedQtyTypeText(e.target.selectedOptions[0].text);
+      setSelectedQtyTypeText(e.target.selectedOptions[0].value);
       groceryData.qty = parseInt(0);
       groceryData.totalPrice = parseInt(0);
 
@@ -250,9 +250,9 @@ const GroceryForm = forwardRef((props, ref) => {
                   {`${t("per")} ${
                     selectedQtyType === "select"
                       ? t("kgms")
-                      : selectedQtyTypeText === "Grams"
+                      : selectedQtyTypeText === "gms"
                       ? t("kgms")
-                      : selectedQtyTypeText === "M. Litere"
+                      : selectedQtyTypeText === "mltr"
                       ? t("litere")
                       : ""
                   }`}

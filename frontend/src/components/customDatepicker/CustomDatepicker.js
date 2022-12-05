@@ -2,26 +2,34 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { getMonth, getYear } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-import { months, dobYears } from "../../utils/Utils";
+// import "./custom-datepicker.scss";
+import { months } from "../../utils/Utils";
 
 const CustomDatepicker = (props) => {
   const {
     customDatepickerClassname = "form-control",
     customdateName,
     customDatePlaceholder,
+    customDataYears,
     customDateValue = "",
     customDateChange,
     customMinDateRange,
     customMaxDateRange,
     customDatepickerDisabled = false,
+    customDatepickerPrev = true,
+    customDatepickerNext = true,
   } = props;
-  const [customDate, setCustomDate] = useState(customDateValue);
 
+  // State Object For Custom Date To Datepicker
+  const [customDate, setCustomDate] = useState(null);
+
+  // Datepicker Change Event
   const handleCustomDateChange = (date) => {
     setCustomDate(date);
     customDateChange(date);
   };
 
+  // Bind The Date Value From Component
   useEffect(() => {
     customDateValue !== "" && setCustomDate(customDateValue);
   }, [customDateValue]);
@@ -29,7 +37,7 @@ const CustomDatepicker = (props) => {
   return (
     <DatePicker
       renderCustomHeader={({
-        date = new Date(customMinDateRange),
+        date,
         changeYear,
         changeMonth,
         decreaseMonth,
@@ -37,13 +45,24 @@ const CustomDatepicker = (props) => {
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
       }) => (
-        <div className="custom-date__header">
+        <div
+          style={{
+            margin: 10,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {customDatepickerPrev && (
+            <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+              {"<"}
+            </button>
+          )}
+
           <select
-            className="custom-date__dropdown"
             value={getYear(date)}
             onChange={({ target: { value } }) => changeYear(value)}
           >
-            {dobYears.map((option) => (
+            {customDataYears.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -51,7 +70,6 @@ const CustomDatepicker = (props) => {
           </select>
 
           <select
-            className="custom-date__dropdown"
             value={months[getMonth(date)]}
             onChange={({ target: { value } }) =>
               changeMonth(months.indexOf(value))
@@ -63,16 +81,21 @@ const CustomDatepicker = (props) => {
               </option>
             ))}
           </select>
+
+          {customDatepickerNext && (
+            <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+              {">"}
+            </button>
+          )}
         </div>
       )}
       selected={customDate}
       onChange={handleCustomDateChange}
-      name={customdateName}
-      dateFormat="dd/MM/yyyy"
       className={customDatepickerClassname}
+      name={customdateName}
       placeholderText={customDatePlaceholder}
-      maxDate={customMaxDateRange}
-      minDate={customMinDateRange}
+      minDate={customMinDateRange ? customMinDateRange : null}
+      maxDate={customMaxDateRange ? customMaxDateRange : null}
       disabled={customDatepickerDisabled}
     />
   );

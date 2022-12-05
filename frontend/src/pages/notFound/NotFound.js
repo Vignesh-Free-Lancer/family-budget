@@ -1,9 +1,13 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import "./not-found.scss";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  // Get translation locale
+  const { t } = useTranslation();
+
   // Navigation
   const navigate = useNavigate();
 
@@ -18,9 +22,9 @@ const NotFound = () => {
                   <h1>404</h1>
                 </div>
                 <div className="not-found-section__page_404__content">
-                  <p>The page you are looking for not avaible!</p>
+                  <p>{t("pageNotAvailable")}!</p>
                   <button type="button" onClick={() => navigate("/")}>
-                    Go to Home
+                    {t("goTo")} {t("home")}
                   </button>
                 </div>
               </section>

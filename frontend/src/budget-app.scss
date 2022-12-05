@@ -59,6 +59,29 @@ input[type="radio"] {
   }
 }
 
+.react-datepicker {
+  &__header {
+    button {
+      padding: 0.35rem 0.35rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    select {
+      padding: 0.35rem 0.35rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      background-image: initial;
+      -webkit-appearance: menulist;
+      -moz-appearance: menulist;
+      appearance: menulist;
+    }
+  }
+}
+
 /************* Custom Datepicker Dropdown End **********/
 
 /************* Password Show & Hide Icon Start *********/
