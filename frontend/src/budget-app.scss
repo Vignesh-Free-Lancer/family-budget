@@ -402,4 +402,32 @@ select {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .react-bootstrap-table {
+    &-pagination {
+      &-list {
+        .pagination {
+          margin: 15px 0 10px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .react-bootstrap-table {
+    &-pagination {
+      &-list {
+        .pagination {
+          margin: 0 0 1rem;
+          justify-content: flex-end;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+}
+
 /************* Bootstrable Pagination End **************/

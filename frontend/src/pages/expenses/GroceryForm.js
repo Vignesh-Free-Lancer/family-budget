@@ -75,7 +75,7 @@ const GroceryForm = forwardRef((props, ref) => {
       setSelectedQtyType("select");
 
       SetGroceryData({
-        particular: "",
+        particulars: "",
         estimatedCost: 0,
         actualCost: 0,
         paymentBank: "",

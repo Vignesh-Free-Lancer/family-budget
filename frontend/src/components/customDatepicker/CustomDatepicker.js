@@ -90,6 +90,7 @@ const CustomDatepicker = (props) => {
       )}
       selected={customDate}
       onChange={handleCustomDateChange}
+      dateFormat="dd/MM/yyyy"
       className={customDatepickerClassname}
       name={customdateName}
       placeholderText={customDatePlaceholder}

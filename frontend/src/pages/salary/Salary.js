@@ -397,8 +397,8 @@ const Salary = () => {
               </Col>
             </Row>
             <Row className="salary-section__display-info">
-              <Col></Col>
-              <Col>
+              <Col sm={4} xs={4}></Col>
+              <Col sm={8} xs={8}>
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalCR"
@@ -496,8 +496,8 @@ const Salary = () => {
               </Col>
             </Row>
             <Row className="salary-section__display-info">
-              <Col></Col>
-              <Col>
+              <Col sm={4} xs={4}></Col>
+              <Col sm={8} xs={8}>
                 <DisplayInformation
                   customClasses="text-right"
                   displayLabel="totalDR"
