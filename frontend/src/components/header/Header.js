@@ -66,6 +66,7 @@ const Header = () => {
 
   // Handle event for logut
   const userLogout = () => {
+    setShow(false);
     dispatch(userLogoutAction());
     navigate("/");
   };
