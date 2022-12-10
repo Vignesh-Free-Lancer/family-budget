@@ -27,7 +27,7 @@ app.use("/", expenseRoutes); // Use expense routes for api call
 app.use("/", groceryRoutes); // Use grocery routes for api call
 app.use("/", dashboardRoutes); // Use dashboard routes for api call
 
-/* Deployment  Code Start */
+/* Deployment Code Start */
 
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-/* Deployment  Code End   */
+/* Deployment Code End   */
 
 // Error Handling middlewares
 app.use(notFound);
