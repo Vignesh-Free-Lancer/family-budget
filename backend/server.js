@@ -3,9 +3,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const path = require("path");
+const app = express(); // main thing - Call express js
+
 // Import Middlewared For Errorhandler and API URL Mismatch Founc
 const { notFound, errorHandler } = require("./middlewares/ErrorMiddleware");
-const app = express(); // main thing - Call express js
 
 // Import application api routes
 const userRoutes = require("./routes/UserRoutes");
