@@ -1,20 +1,23 @@
 // Import all required packages for backend operation
 const express = require("express");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+const connectDB = require("./backend/config/db");
 const path = require("path");
 const app = express(); // main thing - Call express js
 
 // Import Middlewared For Errorhandler and API URL Mismatch Founc
-const { notFound, errorHandler } = require("./middlewares/ErrorMiddleware");
+const {
+  notFound,
+  errorHandler,
+} = require("./backend/middlewares/ErrorMiddleware");
 
 // Import application api routes
-const userRoutes = require("./routes/UserRoutes");
-const salaryRoutes = require("./routes/SalaryRoutes");
-const extraIncomeRoutes = require("./routes/ExtraIncomeRoutes");
-const expenseRoutes = require("./routes/ExpenseRoutes");
-const groceryRoutes = require("./routes/GroceryRoutes");
-const dashboardRoutes = require("./routes/DashboardRoutes");
+const userRoutes = require("./backend/routes/UserRoutes");
+const salaryRoutes = require("./backend/routes/SalaryRoutes");
+const extraIncomeRoutes = require("./backend/routes/ExtraIncomeRoutes");
+const expenseRoutes = require("./backend/routes/ExpenseRoutes");
+const groceryRoutes = require("./backend/routes/GroceryRoutes");
+const dashboardRoutes = require("./backend/routes/DashboardRoutes");
 
 dotenv.config();
 connectDB();
