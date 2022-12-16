@@ -6,10 +6,10 @@ const path = require("path");
 const app = express(); // main thing - Call express js
 
 // Import Middlewared For Errorhandler and API URL Mismatch Founc
-const {
-  notFound,
-  errorHandler,
-} = require("./backend/middlewares/ErrorMiddleware");
+// const {
+//   notFound,
+//   errorHandler,
+// } = require("./backend/middlewares/ErrorMiddleware");
 
 // Import application api routes
 const userRoutes = require("./backend/routes/UserRoutes");
@@ -50,8 +50,8 @@ if (process.env.NODE_ENV === "production") {
 /* Deployment Code End   */
 
 // Error Handling middlewares
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
